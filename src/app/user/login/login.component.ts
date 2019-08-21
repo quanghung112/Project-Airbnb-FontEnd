@@ -26,10 +26,12 @@ export class LoginComponent implements OnInit {
     this.password = loginForm.password.value;
     const array = [this.email, this.password];
     this.api.login(this.email, this.password).subscribe(result => {
-      console.log(result);
       localStorage.setItem('ACCESS_TOKEN', result.token);
       this.accessToken = localStorage.getItem('ACCESS_TOKEN');
       this.message = result.message;
+      if (!this.message) {
+        this.router.navigate(['']);
+      }
     });
   }
 
