@@ -9,15 +9,13 @@ import { SearchComponent } from './templade/search/search.component';
 import { LoginComponent } from './login/login.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
-
-
 @NgModule({
   declarations: [
     AppComponent,
     DetailComponent,
     HeaderComponent,
     FooterComponent,
-    SearchComponent
+    SearchComponent,
     LoginComponent
 
   ],
