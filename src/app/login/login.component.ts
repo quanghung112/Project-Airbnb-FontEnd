@@ -10,7 +10,8 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
   email: string;
   password: string;
-  isLogined = false;
+  accessToken: string;
+  message: string;
 
   constructor(private api: LoginLogoutServiceBackendApiService,
               private router: Router
@@ -27,7 +28,18 @@ export class LoginComponent implements OnInit {
     this.api.login(this.email, this.password).subscribe(result => {
       console.log(result);
       localStorage.setItem('ACCESS_TOKEN', result.token);
-      this.isLogined = true;
+      this.accessToken = localStorage.getItem('ACCESS_TOKEN');
+      this.message = result.message;
+    });
+  }
+
+  logout($event: MouseEvent) {
+    event.preventDefault();
+    this.api.logout(this.accessToken).subscribe(result => {
+      console.log(result);
+      localStorage.removeItem('ACCESS_TOKEN');
+      this.accessToken = null;
+      console.log(localStorage.getItem);
     });
   }
 }
