@@ -6,9 +6,11 @@ import { DetailComponent } from './user/detail/detail.component';
 import { HeaderComponent } from './templade/header/header.component';
 import { FooterComponent } from './templade/footer/footer.component';
 import { SearchComponent } from './templade/search/search.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './user/login/login.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
+import {TokenInterceptor} from './interceptors/token.interceptor';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +27,13 @@ import {FormsModule} from '@angular/forms';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
