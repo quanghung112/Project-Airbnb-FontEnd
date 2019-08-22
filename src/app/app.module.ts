@@ -10,6 +10,7 @@ import { LoginComponent } from './user/login/login.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {TokenInterceptor} from './interceptors/token.interceptor';
+import { UpdateComponent } from './user/update/update.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {TokenInterceptor} from './interceptors/token.interceptor';
     HeaderComponent,
     FooterComponent,
     SearchComponent,
-    LoginComponent
+    LoginComponent,
+    UpdateComponent
 
   ],
   imports: [
