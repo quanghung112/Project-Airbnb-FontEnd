@@ -36,11 +36,11 @@ export class UpdateComponent implements OnInit {
     this.gender = updateUserForm.gender.value;
     this.phone = updateUserForm.phone.value;
     this.user = {
-      'name': this.name,
-      'avatar' :this.avatar,
-      'address' : this.address,
-      'gender' : this.gender,
-      'phone' : this.phone
+      name: this.name,
+      avatar : this.avatar,
+      address : this.address,
+      gender : this.gender,
+      phone : this.phone
     };
     this.userService.updateUser(this.idUpdate, this.user).subscribe(result => {
       console.log(result);

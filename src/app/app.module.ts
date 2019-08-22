@@ -11,6 +11,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {TokenInterceptor} from './interceptors/token.interceptor';
 import { UpdateComponent } from './user/update/update.component';
+import { RegisterComponent } from './user/register/register.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { UpdateComponent } from './user/update/update.component';
     FooterComponent,
     SearchComponent,
     LoginComponent,
-    UpdateComponent
+    UpdateComponent,
+    RegisterComponent
 
   ],
   imports: [
