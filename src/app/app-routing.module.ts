@@ -1,8 +1,9 @@
 import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 import {DetailComponent} from './user/detail/detail.component';
 import {LoginComponent} from './user/login/login.component';
 import {LoginedGuard} from './logined.guard';
+import {UpdateComponent} from './user/update/update.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -10,6 +11,7 @@ const routes: Routes = [
     path: '', canActivate: [LoginedGuard],
     children: [
       {path: 'users/:id', component: DetailComponent},
+      {path: 'users/:id/update', component: UpdateComponent},
     ]
   }
 ];
