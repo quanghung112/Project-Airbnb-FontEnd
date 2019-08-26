@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
       this.accessToken = localStorage.getItem('ACCESS_TOKEN');
       this.idUser = result.idUser;
       if (result.status) {
-        this.router.navigate([`/users/${result.idUser}`]);
+        this.router.navigate([`/`]);
       } else {
         this.message = result.message;
       }
@@ -47,7 +47,6 @@ export class LoginComponent implements OnInit {
       console.log(result);
       localStorage.removeItem('ACCESS_TOKEN');
       this.accessToken = null;
-      console.log(localStorage.getItem);
     });
   }
 
@@ -62,7 +61,7 @@ export class LoginComponent implements OnInit {
         this.api.loginFacebook(userData).subscribe(result => {
           console.log(result);
           localStorage.setItem('ACCESS_TOKEN', result.token);
-          this.router.navigate([`/users/${result.idUser}`]);
+          this.router.navigate(['/']);
         });
       }
     );
