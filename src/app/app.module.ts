@@ -13,6 +13,9 @@ import {TokenInterceptor} from './interceptors/token.interceptor';
 import { UpdateComponent } from './user/update/update.component';
 import { RegisterComponent } from './user/register/register.component';
 import { ChangepasswordComponent } from './user/changepassword/changepassword.component';
+import {AuthServiceConfig, SocialLoginModule} from 'angularx-social-login';
+import {getAuthServiceConfigs} from './socialloginConfig';
+
 
 @NgModule({
   declarations: [
@@ -31,13 +34,18 @@ import { ChangepasswordComponent } from './user/changepassword/changepassword.co
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SocialLoginModule,
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
+    },
+    {
+      provide: AuthServiceConfig,
+      useFactory: getAuthServiceConfigs
     }
   ],
   bootstrap: [AppComponent]

@@ -2,6 +2,8 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {LoginLogoutServiceBackendApiService} from '../login-logout-service-backend-api.service';
 import {Router} from '@angular/router';
 import {DataService } from '../../services/data.service';
+import {AuthService, FacebookLoginProvider} from 'angularx-social-login';
+
 
 @Component({
   selector: 'app-login',
@@ -16,7 +18,8 @@ export class LoginComponent implements OnInit {
   idUser: any;
 
   constructor(private api: LoginLogoutServiceBackendApiService,
-              private router: Router
+              private router: Router,
+              private socialAuthService: AuthService
   ) {
   }
 
@@ -31,7 +34,7 @@ export class LoginComponent implements OnInit {
       this.accessToken = localStorage.getItem('ACCESS_TOKEN');
       this.idUser = result.idUser;
       if (result.status) {
-        this.router.navigate([`/`]);
+        this.router.navigate([`/users/${result.idUser}`]);
       } else {
         this.message = result.message;
       }
@@ -47,7 +50,22 @@ export class LoginComponent implements OnInit {
       console.log(localStorage.getItem);
     });
   }
+
   idUserLogIn(idUser) {
     this.idUser.sendIdUser(idUser);
+  }
+  loginFacebook() {
+    const socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
+    this.socialAuthService.signIn(socialPlatformProvider).then(
+      (userData) => {
+        console.log(userData);
+        this.api.loginFacebook(userData).subscribe(result => {
+          console.log(result);
+          localStorage.setItem('ACCESS_TOKEN', result.token);
+          this.router.navigate([`/users/${result.idUser}`]);
+        });
+      }
+    );
+
   }
 }
