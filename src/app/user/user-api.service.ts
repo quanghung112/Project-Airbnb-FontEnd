@@ -22,4 +22,7 @@ export class UserApiService {
   register(data: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/signup`, data);
   }
+  updatePassword(password: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/changePassword`, password);
+  }
 }

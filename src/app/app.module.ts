@@ -12,8 +12,10 @@ import {FormsModule} from '@angular/forms';
 import {TokenInterceptor} from './interceptors/token.interceptor';
 import { UpdateComponent } from './user/update/update.component';
 import { RegisterComponent } from './user/register/register.component';
+import { ChangepasswordComponent } from './user/changepassword/changepassword.component';
 import {AuthServiceConfig, SocialLoginModule} from 'angularx-social-login';
 import {getAuthServiceConfigs} from './socialloginConfig';
+
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import {getAuthServiceConfigs} from './socialloginConfig';
     SearchComponent,
     LoginComponent,
     UpdateComponent,
-    RegisterComponent
+    RegisterComponent,
+    ChangepasswordComponent
 
   ],
   imports: [
