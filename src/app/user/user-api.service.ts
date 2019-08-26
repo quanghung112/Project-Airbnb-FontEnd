@@ -11,18 +11,20 @@ export class UserApiService {
   constructor(private http: HttpClient) {
   }
 
-  findById(id: number) {
-    return this.http.get(`${this.apiUrl}/users/${id}`);
+  getMe() {
+    return this.http.get(`${this.apiUrl}/me`);
   }
 
-  updateUser(idUser: any, user: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/users/${idUser}`, user);
+  updateUser( user: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/me/update`, user);
   }
 
   register(data: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/signup`, data);
   }
+
   updatePassword(password: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/changePassword`, password);
   }
+
 }

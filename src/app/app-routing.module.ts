@@ -13,9 +13,9 @@ const routes: Routes = [
   {
     path: '', canActivate: [LoginedGuard],
     children: [
-      {path: 'users/:id', component: DetailComponent},
-      {path: 'users/:id/update', component: UpdateComponent},
-      {path: 'users/:id/changePassword', component: ChangepasswordComponent},
+      {path: 'me', component: DetailComponent},
+      {path: 'me/update', component: UpdateComponent},
+      {path: 'me/changePassword', component: ChangepasswordComponent},
     ]
   }
 ];

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UserApiService} from '../user-api.service';
 import {Router} from '@angular/router';
+import {error} from 'util';
 
 @Component({
   selector: 'app-register',
@@ -12,6 +13,7 @@ export class RegisterComponent implements OnInit {
   password: string;
   username: string;
   message: string;
+  errorMessage: any;
 
   constructor(protected api: UserApiService,
               private router: Router) {
@@ -29,12 +31,12 @@ export class RegisterComponent implements OnInit {
       password: this.password,
       username: this.username
     };
-    this.api.register(data).subscribe(result => {
-      if (result.status) {
+    this.api.register(data).subscribe((result) => {
         this.router.navigate(['/']);
-      } else {
-        this.message = 'error';
-      }
-    });
+      },
+      (error) => {
+        this.errorMessage = error.error.error;
+        console.log(this.errorMessage);
+      });
   }
 }
