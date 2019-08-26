@@ -21,4 +21,8 @@ export class LoginLogoutServiceBackendApiService {
   logout(token: string) {
     return this.http.post(`${this.apiUrl}/logout`, token);
   }
+
+  loginFacebook(socialUser: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/loginFacebook`, socialUser);
+  }
 }
