@@ -12,6 +12,7 @@ import {FormsModule} from '@angular/forms';
 import {TokenInterceptor} from './interceptors/token.interceptor';
 import { UpdateComponent } from './user/update/update.component';
 import { RegisterComponent } from './user/register/register.component';
+import { ChangepasswordComponent } from './user/changepassword/changepassword.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { RegisterComponent } from './user/register/register.component';
     SearchComponent,
     LoginComponent,
     UpdateComponent,
-    RegisterComponent
+    RegisterComponent,
+    ChangepasswordComponent
 
   ],
   imports: [
