@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {UserApiService} from "../user-api.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Component, OnInit} from '@angular/core';
+import {UserApiService} from '../user-api.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-update',
@@ -8,25 +8,20 @@ import {ActivatedRoute, Router} from "@angular/router";
   styleUrls: ['./update.component.scss']
 })
 export class UpdateComponent implements OnInit {
-  idUpdate: any;
   user: any;
   name: any;
   avatar: any;
   address: any;
   gender: any;
   phone: any;
-  constructor(private userService: UserApiService, public activateRoute: ActivatedRoute, public router: Router) { }
+  errorMessage: any;
+
+  constructor(private userService: UserApiService, public activateRoute: ActivatedRoute, public router: Router) {
+  }
 
   ngOnInit() {
-    this.activateRoute.params.subscribe(params => {
-      this.idUpdate = params.id;
-    });
-    this.getUserById();
-  }
-  getUserById() {
-    this.userService.findById(this.idUpdate).subscribe(result => {
+    this.userService.getMe().subscribe(result => {
       this.user = result;
-      console.log(this.user);
     });
   }
   updateUser(updateUserForm) {
@@ -37,14 +32,19 @@ export class UpdateComponent implements OnInit {
     this.phone = updateUserForm.phone.value;
     this.user = {
       name: this.name,
-      avatar : this.avatar,
-      address : this.address,
-      gender : this.gender,
-      phone : this.phone
+      avatar: this.avatar,
+      address: this.address,
+      gender: this.gender,
+      phone: this.phone
     };
-    this.userService.updateUser(this.idUpdate, this.user).subscribe(result => {
-      console.log(result);
-      this.router.navigate([`/users/${this.idUpdate}`]);
-    });
+    this.userService.updateUser(this.user).subscribe(
+      result => {
+      this.router.navigate(['/me']);
+    },
+      error => {
+        this.errorMessage = error.error.error;
+        console.log(this.errorMessage);
+      }
+      );
   }
 }

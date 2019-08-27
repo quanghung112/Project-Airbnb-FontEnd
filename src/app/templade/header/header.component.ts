@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { DataService } from '../../services/data.service';
+import {LoginLogoutServiceBackendApiService} from '../../user/login-logout-service-backend-api.service';
 
 @Component({
   selector: 'app-header',
@@ -7,12 +7,10 @@ import { DataService } from '../../services/data.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  @Input() userId: any;
-  idUser: any;
-  constructor() { }
+
+  constructor() {
+  }
 
   ngOnInit() {
-    this.idUser.currentIdUser.subscribe(result => this.idUser = result);
-    console.log(this.idUser);
   }
 }

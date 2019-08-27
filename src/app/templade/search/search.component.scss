@@ -26,7 +26,7 @@
 .location {
   border-right: 1px solid #F3F3F3;
   float: left;
-  padding: 20px 27px 29px;
+  padding: 20px 27px 14px;
   width: 18%;
 }
 
@@ -65,7 +65,7 @@
 .search-type {
   border-right: 1px solid #F3F3F3;
   float: left;
-  padding: 20px 27px 29px;
+  padding: 20px 27px 16px;
   width: 18%;
 }
 
@@ -106,7 +106,7 @@
 .price-range {
   border-right: 1px solid #F3F3F3;
   float: left;
-  padding: 20px 45px 43px 21px;
+  padding: 20px 25px 9px 21px;
   width: 18%;
 }
 
@@ -114,9 +114,12 @@
   font-size: 14px;
   color: #61616e;
   font-weight: 300;
-  margin-bottom: 28px;
+  margin-bottom: 2px;
 }
-
+.price-range .form-control{
+  height: calc(1.5em + 5px);
+  margin-bottom: 5px;
+}
 .range-slider {
   margin-left: 5px;
 }
@@ -150,7 +153,7 @@ html .ui-button.ui-state-disabled:active {
 .bedrooms {
   border-right: 1px solid #F3F3F3;
   float: left;
-  padding: 20px 25px 31px 25px;
+  padding: 20px 25px 16px 25px;
   width: 16%;
 }
 
@@ -158,12 +161,12 @@ html .ui-button.ui-state-disabled:active {
   font-size: 14px;
   color: #61616e;
   font-weight: 300;
-  margin-bottom: 13px;
+  margin-bottom: 20px;
 }
 
 .bathrooms {
   float: left;
-  padding: 20px 25px 31px 25px;
+  padding: 20px 25px 25px 25px;
   width: 16%;
 }
 
@@ -171,7 +174,7 @@ html .ui-button.ui-state-disabled:active {
   font-size: 14px;
   color: #61616e;
   font-weight: 300;
-  margin-bottom: 13px;
+  margin-bottom: 20px;
 }
 
 .room-filter-pagi .bf-item {

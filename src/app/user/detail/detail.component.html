@@ -4,14 +4,27 @@
   </div>
   <div class="col col-6 float-left">
     <h1>Profile</h1>
-    <p><i class="fas fa-user-circle"></i><b>Tài khoản:</b> {{UserDetail.username}}</p>
-    <p><i class="fas fa-envelope-open-text"></i><b>Email:</b> {{UserDetail.email}} </p>
-    <p><i class="far fa-address-card"></i><b>Họ tên:</b> {{UserDetail.name}}</p>
-    <p *ngIf="UserDetail.gender"><i class="fas fa-venus-mars"></i><b>Giới tính:</b> Nam</p>
-    <p *ngIf="!UserDetail.gender"><i class="fas fa-venus-mars"></i><b>Giới tính:</b> Nữ</p>
-    <p><i class="far fa-address-card"></i><b>Địa chỉ:</b> {{UserDetail.address}}</p>
-    <p><i class="fas fa-phone"></i><b>Điện thoại:</b> {{UserDetail.phone}}</p>
-    <p><i class="fas fa-phone"></i><b>Facebook:</b> {{UserDetail.facebook}}</p>
+    <p><i class="fas fa-user-circle"></i><b>Tài khoản:</b>
+      <span *ngIf="!UserDetail.username">Chua cap nhat</span>
+      {{UserDetail.username}}</p>
+    <p><i class="fas fa-envelope-open-text"></i><b>Email:</b>
+      <span *ngIf="!UserDetail.email">Chua cap nhat</span>
+      {{UserDetail.email}} </p>
+    <p><i class="far fa-address-card"></i><b>Họ tên:</b>
+      <span *ngIf="!UserDetail.name">Chua cap nhat</span>
+      {{UserDetail.name}}</p>
+    <p><i class="fas fa-venus-mars"></i><b>Giới tính:</b><span *ngIf="UserDetail.gender===1">Nam</span>
+      <span *ngIf="UserDetail.gender===0">Nữ</span>
+      <span *ngIf="!UserDetail.gender">Chua cap nhat</span></p>
+    <p><i class="far fa-address-card"></i><b>Địa chỉ:</b>
+      <span *ngIf="!UserDetail.address">Chua cap nhat</span>
+      {{UserDetail.address}}</p>
+    <p><i class="fas fa-phone"></i><b>Điện thoại:</b>
+      <span *ngIf="!UserDetail.phone">Chua cap nhat</span>
+      {{UserDetail.phone}}</p>
+    <p><i class="fas fa-phone"></i><b>Facebook:</b>
+      <span *ngIf="!UserDetail.facebook">Chua cap nhat</span>
+      {{UserDetail.facebook}}</p>
   </div>
   <a routerLink="update">Cập nhật thông tin tài khoản</a><br>
   <a routerLink="changePassword">Cập nhật mật khẩu</a>
