@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
       username: this.username
     };
     this.api.register(data).subscribe((result) => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/login']);
       },
       (error) => {
         this.errorMessage = error.error.error;
