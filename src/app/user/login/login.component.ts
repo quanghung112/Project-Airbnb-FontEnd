@@ -32,21 +32,13 @@ export class LoginComponent implements OnInit {
     this.api.login(this.email, this.password).subscribe(result => {
       localStorage.setItem('ACCESS_TOKEN', result.token);
       this.accessToken = localStorage.getItem('ACCESS_TOKEN');
+      console.log(this.api.isLogined);
       this.idUser = result.idUser;
       if (result.status) {
-        this.router.navigate([`/`]);
+        this.router.navigate(['/']);
       } else {
         this.message = result.message;
       }
-    });
-  }
-
-  logout($event: MouseEvent) {
-    event.preventDefault();
-    this.api.logout(this.accessToken).subscribe(result => {
-      console.log(result);
-      localStorage.removeItem('ACCESS_TOKEN');
-      this.accessToken = null;
     });
   }
 

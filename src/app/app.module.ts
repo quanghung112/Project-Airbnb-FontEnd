@@ -27,7 +27,7 @@ import {getAuthServiceConfigs} from './socialloginConfig';
     LoginComponent,
     UpdateComponent,
     RegisterComponent,
-    ChangepasswordComponent
+    ChangepasswordComponent,
 
   ],
   imports: [

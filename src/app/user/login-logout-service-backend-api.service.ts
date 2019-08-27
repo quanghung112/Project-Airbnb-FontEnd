@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable, Subject} from 'rxjs';
+import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import {map} from 'rxjs/operators';
 
 @Injectable({
@@ -8,6 +8,8 @@ import {map} from 'rxjs/operators';
 })
 export class LoginLogoutServiceBackendApiService {
   apiUrl = 'http://localhost:8000/api';
+  // public isLogined = localStorage.getItem('isLogined');
+  public isLogined: boolean;
 
   constructor(
     private http: HttpClient
@@ -16,14 +18,32 @@ export class LoginLogoutServiceBackendApiService {
 
   login(email: string, password: string): Observable<any> {
     const data = {email, password};
-    return this.http.post(`${this.apiUrl}/login`, data);
+    return this.http.post(`${this.apiUrl}/login`, data).pipe(
+      map(result => {
+        // localStorage.setItem('isLogined', '1');
+        this.isLogined = true;
+        return result;
+      })
+    );
   }
 
   logout(token: string) {
-    return this.http.post(`${this.apiUrl}/logout`, token);
+    return this.http.post(`${this.apiUrl}/logout`, token).pipe(
+      map(result => {
+        // localStorage.removeItem('isLogined');
+        this.isLogined = false;
+        return result;
+      })
+    );
   }
 
   loginFacebook(socialUser: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/loginFacebook`, socialUser);
+    return this.http.post(`${this.apiUrl}/loginFacebook`, socialUser).pipe(
+      map(result => {
+        // localStorage.setItem('isLogined', '1');
+        this.isLogined = true;
+        return result;
+      })
+    );
   }
 }
