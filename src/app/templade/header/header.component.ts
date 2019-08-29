@@ -8,7 +8,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  isLogined: boolean;
+  isLogined = localStorage.getItem('isLogined');
   accessToken: any;
 
   constructor(private apiLogin: LoginLogoutServiceBackendApiService,
@@ -16,11 +16,11 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (localStorage.getItem('ACCESS_TOKEN')) {
-      this.isLogined = true;
-    } else {
-      this.isLogined = false;
-    }
+    // if (localStorage.getItem('ACCESS_TOKEN')) {
+    //   this.isLogined = true;
+    // } else {
+    //   this.isLogined = false;
+    // }
   }
 
   logout($event: MouseEvent) {
@@ -29,9 +29,18 @@ export class HeaderComponent implements OnInit {
     this.apiLogin.logout(this.accessToken).subscribe(result => {
         console.log(result);
         localStorage.removeItem('ACCESS_TOKEN');
+        localStorage.removeItem('idUser');
         this.accessToken = null;
         this.router.navigate(['/']);
       }
     );
+  }
+
+  changePage() {
+    if (localStorage.getItem('ACCESS_TOKEN')) {
+      this.router.navigate(['me/post/1']);
+    } else {
+      this.router.navigate(['login']);
+    }
   }
 }

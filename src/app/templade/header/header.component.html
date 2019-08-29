@@ -13,9 +13,9 @@
           <li><a href="search.html">Search Results</a></li>
           <li><a href="about.html">Categories</a></li>
           <li><a href="single-property.html">Single Property</a></li>
-          <li><a [routerLink]="['/register']">Register</a></li>
-          <li *ngIf="!apiLogin.isLogined"><a [routerLink]="['login']">Login</a></li>
-          <li *ngIf="apiLogin.isLogined">
+          <li *ngIf="isLogined"><a [routerLink]="['/register']">Register</a></li>
+          <li *ngIf="!isLogined"><a [routerLink]="['login']">Login</a></li>
+          <li *ngIf="isLogined">
             <div class="user-area dropdown float-right">
               <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true"
                  aria-expanded="false">
@@ -29,7 +29,8 @@
               </div>
             </div>
           </li>
-          <li class="top-social">
+          <li>
+            <a class="btn btn-warning" (click)="changePage()">Dang tin</a>
           </li>
         </ul>
         <div id="mobile-menu-wrap"></div>

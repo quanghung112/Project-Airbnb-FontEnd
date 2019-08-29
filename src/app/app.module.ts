@@ -15,6 +15,10 @@ import { RegisterComponent } from './user/register/register.component';
 import { ChangepasswordComponent } from './user/changepassword/changepassword.component';
 import {AuthServiceConfig, SocialLoginModule} from 'angularx-social-login';
 import {getAuthServiceConfigs} from './socialloginConfig';
+import { PostComponent } from './house/post/post.component';
+import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
+import { UploadFileComponent } from './upload-file/upload-file.component';
+import { PostImageComponent } from './house/post-image/post-image.component';
 
 
 @NgModule({
@@ -28,7 +32,9 @@ import {getAuthServiceConfigs} from './socialloginConfig';
     UpdateComponent,
     RegisterComponent,
     ChangepasswordComponent,
-
+    PostComponent,
+    UploadFileComponent,
+    PostImageComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,6 +42,7 @@ import {getAuthServiceConfigs} from './socialloginConfig';
     FormsModule,
     HttpClientModule,
     SocialLoginModule,
+    CKEditorModule
   ],
   providers: [
     {

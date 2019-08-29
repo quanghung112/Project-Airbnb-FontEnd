@@ -10,6 +10,8 @@ import {HeaderComponent} from './templade/header/header.component';
 import {SearchComponent} from './templade/search/search.component';
 import {AppComponent} from './app.component';
 import {FooterComponent} from './templade/footer/footer.component';
+import {PostComponent} from './house/post/post.component';
+import {PostImageComponent} from './house/post-image/post-image.component';
 
 const routes: Routes = [
   {path: '', component: HeaderComponent, outlet: 'header'},
@@ -24,6 +26,8 @@ const routes: Routes = [
       {path: 'me', component: DetailComponent},
       {path: 'me/update', component: UpdateComponent},
       {path: 'me/changePassword', component: ChangepasswordComponent},
+      {path: 'me/post/1', component: PostComponent},
+      {path: 'me/post/2', component: PostImageComponent}
     ]
   }
 ];
