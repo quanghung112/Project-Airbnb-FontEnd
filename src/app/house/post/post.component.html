@@ -1,0 +1,83 @@
+<div style="border: 1px solid #3f3f4b">
+  <li class="list-group-item " style="background-color: #8F8FA8">Thêm tin mới >> Bước 1</li>
+  <div class="container"><br>
+    <form #postForm (ngSubmit)="post(postForm)">
+      <div class="form-group">
+        <label>Tiêu đề tin</label>
+        <input type="text" name="title" class="form-control">
+      </div>
+      <div class="form-row">
+        <div class="form-group col-4">
+          <label> Loại nhà</label>
+          <select name="style" class="form-control">
+            <option selected>Choose...</option>
+            <option value="Phòng trọ">Phòng trọ</option>
+            <option value="Ký túc xá">Ký túc xá</option>
+            <option value="Chung cư mini">Chung cư mini</option>
+            <option value="Cư xá">Cư xá</option>
+            <option value="Homestay">Homestay</option>
+            <option value="Nhà trọ nguyên căn">Nhà trọ nguyên căn</option>
+            <option value="Trọ trong nhà chung chủ">Trọ trong nhà chung chủ</option>
+          </select>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Hình thức thuê</label>
+          <select name="loan_type" class="form-control">
+            <option selected>Choose...</option>
+            <option value="Cho thuê trọ">Cho thuê trọ</option>
+            <option value="Cho thuê Nhà/Căn hộ">Cho thuê Nhà/Căn hộ</option>
+            <option value="Tìm người ở ghép">Tìm người ở ghép</option>
+          </select>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Số phòng ngủ</label>
+          <input type="number" name="bedroom" class="form-control">
+        </div>
+        <div class="form-group col-md-4">
+          <label>Số phòng tắm</label>
+          <input type="number" name="bathroom" class="form-control">
+        </div>
+        <div class="form-group col-md-4">
+          <label>Giá thuê</label>
+          <input type="number" name="price" class="form-control" placeholder="Việt nam đồng">
+        </div>
+      </div>
+      <label>Address</label>
+      <div class="form-row" style="border: 1px solid #8F8FA8">
+        <div class="form-group col-md-4">
+          <label>Tỉnh/Thành phố</label>
+          <select name="city" (change)="changedCity($event.target.value)" class="form-control">
+            <option selected>Choose...</option>
+            <option *ngFor="let city of cities " value="{{city.matp}}">{{city.name}}</option>
+          </select>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Quận/Huyện</label>
+          <select name="district" (change)="changeDistrict($event.target.value)" class="form-control">
+            <option selected>Choose...</option>
+            <option *ngFor="let district of districts " value="{{district.maqh}}">{{district.name}}</option>
+          </select>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Phường/Xã</label>
+          <select name="sub_district" class="form-control" (change)="getSubDistrict($event.target.value)">
+            <option selected>Choose...</option>
+            <option *ngFor="let subdistrict of subDistricts " value="{{subdistrict.xaid}}">{{subdistrict.name}}</option>
+          </select>
+        </div>
+        <div class="form-group col">
+          <label>Địa chỉ</label>
+          <input type="text" name="address" class="form-control">
+        </div>
+      </div>
+      <br>
+      <label>Mô tả chi tiết</label>
+      <div class="form-row">
+        <ckeditor tagName="editor" class="col-12" [editor]="Editor" (change)="onChange($event)" data="<p>Hello, world!</p>"></ckeditor>
+      </div>
+      <br>
+      <button type="submit" class="btn btn-primary ">Sign in</button>
+    </form>
+  </div>
+</div>
+

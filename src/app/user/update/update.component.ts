@@ -14,7 +14,10 @@ export class UpdateComponent implements OnInit {
   address: any;
   gender: any;
   phone: any;
-  errorMessage: any;
+  errorName: any;
+  errorAvatar: any;
+  errorPhone: any;
+  errorAddress: any;
 
   constructor(private userService: UserApiService, public activateRoute: ActivatedRoute, public router: Router) {
   }
@@ -22,8 +25,10 @@ export class UpdateComponent implements OnInit {
   ngOnInit() {
     this.userService.getMe().subscribe(result => {
       this.user = result;
+      console.log(this.user);
     });
   }
+
   updateUser(updateUserForm) {
     this.name = updateUserForm.name.value;
     this.avatar = updateUserForm.avatar.value;
@@ -39,12 +44,14 @@ export class UpdateComponent implements OnInit {
     };
     this.userService.updateUser(this.user).subscribe(
       result => {
-      this.router.navigate(['/me']);
-    },
+        this.router.navigate(['/me']);
+      },
       error => {
-        this.errorMessage = error.error.error;
-        console.log(this.errorMessage);
+        this.errorName = error.error.error.name;
+        this.errorAvatar = error.error.error.avatar;
+        this.errorAddress = error.error.error.address;
+        this.errorPhone = error.error.error.phone;
       }
-      );
+    );
   }
 }
