@@ -8,7 +8,7 @@ import { FooterComponent } from './templade/footer/footer.component';
 import { SearchComponent } from './templade/search/search.component';
 import { LoginComponent } from './user/login/login.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TokenInterceptor} from './interceptors/token.interceptor';
 import { UpdateComponent } from './user/update/update.component';
 import { RegisterComponent } from './user/register/register.component';
@@ -17,8 +17,8 @@ import {AuthServiceConfig, SocialLoginModule} from 'angularx-social-login';
 import {getAuthServiceConfigs} from './socialloginConfig';
 import { PostComponent } from './house/post/post.component';
 import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
-import { UploadFileComponent } from './upload-file/upload-file.component';
 import { PostImageComponent } from './house/post-image/post-image.component';
+import { ListComponent } from './house/list/list.component';
 
 
 @NgModule({
@@ -33,8 +33,8 @@ import { PostImageComponent } from './house/post-image/post-image.component';
     RegisterComponent,
     ChangepasswordComponent,
     PostComponent,
-    UploadFileComponent,
     PostImageComponent,
+    ListComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,7 +42,8 @@ import { PostImageComponent } from './house/post-image/post-image.component';
     FormsModule,
     HttpClientModule,
     SocialLoginModule,
-    CKEditorModule
+    CKEditorModule,
+    ReactiveFormsModule
   ],
   providers: [
     {
