@@ -18,7 +18,7 @@ export class DetailComponent implements OnInit {
     console.log(this.idUser);
     this.userService.getMe().subscribe(result => {
       this.UserDetail = result;
-      console.log(this.UserDetail);
+      // console.log(this.UserDetail);
     });
   }
 }

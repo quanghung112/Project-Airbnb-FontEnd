@@ -10,22 +10,24 @@ import {HeaderComponent} from './templade/header/header.component';
 import {SearchComponent} from './templade/search/search.component';
 import {AppComponent} from './app.component';
 import {FooterComponent} from './templade/footer/footer.component';
+import {ShowhousesComponent} from "./house/showhouses/showhouses.component";
 
 const routes: Routes = [
   {path: '', component: HeaderComponent, outlet: 'header'},
   {path: '', component: SearchComponent, outlet: 'search'},
   {path: '', component: FooterComponent, outlet: 'footer'},
-  {path: '', component: AppComponent},
+  {path: '', component: ShowhousesComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {
-    path: '', canActivate: [LoginedGuard],
+  {path: '', canActivate: [LoginedGuard],
     children: [
       {path: 'me', component: DetailComponent},
       {path: 'me/update', component: UpdateComponent},
       {path: 'me/changePassword', component: ChangepasswordComponent},
     ]
-  }
+  },
+  {path: 'houses', component: ShowhousesComponent},
+  {path: 'detail:id', component: ShowhousesComponent},
 ];
 
 @NgModule({

@@ -34,9 +34,11 @@ export class ChangepasswordComponent implements OnInit {
       new_password_confirmation : this.new_password_confirmation
     };
     console.log(this.password);
+    console.log(this.messenger);
     this.userService.updatePassword(this.password).subscribe(result => {
-      // this.router.navigate([`/users/${this.idUpdate}`]);
       this.messenger = result;
+      console.log(this.password);
+      // this.router.navigate([`me`]);
     });
   }
 }

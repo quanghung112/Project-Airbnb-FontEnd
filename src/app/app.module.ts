@@ -16,6 +16,8 @@ import { ChangepasswordComponent } from './user/changepassword/changepassword.co
 import {AuthServiceConfig, SocialLoginModule} from 'angularx-social-login';
 import {getAuthServiceConfigs} from './socialloginConfig';
 import { ContentComponent } from './templade/content/content.component';
+import { HomeComponent } from './templade/home/home.component';
+import { ShowhousesComponent } from './house/showhouses/showhouses.component';
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import { ContentComponent } from './templade/content/content.component';
     UpdateComponent,
     RegisterComponent,
     ChangepasswordComponent,
-    ContentComponent
+    ContentComponent,
+    HomeComponent,
+    ShowhousesComponent
 
   ],
   imports: [

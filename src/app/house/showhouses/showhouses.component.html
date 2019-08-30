@@ -1,0 +1,20 @@
+<div class="container" *ngFor="let house of houses">
+  <div class="col-md-3 col-sm-6 float-left" style="margin-bottom: 10px;">
+    <div class="product-grid">
+      <div class="product-image">
+        <a href="#">
+          <img style="max-height: 100%; max-width: 100%;" class="pic-1"
+               src="http://bestjquery.com/tutorial/product-grid/demo9/images/img-1.jpg">
+        </a>
+      </div>
+      <div class="house-content">
+        <h5 class="title"><a [routerLink]="['detail', house.id]">{{house.title}}</a></h5>
+        <p><span>Loại phòng</span>:{{house.style}}</p>
+        <p><span>Thành phố</span>:{{house.city}}</p>
+        <p><span>Giá phòng</span>:{{house.price}}</p>
+        <p><span>Phòng ngủ</span>:{{house.bedroom}}</p>
+        <p><span>Phòng tắm</span>:{{house.bathroom}}</p>
+      </div>
+    </div>
+  </div>
+</div>

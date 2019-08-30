@@ -15,6 +15,10 @@ export class UpdateComponent implements OnInit {
   gender: any;
   phone: any;
   errorMessage: any;
+  errorName: any;
+  errorAvatar: any;
+  errorPhone: any;
+  errorAddress: any;
 
   constructor(private userService: UserApiService, public activateRoute: ActivatedRoute, public router: Router) {
   }
@@ -24,6 +28,7 @@ export class UpdateComponent implements OnInit {
       this.user = result;
     });
   }
+
   updateUser(updateUserForm) {
     this.name = updateUserForm.name.value;
     this.avatar = updateUserForm.avatar.value;
@@ -39,12 +44,15 @@ export class UpdateComponent implements OnInit {
     };
     this.userService.updateUser(this.user).subscribe(
       result => {
-      this.router.navigate(['/me']);
-    },
+        this.router.navigate(['/me']);
+      },
       error => {
         this.errorMessage = error.error.error;
-        console.log(this.errorMessage);
+        this.errorName = this.errorMessage.name;
+        this.errorAvatar = this.errorMessage.avatar;
+        this.errorPhone = this.errorMessage.phone;
+        this.errorAddress = this.errorMessage.address;
       }
-      );
+    );
   }
 }
