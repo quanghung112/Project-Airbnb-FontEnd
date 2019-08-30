@@ -14,7 +14,7 @@ export class UpdateComponent implements OnInit {
   address: any;
   gender: any;
   phone: any;
-  errorMessage: any;
+
   errorName: any;
   errorAvatar: any;
   errorPhone: any;
@@ -26,6 +26,7 @@ export class UpdateComponent implements OnInit {
   ngOnInit() {
     this.userService.getMe().subscribe(result => {
       this.user = result;
+      console.log(this.user);
     });
   }
 
@@ -47,11 +48,11 @@ export class UpdateComponent implements OnInit {
         this.router.navigate(['/me']);
       },
       error => {
-        this.errorMessage = error.error.error;
-        this.errorName = this.errorMessage.name;
-        this.errorAvatar = this.errorMessage.avatar;
-        this.errorPhone = this.errorMessage.phone;
-        this.errorAddress = this.errorMessage.address;
+
+        this.errorName = error.error.error.name;
+        this.errorAvatar = error.error.error.avatar;
+        this.errorAddress = error.error.error.address;
+        this.errorPhone = error.error.error.phone;
       }
     );
   }

@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {LoginLogoutServiceBackendApiService} from '../login-logout-service-backend-api.service';
 import {Router} from '@angular/router';
-import {DataService } from '../../services/data.service';
+import {DataService} from '../../services/data.service';
 import {AuthService, FacebookLoginProvider} from 'angularx-social-login';
 
 
@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit {
     this.api.login(this.email, this.password).subscribe(result => {
       localStorage.setItem('ACCESS_TOKEN', result.token);
       this.accessToken = localStorage.getItem('ACCESS_TOKEN');
+      localStorage.setItem('idUser', result.idUser);
       console.log(this.api.isLogined);
       this.idUser = result.idUser;
       if (result.status) {
@@ -45,13 +46,15 @@ export class LoginComponent implements OnInit {
   idUserLogIn(idUser) {
     this.idUser.sendIdUser(idUser);
   }
+
   loginFacebook() {
     const socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
     this.socialAuthService.signIn(socialPlatformProvider).then(
       (userData) => {
         console.log(userData);
         this.api.loginFacebook(userData).subscribe(result => {
-          console.log(result);
+          localStorage.setItem('idUser', result.idUser);
+          // console.log(result);
           localStorage.setItem('ACCESS_TOKEN', result.token);
           this.router.navigate(['/']);
         });

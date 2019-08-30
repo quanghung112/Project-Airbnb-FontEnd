@@ -1,0 +1,84 @@
+<div>
+  <div class="col-12">
+    <img style="max-height: 500px;" class="col-12"
+         src="https://tromoi.com/uploads/guest/o_1djg2fnct7v86l29te1l581s5pq.jpeg" alt="">
+  </div>
+  <hr>
+  <div>
+    <div class="col-8 float-left form-group">
+      <h2>{{houseDetail.title}}</h2>
+      <p>{{houseDetail.city}}</p>
+      <hr>
+      <h3>Tổng quan căn hộ</h3>
+      <div>
+        <div class="p-0 col-2 float-left border">
+          <p class="p-1 m-0 bg-info">Loại phòng</p>
+          <p class="p-1 m-0">{{houseDetail.style}}</p>
+        </div>
+        <div class="p-0 col-2 float-left border">
+          <p class="p-1 m-0 bg-info">Phòng ngủ</p>
+          <p class="p-1 m-0">{{houseDetail.bedroom}}</p>
+        </div>
+        <div class="p-0 col-2 float-left border">
+          <p class="p-1 m-0 bg-info">Phòng tắm </p>
+          <p class="p-1 m-0">{{houseDetail.bathroom}}</p>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <hr>
+      <div>
+        <h3>Địa chỉ</h3>
+        <table class="table table-bordered">
+          <thead>
+          <tr class="bg-warning">
+            <th>Tỉnh/Thành phố</th>
+            <th>Quận/Huyện/Thị Xã</th>
+            <th>Xã/Phường/Thị trấn</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>{{houseDetail.city}}</td>
+            <td>{{houseDetail.district}}</td>
+            <td>{{houseDetail.sub_district}}</td>
+          </tr>
+          <tr>
+            <td colspan="3"><span>Địa chỉ: </span>{{houseDetail.address}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <hr>
+      <div>
+        <h3>Mô tả chi tiết </h3>
+        <div>
+          {{houseDetail.description}}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-4 float-left">
+      <div class="border py-4 px-2">
+        <h5><span>Liên hệ</span>: </h5>
+        <p>Điện thoại: <a href="tel:0999999999">0999999999</a></p>
+      </div>
+      <div class="booking border py-4 px-2">
+        <h5>{{houseDetail.price}}vnđ/tháng</h5>
+        <form action="">
+          <label for="start">Start date:</label>
+          <input type="date" id="start" class="form-control" name="trip-start"
+                 value=""
+                 min="2018-01-01" max="2019-12-31">
+          <br>
+          <label for="start">Start date:</label>
+          <input type="date" id="end" class="form-control" name="trip-end"
+                 value=""
+                 min="2018-01-01" max="2019-12-31">
+          <br>
+          <input type="button"class="btn btn-danger" value="Đặt phòng ">
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>

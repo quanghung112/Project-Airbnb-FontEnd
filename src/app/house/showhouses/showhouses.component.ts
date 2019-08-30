@@ -8,6 +8,8 @@ import {HouseApiService} from '../house-api.service';
 })
 export class ShowhousesComponent implements OnInit {
   houses: any;
+  items = [];
+  pageOfItems: Array<any>;
   constructor(public houseService: HouseApiService) {}
 
   ngOnInit() {
@@ -16,5 +18,4 @@ export class ShowhousesComponent implements OnInit {
       console.log(this.houses);
     });
   }
-
 }

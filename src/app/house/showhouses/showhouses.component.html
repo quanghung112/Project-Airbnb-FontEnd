@@ -8,7 +8,7 @@
         </a>
       </div>
       <div class="house-content">
-        <h5 class="title"><a [routerLink]="['detail', house.id]">{{house.title}}</a></h5>
+        <h5 class="title"><a [routerLink]='["houses",house.id]'>{{house.title}}</a></h5>
         <p><span>Loại phòng</span>:{{house.style}}</p>
         <p><span>Thành phố</span>:{{house.city}}</p>
         <p><span>Giá phòng</span>:{{house.price}}</p>

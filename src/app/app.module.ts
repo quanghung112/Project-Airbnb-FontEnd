@@ -18,6 +18,13 @@ import {getAuthServiceConfigs} from './socialloginConfig';
 import { ContentComponent } from './templade/content/content.component';
 import { HomeComponent } from './templade/home/home.component';
 import { ShowhousesComponent } from './house/showhouses/showhouses.component';
+import { PostComponent } from './house/post/post.component';
+import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
+// import { UploadFileComponent } from './upload-file/upload-file.component';
+import { PostImageComponent } from './house/post-image/post-image.component';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { JwPaginationComponent } from 'jw-angular-pagination';
+import { HouseDetailsComponent } from './house/house-details/house-details.component';
 
 
 @NgModule({
@@ -33,8 +40,11 @@ import { ShowhousesComponent } from './house/showhouses/showhouses.component';
     ChangepasswordComponent,
     ContentComponent,
     HomeComponent,
-    ShowhousesComponent
-
+    ShowhousesComponent,
+    PostComponent,
+    PostImageComponent,
+    JwPaginationComponent,
+    HouseDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,6 +52,8 @@ import { ShowhousesComponent } from './house/showhouses/showhouses.component';
     FormsModule,
     HttpClientModule,
     SocialLoginModule,
+    CKEditorModule,
+    NgxPaginationModule
   ],
   providers: [
     {
