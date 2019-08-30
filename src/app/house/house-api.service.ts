@@ -7,6 +7,7 @@ import {HttpClient} from '@angular/common/http';
 })
 export class HouseApiService {
   apiUrl = 'http://localhost:8000/api';
+  message: any;
 
   constructor(private http: HttpClient) {
   }
@@ -21,6 +22,19 @@ export class HouseApiService {
 
   findById(id: any) {
     return this.http.get(`${this.apiUrl}/houses/${id}`);
+  }
+
+  saveImage(data: any) {
+    return this.http.post(`${this.apiUrl}/houses/saveImage`, data);
+  }
+
+  getNewHouse(userId: any) {
+    return this.http.get(`${this.apiUrl}/houses/newHouse/${userId}`);
+  }
+
+  getHouseOfUser(userId: any) {
+    return this.http.get(`${this.apiUrl}/houses/getHousesOfUser/${userId}`);
+
   }
 }
 

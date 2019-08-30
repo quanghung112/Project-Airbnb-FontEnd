@@ -13,7 +13,8 @@ import {FooterComponent} from './templade/footer/footer.component';
 import {ShowhousesComponent} from './house/showhouses/showhouses.component';
 import {PostComponent} from './house/post/post.component';
 import {PostImageComponent} from './house/post-image/post-image.component';
-import {HouseDetailsComponent} from "./house/house-details/house-details.component";
+import {HouseDetailsComponent} from './house/house-details/house-details.component';
+import {ListComponent} from './house/list/list.component';
 
 
 const routes: Routes = [
@@ -29,12 +30,13 @@ const routes: Routes = [
       {path: 'me/update', component: UpdateComponent},
       {path: 'me/changePassword', component: ChangepasswordComponent},
       {path: 'me/post/1', component: PostComponent},
-      {path: 'me/post/2', component: PostImageComponent}
+      {path: 'me/post/2', component: PostImageComponent},
+      {path: 'me/posts/list', component: ListComponent}
     ]
   },
   {path: 'houses', component: ShowhousesComponent},
   {path: 'houses/:id', component: HouseDetailsComponent},
-];
+  ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

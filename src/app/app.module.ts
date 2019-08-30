@@ -8,7 +8,7 @@ import { FooterComponent } from './templade/footer/footer.component';
 import { SearchComponent } from './templade/search/search.component';
 import { LoginComponent } from './user/login/login.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TokenInterceptor} from './interceptors/token.interceptor';
 import { UpdateComponent } from './user/update/update.component';
 import { RegisterComponent } from './user/register/register.component';
@@ -20,13 +20,11 @@ import { HomeComponent } from './templade/home/home.component';
 import { ShowhousesComponent } from './house/showhouses/showhouses.component';
 import { PostComponent } from './house/post/post.component';
 import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
-// import { UploadFileComponent } from './upload-file/upload-file.component';
-import { PostImageComponent } from './house/post-image/post-image.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { JwPaginationComponent } from 'jw-angular-pagination';
 import { HouseDetailsComponent } from './house/house-details/house-details.component';
-
-
+import { PostImageComponent } from './house/post-image/post-image.component';
+import { ListComponent } from './house/list/list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,8 +41,8 @@ import { HouseDetailsComponent } from './house/house-details/house-details.compo
     ShowhousesComponent,
     PostComponent,
     PostImageComponent,
-    JwPaginationComponent,
     HouseDetailsComponent,
+    ListComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,7 +51,7 @@ import { HouseDetailsComponent } from './house/house-details/house-details.compo
     HttpClientModule,
     SocialLoginModule,
     CKEditorModule,
-    NgxPaginationModule
+    ReactiveFormsModule
   ],
   providers: [
     {

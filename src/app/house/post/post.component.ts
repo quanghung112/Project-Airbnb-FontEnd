@@ -130,6 +130,7 @@ export class PostComponent implements OnInit {
     };
     this.houseApi.createPost(data).subscribe(result => {
       console.log(result);
+      this.houseApi.message = 'Đăng bài thành công. Hãy thêm ảnh cho bài đăng của bạn';
       this.router.navigate(['me/post/2']);
     });
   }
