@@ -12,6 +12,7 @@ import {AppComponent} from './app.component';
 import {FooterComponent} from './templade/footer/footer.component';
 import {PostComponent} from './house/post/post.component';
 import {PostImageComponent} from './house/post-image/post-image.component';
+import {ListComponent} from './house/list/list.component';
 
 const routes: Routes = [
   {path: '', component: HeaderComponent, outlet: 'header'},
@@ -27,9 +28,9 @@ const routes: Routes = [
       {path: 'me/update', component: UpdateComponent},
       {path: 'me/changePassword', component: ChangepasswordComponent},
       {path: 'me/post/1', component: PostComponent},
-      {path: 'me/post/2', component: PostImageComponent}
-    ]
-  }
+      {path: 'me/post/2', component: PostImageComponent},
+      {path: 'me/posts/list', component: ListComponent}
+    ]},
 ];
 
 @NgModule({

@@ -7,6 +7,7 @@ import {Observable} from 'rxjs';
 })
 export class UserApiService {
   apiUrl = 'http://localhost:8000/api';
+  avatarUrl = 'http://127.0.0.1:8000/avatar';
 
   constructor(private http: HttpClient) {
   }

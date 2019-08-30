@@ -26,6 +26,7 @@ export class HeaderComponent implements OnInit {
   logout($event: MouseEvent) {
     event.preventDefault();
     this.accessToken = localStorage.getItem('ACCESS_TOKEN');
+    localStorage.removeItem('isLogined');
     this.apiLogin.logout(this.accessToken).subscribe(result => {
         console.log(result);
         localStorage.removeItem('ACCESS_TOKEN');
