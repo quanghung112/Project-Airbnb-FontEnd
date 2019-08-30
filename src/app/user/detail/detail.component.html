@@ -1,5 +1,6 @@
-<div>
-  <div class="col col-6 float-left">
+
+<div class="profile">
+  <div class="avarta col col-6 float-left align-middle">
     <img src="http://127.0.0.1:8000/avatar/{{UserDetail.avatar}}" alt="avata" style="max-width: 100%">
   </div>
   <div class="col col-6 float-left">
@@ -12,8 +13,9 @@
     <p><i class="far fa-address-card"></i><b>Họ tên:</b>
       <span *ngIf="!UserDetail.name">Chua cap nhat</span>
       {{UserDetail.name}}</p>
-    <p><i class="fas fa-venus-mars"></i><b>Giới tính:</b><span *ngIf="UserDetail.gender===1">Nam</span>
-      <span *ngIf="UserDetail.gender===0">Nữ</span>
+    <p><i class="fas fa-venus-mars"></i><b>Giới tính:</b>
+      <span *ngIf="UserDetail.gender===1">Nam</span>
+      <span *ngIf="UserDetail.gender===2">Nữ</span>
       <span *ngIf="!UserDetail.gender">Chua cap nhat</span></p>
     <p><i class="far fa-address-card"></i><b>Địa chỉ:</b>
       <span *ngIf="!UserDetail.address">Chua cap nhat</span>

@@ -15,12 +15,16 @@ import { RegisterComponent } from './user/register/register.component';
 import { ChangepasswordComponent } from './user/changepassword/changepassword.component';
 import {AuthServiceConfig, SocialLoginModule} from 'angularx-social-login';
 import {getAuthServiceConfigs} from './socialloginConfig';
+import { ContentComponent } from './templade/content/content.component';
+import { HomeComponent } from './templade/home/home.component';
+import { ShowhousesComponent } from './house/showhouses/showhouses.component';
 import { PostComponent } from './house/post/post.component';
 import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { JwPaginationComponent } from 'jw-angular-pagination';
+import { HouseDetailsComponent } from './house/house-details/house-details.component';
 import { PostImageComponent } from './house/post-image/post-image.component';
 import { ListComponent } from './house/list/list.component';
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,8 +36,12 @@ import { ListComponent } from './house/list/list.component';
     UpdateComponent,
     RegisterComponent,
     ChangepasswordComponent,
+    ContentComponent,
+    HomeComponent,
+    ShowhousesComponent,
     PostComponent,
     PostImageComponent,
+    HouseDetailsComponent,
     ListComponent,
   ],
   imports: [

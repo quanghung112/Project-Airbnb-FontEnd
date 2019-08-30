@@ -3,24 +3,31 @@
 -----------------------*/
 
 .header-section {
-  padding: 25px 0;
+  padding: 0px;
   //position: absolute;
   height: 300px;
   left: 0;
   top: 0;
   width: 100%;
   z-index: 99;
-  background: #6F6F8A;
+  background-image: url("https://felujitasportal.hu/images/headers/felujitas-csaladi-haz.webp");
 }
 
 .logo {
   float: left;
   display: inline-block;
 }
-
+.container-fluid {
+  background: tomato;
+  line-height: 50px;
+  position: fixed;
+  top: 0px;
+  z-index: 9999;
+}
 .main-menu {
   float: right;
   display: inline-block;
+  margin: 0px;
 }
 
 .main-menu li {
@@ -28,14 +35,20 @@
 }
 
 .main-menu a {
-  color: red;
+  color: black;
   display: inline-block;
   font-size: 16px;
   font-weight: 500;
   margin-left: 35px;
-  padding: 4px 5px;
+  padding: 4px 30px 4px 5px;
+  border-right: 1px solid #6F6F8A;
 }
-
+.main-menu .user-menu a{
+  border: none;
+}
+.user-area {
+  height: 35px;
+}
 .slicknav_menu {
   display: none;
 }

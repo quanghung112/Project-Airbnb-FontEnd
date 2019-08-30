@@ -10,19 +10,21 @@ import {HeaderComponent} from './templade/header/header.component';
 import {SearchComponent} from './templade/search/search.component';
 import {AppComponent} from './app.component';
 import {FooterComponent} from './templade/footer/footer.component';
+import {ShowhousesComponent} from './house/showhouses/showhouses.component';
 import {PostComponent} from './house/post/post.component';
 import {PostImageComponent} from './house/post-image/post-image.component';
+import {HouseDetailsComponent} from './house/house-details/house-details.component';
 import {ListComponent} from './house/list/list.component';
+
 
 const routes: Routes = [
   {path: '', component: HeaderComponent, outlet: 'header'},
   {path: '', component: SearchComponent, outlet: 'search'},
   {path: '', component: FooterComponent, outlet: 'footer'},
-  {path: '', component: AppComponent},
+  {path: '', component: ShowhousesComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {
-    path: '', canActivate: [LoginedGuard],
+  {path: '', canActivate: [LoginedGuard],
     children: [
       {path: 'me', component: DetailComponent},
       {path: 'me/update', component: UpdateComponent},
@@ -30,8 +32,11 @@ const routes: Routes = [
       {path: 'me/post/1', component: PostComponent},
       {path: 'me/post/2', component: PostImageComponent},
       {path: 'me/posts/list', component: ListComponent}
-    ]},
-];
+    ]
+  },
+  {path: 'houses', component: ShowhousesComponent},
+  {path: 'houses/:id', component: HouseDetailsComponent},
+  ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

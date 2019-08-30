@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginLogoutServiceBackendApiService} from '../../user/login-logout-service-backend-api.service';
 import {Router} from '@angular/router';
+import {UserApiService} from '../../user/user-api.service';
 
 @Component({
   selector: 'app-header',
@@ -10,17 +11,17 @@ import {Router} from '@angular/router';
 export class HeaderComponent implements OnInit {
   isLogined = localStorage.getItem('isLogined');
   accessToken: any;
+  UserDetail: any;
 
   constructor(private apiLogin: LoginLogoutServiceBackendApiService,
-              private router: Router) {
+              private router: Router, public userService: UserApiService) {
   }
 
   ngOnInit() {
-    // if (localStorage.getItem('ACCESS_TOKEN')) {
-    //   this.isLogined = true;
-    // } else {
-    //   this.isLogined = false;
-    // }
+    this.userService.getMe().subscribe(result => {
+      this.UserDetail = result;
+      console.log(this.UserDetail);
+    });
   }
 
   logout($event: MouseEvent) {

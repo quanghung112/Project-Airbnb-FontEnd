@@ -108,7 +108,7 @@ export class PostComponent implements OnInit {
   post(postForm: HTMLFormElement) {
     // @ts-ignore
     this.title = postForm.title.value;
-    this.style = postForm.style.value;
+    this.style = postForm.style1.value;
     this.loan_type = postForm.loan_type.value;
     this.address = postForm.address.value;
     this.bathroom = postForm.bathroom.value;
