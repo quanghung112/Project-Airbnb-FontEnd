@@ -24,7 +24,7 @@
             <th class="text-center align-middle" scope="row">{{i+1}}</th>
             <td>
               <h5 style="color: #0250c5">{{post.title}}</h5>
-              <a><button>Sửa tin</button></a><a><button>Xóa tin </button></a>
+              <a [routerLink]="['update',post.id]"><button>Sửa tin</button></a><a (click)="deletePost(post.id)"><button>Xóa tin </button></a>
               <br>
               <span>Trạng thái: Đang hiển thị</span>
               <br>

@@ -8,6 +8,8 @@ import {HttpClient} from '@angular/common/http';
 export class HouseApiService {
   apiUrl = 'http://localhost:8000/api';
   message: any;
+  imageUrl = 'http://127.0.0.1:8000/image';
+
 
   constructor(private http: HttpClient) {
   }
@@ -34,7 +36,22 @@ export class HouseApiService {
 
   getHouseOfUser(userId: any) {
     return this.http.get(`${this.apiUrl}/houses/getHousesOfUser/${userId}`);
+  }
 
+  getImageOfHouse(houseId: any) {
+    return this.http.get(`${this.apiUrl}/houses/getImageHouse/${houseId}`);
+  }
+
+  deleteImage(imageId: any) {
+    return this.http.delete(`${this.apiUrl}/houses/deleteImage/${imageId}`);
+  }
+
+  updatePost(houseId, data: any) {
+    return this.http.post(`${this.apiUrl}/houses/updatePost/${houseId}`, data);
+  }
+
+  deletePost(houseId: any){
+    return this.http.delete(`${this.apiUrl}/houses/deletePost/${houseId}`);
   }
 }
 

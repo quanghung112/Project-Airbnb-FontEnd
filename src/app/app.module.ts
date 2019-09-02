@@ -20,11 +20,10 @@ import { HomeComponent } from './templade/home/home.component';
 import { ShowhousesComponent } from './house/showhouses/showhouses.component';
 import { PostComponent } from './house/post/post.component';
 import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
-import {NgxPaginationModule} from 'ngx-pagination';
-import { JwPaginationComponent } from 'jw-angular-pagination';
 import { HouseDetailsComponent } from './house/house-details/house-details.component';
 import { PostImageComponent } from './house/post-image/post-image.component';
 import { ListComponent } from './house/list/list.component';
+import { UpdatePostComponent } from './house/update-post/update-post.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +42,7 @@ import { ListComponent } from './house/list/list.component';
     PostImageComponent,
     HouseDetailsComponent,
     ListComponent,
+    UpdatePostComponent,
   ],
   imports: [
     BrowserModule,

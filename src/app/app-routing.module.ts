@@ -15,6 +15,7 @@ import {PostComponent} from './house/post/post.component';
 import {PostImageComponent} from './house/post-image/post-image.component';
 import {HouseDetailsComponent} from './house/house-details/house-details.component';
 import {ListComponent} from './house/list/list.component';
+import {UpdatePostComponent} from './house/update-post/update-post.component';
 
 
 const routes: Routes = [
@@ -31,7 +32,8 @@ const routes: Routes = [
       {path: 'me/changePassword', component: ChangepasswordComponent},
       {path: 'me/post/1', component: PostComponent},
       {path: 'me/post/2', component: PostImageComponent},
-      {path: 'me/posts/list', component: ListComponent}
+      {path: 'me/posts/list', component: ListComponent},
+      {path: 'me/posts/list/update/:id', component: UpdatePostComponent}
     ]
   },
   {path: 'houses', component: ShowhousesComponent},

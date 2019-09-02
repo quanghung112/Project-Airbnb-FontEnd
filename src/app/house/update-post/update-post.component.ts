@@ -1,18 +1,19 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {LocationService} from '../location.service';
 import {UserApiService} from '../../user/user-api.service';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import {ChangeEvent} from '@ckeditor/ckeditor5-angular';
 import {HouseApiService} from '../house-api.service';
-import {Router} from '@angular/router';
-
+import {ActivatedRoute, Router} from '@angular/router';
+import {ChangeEvent} from '@ckeditor/ckeditor5-angular';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import {HttpHeaders} from '@angular/common/http';
 
 @Component({
-  selector: 'app-post',
-  templateUrl: './post.component.html',
-  styleUrls: ['./post.component.scss']
+  selector: 'app-update-post',
+  templateUrl: './update-post.component.html',
+  styleUrls: ['./update-post.component.scss']
 })
-export class PostComponent implements OnInit {
+export class UpdatePostComponent implements OnInit {
+
   // @ts-ignore
   @ViewChild('description') des: any;
   cities: any;
@@ -35,6 +36,11 @@ export class PostComponent implements OnInit {
   // tslint:disable-next-line:variable-name
   user_id = localStorage.getItem('idUser');
   public Editor = ClassicEditor;
+  idHouse: any;
+  houseDetail: any;
+  images = [];
+  urls = [];
+  photoOfPost: any;
 
   private getArticleContent() {
     if (this.des && this.des.editorInstance) {
@@ -49,12 +55,47 @@ export class PostComponent implements OnInit {
     private userApi: UserApiService,
     private houseApi: HouseApiService,
     private router: Router,
+    private activatedRoute: ActivatedRoute
   ) {
+  }
+
+  onSelectFile(event) {
+    if (event.target.files && event.target.files[0]) {
+      this.images.push(event.target.files[0]);
+      const filesAmount = event.target.files.length;
+      for (let i = 0; i < filesAmount; i++) {
+        const reader = new FileReader();
+        // tslint:disable-next-line:no-shadowed-variable
+        reader.onload = (event: any) => {
+          this.urls.push(event.target.result);
+        };
+        reader.readAsDataURL(event.target.files[i]);
+      }
+    }
+  }
+
+  getImage(houseId) {
+    this.houseApi.getImageOfHouse(houseId).subscribe(photos => {
+      console.log(photos);
+      if (photos) {
+        this.photoOfPost = photos;
+      } else {
+        this.photoOfPost = null;
+      }
+    });
   }
 
   ngOnInit() {
     this.locationApi.getCities().subscribe(result => {
       this.cities = result;
+    });
+    this.activatedRoute.params.subscribe(params => {
+      this.idHouse = params.id;
+      this.houseApi.findById(this.idHouse).subscribe(result => {
+        this.houseDetail = result;
+        this.getImage(this.houseDetail.id);
+        console.log(this.houseDetail);
+      });
     });
   }
 
@@ -99,12 +140,22 @@ export class PostComponent implements OnInit {
     }
   }
 
+  deleteImage(p: any) {
+    if (confirm('Ảnh sẽ bị xóa trong bộ nhớ, bạn có chắc chắn muốn xóa')) {
+      this.houseApi.deleteImage(p).subscribe(result => {
+        console.log(result);
+        this.houseApi.message = 'Xóa ảnh thành công';
+        this.getImage(this.houseDetail.id);
+      });
+    }
+  }
+
   onChange({editor}: ChangeEvent) {
     const data = editor.getData();
     this.description = data;
   }
 
-  post(postForm: HTMLFormElement) {
+  update(postForm: HTMLFormElement) {
     // @ts-ignore
     this.title = postForm.title.value;
     this.style = postForm.style1.value;
@@ -125,12 +176,27 @@ export class PostComponent implements OnInit {
       bathroom: this.bathroom,
       price: this.price,
       description: this.description,
-      user_id: this.user_id
     };
-    this.houseApi.createPost(data).subscribe(result => {
+
+    this.houseApi.updatePost(this.houseDetail.id, data).subscribe(result => {
       console.log(result);
-      this.houseApi.message = 'Đăng bài thành công. Hãy thêm ảnh cho bài đăng của bạn';
-      this.router.navigate(['me/post/2']);
+      if (this.images) {
+        for (let i = 0; i < this.images.length; i++) {
+          const myFormData = new FormData();
+          const headers = new HttpHeaders();
+          headers.append('Content-Type', 'multipart/form-data');
+          headers.append('Accept', 'application/json');
+          myFormData.append('image', this.images[i]);
+          myFormData.append('house_id', this.houseDetail.id);
+          // console.log(this.formData);
+          this.houseApi.saveImage(myFormData).subscribe(result2 => {
+            console.log(result2[0].message);
+            this.houseApi.message = result2[0].message;
+          });
+        }
+      }
+      this.houseApi.message = 'Sửa bài viết thành công';
+      this.router.navigate(['/me/posts/list']);
     });
   }
 }
