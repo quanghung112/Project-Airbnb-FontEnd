@@ -48,18 +48,20 @@ export class PostImageComponent implements OnInit {
   }
 
   post() {
-    for (let i = 0; i < this.images.length; i++) {
-      const myFormData = new FormData();
-      const headers = new HttpHeaders();
-      headers.append('Content-Type', 'multipart/form-data');
-      headers.append('Accept', 'application/json');
-      myFormData.append('image', this.images[i]);
-      myFormData.append('house_id', this.houseId);
-      console.log(this.formData);
-      this.houseApi.saveImage(myFormData).subscribe(result => {
-        console.log(result[0].message);
-        this.houseApi.message = result[0].message;
-      });
+    if (this.images) {
+      for (let i = 0; i < this.images.length; i++) {
+        const myFormData = new FormData();
+        const headers = new HttpHeaders();
+        headers.append('Content-Type', 'multipart/form-data');
+        headers.append('Accept', 'application/json');
+        myFormData.append('image', this.images[i]);
+        myFormData.append('house_id', this.houseId);
+        console.log(this.formData);
+        this.houseApi.saveImage(myFormData).subscribe(result => {
+          console.log(result[0].message);
+          this.houseApi.message = result[0].message;
+        });
+      }
     }
     this.router.navigate(['me/posts/list']);
   }
