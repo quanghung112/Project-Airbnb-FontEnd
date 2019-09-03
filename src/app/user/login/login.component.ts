@@ -1,7 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {LoginLogoutServiceBackendApiService} from '../login-logout-service-backend-api.service';
 import {Router} from '@angular/router';
-import {DataService} from '../../services/data.service';
 import {AuthService, FacebookLoginProvider} from 'angularx-social-login';
 
 
@@ -54,7 +53,6 @@ export class LoginComponent implements OnInit {
         console.log(userData);
         this.api.loginFacebook(userData).subscribe(result => {
           localStorage.setItem('idUser', result.idUser);
-          // console.log(result);
           localStorage.setItem('ACCESS_TOKEN', result.token);
           this.router.navigate(['/']);
         });

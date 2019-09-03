@@ -14,7 +14,7 @@
           <li><a href="about.html">Categories</a></li>
           <li><a href="single-property.html">Single Property</a></li>
 
-          <li *ngIf="isLogined"><a [routerLink]="['/register']">Register</a></li>
+          <li *ngIf="!isLogined"><a [routerLink]="['/register']">Register</a></li>
           <li *ngIf="!isLogined"><a [routerLink]="['login']">Login</a></li>
           <li *ngIf="isLogined">
 

@@ -11,7 +11,7 @@ export class HouseDetailsComponent implements OnInit {
   idHouse: any;
   houseDetail: any;
   Images: any;
-  host = 'http://localhost:8000/image';
+  // host = 'http://localhost:8000/image';
 
   constructor(private houseApi: HouseApiService, public activatedRoute: ActivatedRoute, public router: Router) {
   }
@@ -22,7 +22,7 @@ export class HouseDetailsComponent implements OnInit {
       this.houseApi.findById(this.idHouse).subscribe(result => {
         this.houseDetail = result;
       });
-      this.houseApi.getImageByHouse(this.idHouse).subscribe(result => {
+      this.houseApi.getImageOfHouse(this.idHouse).subscribe(result => {
         this.Images = result;
         console.log(result);
       });
