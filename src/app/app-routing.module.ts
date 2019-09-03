@@ -31,7 +31,7 @@ const routes: Routes = [
       {path: 'me/changePassword', component: ChangepasswordComponent},
       {path: 'me/post/1', component: PostComponent},
       {path: 'me/post/2', component: PostImageComponent},
-      {path: 'me/posts/list', component: ListComponent}
+      {path: 'me/posts/list', component: ListComponent},
     ]
   },
   {path: 'houses', component: ShowhousesComponent},

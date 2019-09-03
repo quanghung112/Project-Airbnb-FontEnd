@@ -18,4 +18,7 @@ export class ShowhousesComponent implements OnInit {
       console.log(this.houses);
     });
   }
+  imageHouse(){
+
+  }
 }

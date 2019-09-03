@@ -34,7 +34,14 @@ export class HouseApiService {
 
   getHouseOfUser(userId: any) {
     return this.http.get(`${this.apiUrl}/houses/getHousesOfUser/${userId}`);
+  }
 
+  updateHouse(data: any, idHouse: any) {
+    return this.http.post(`${this.apiUrl}/houses/update/${idHouse}`, data);
+  }
+
+  getImageByHouse(houseId: any) {
+    return this.http.get(`${this.apiUrl}/houses/getImageByHouse/${houseId}`);
   }
 }
 
