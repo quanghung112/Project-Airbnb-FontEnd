@@ -40,7 +40,7 @@ export class LoginLogoutServiceBackendApiService {
   loginFacebook(socialUser: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/loginFacebook`, socialUser).pipe(
       map(result => {
-        // localStorage.setItem('isLogined', '1');
+        localStorage.setItem('isLogined', '1');
         this.isLogined = true;
         return result;
       })

@@ -23,8 +23,6 @@ const routes: Routes = [
   {path: '', component: SearchComponent, outlet: 'search'},
   {path: '', component: FooterComponent, outlet: 'footer'},
   {path: '', component: ShowhousesComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent},
   {path: '', canActivate: [LoginedGuard],
     children: [
       {path: 'me', component: DetailComponent},

@@ -2,7 +2,7 @@
   <div class="col-md-3 col-sm-6 float-left" style="margin-bottom: 10px;">
     <div class="product-grid">
       <div class="product-image">
-        <a href="#">
+        <a [routerLink]='["houses",house.id]'>
           <img *ngIf="house.convenient" style="max-height: 100%; max-width: 100%;" class="pic-1"
                src="{{houseService.imageUrl}}/{{house.convenient}}">
           <img *ngIf="!house.convenient" style="max-height: 100%; max-width: 100%;" class="pic-1" src="https://www.tellerreport.com/images/no-image.png">

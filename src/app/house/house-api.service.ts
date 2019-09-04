@@ -38,6 +38,15 @@ export class HouseApiService {
     return this.http.get(`${this.apiUrl}/houses/getHousesOfUser/${userId}`);
   }
 
+
+  updateHouse(data: any, idHouse: any) {
+    return this.http.post(`${this.apiUrl}/houses/update/${idHouse}`, data);
+  }
+
+  getImageByHouse(houseId: any) {
+    return this.http.get(`${this.apiUrl}/houses/getImageByHouse/${houseId}`);
+  }
+
   getImageOfHouse(houseId: any) {
     return this.http.get(`${this.apiUrl}/houses/getImageHouse/${houseId}`);
   }
@@ -50,7 +59,7 @@ export class HouseApiService {
     return this.http.post(`${this.apiUrl}/houses/updatePost/${houseId}`, data);
   }
 
-  deletePost(houseId: any){
+  deletePost(houseId: any) {
     return this.http.delete(`${this.apiUrl}/houses/deletePost/${houseId}`);
   }
 }

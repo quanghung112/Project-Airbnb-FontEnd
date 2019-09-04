@@ -26,4 +26,7 @@ export class ShowhousesComponent implements OnInit {
       }
     });
   }
+  imageHouse(){
+
+  }
 }
