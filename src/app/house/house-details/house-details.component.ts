@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {HouseApiService} from "../house-api.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {HouseApiService} from '../house-api.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-house-details',
@@ -22,7 +22,7 @@ export class HouseDetailsComponent implements OnInit {
       this.houseApi.findById(this.idHouse).subscribe(result => {
         this.houseDetail = result;
       });
-      this.houseApi.getImageByHouse(this.idHouse).subscribe(result => {
+      this.houseApi.getImageOfHouse(this.idHouse).subscribe(result => {
         this.Images = result;
         console.log(result);
       });

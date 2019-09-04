@@ -1,7 +1,7 @@
 <div>
   <div class="col-12" *ngFor="let image of Images; first as isFirst">
     <div *ngIf="isFirst">
-      <img style="max-height: 500px;" class="col-12" src="{{host}}/{{image.image}}">
+      <img style="max-height: 500px;" class="col-12" src="{{houseApi.imageUrl}}/{{image.image}}">
     </div>
 
   </div>
@@ -53,8 +53,8 @@
       <hr>
       <div>
         <h3>Mô tả chi tiết </h3>
-        <div>
-          {{houseDetail.description}}
+        <div [innerHTML]="houseDetail.description">
+
         </div>
       </div>
     </div>
