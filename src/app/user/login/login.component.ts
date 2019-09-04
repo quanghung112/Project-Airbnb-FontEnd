@@ -2,6 +2,8 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {LoginLogoutServiceBackendApiService} from '../login-logout-service-backend-api.service';
 import {Router} from '@angular/router';
 import {AuthService, FacebookLoginProvider} from 'angularx-social-login';
+import {MatDialog, MatDialogRef} from '@angular/material';
+import {RegisterComponent} from '../register/register.component';
 
 
 @Component({
@@ -18,7 +20,9 @@ export class LoginComponent implements OnInit {
 
   constructor(private api: LoginLogoutServiceBackendApiService,
               private router: Router,
-              private socialAuthService: AuthService
+              private socialAuthService: AuthService,
+              private dialogRef: MatDialogRef<LoginComponent>,
+              private dialog: MatDialog
   ) {
   }
 
@@ -35,6 +39,7 @@ export class LoginComponent implements OnInit {
       console.log(this.api.isLogined);
       this.idUser = result.idUser;
       if (result.status) {
+        this.dialogRef.close();
         this.router.navigate(['/']);
       } else {
         this.message = result.message;
@@ -54,10 +59,19 @@ export class LoginComponent implements OnInit {
         this.api.loginFacebook(userData).subscribe(result => {
           localStorage.setItem('idUser', result.idUser);
           localStorage.setItem('ACCESS_TOKEN', result.token);
+          this.dialogRef.close();
           this.router.navigate(['/']);
         });
       }
     );
 
+  }
+
+  changePage() {
+    this.dialogRef.close();
+    this.dialog.open(RegisterComponent, {
+      width: '1200px',
+      height: '1200px',
+    });
   }
 }

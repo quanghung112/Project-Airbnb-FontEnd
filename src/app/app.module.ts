@@ -24,6 +24,9 @@ import { HouseDetailsComponent } from './house/house-details/house-details.compo
 import { PostImageComponent } from './house/post-image/post-image.component';
 import { ListComponent } from './house/list/list.component';
 import { UpdatePostComponent } from './house/update-post/update-post.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatDialogModule} from '@angular/material';
+import { DeletePostComponent } from './house/delete-post/delete-post.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +46,7 @@ import { UpdatePostComponent } from './house/update-post/update-post.component';
     HouseDetailsComponent,
     ListComponent,
     UpdatePostComponent,
+    DeletePostComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +55,9 @@ import { UpdatePostComponent } from './house/update-post/update-post.component';
     HttpClientModule,
     SocialLoginModule,
     CKEditorModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatDialogModule
   ],
   providers: [
     {
@@ -64,7 +70,8 @@ import { UpdatePostComponent } from './house/update-post/update-post.component';
       useFactory: getAuthServiceConfigs
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [LoginComponent, RegisterComponent]
 })
 export class AppModule {
 
