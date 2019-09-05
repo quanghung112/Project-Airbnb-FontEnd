@@ -9,6 +9,7 @@ export class HouseApiService {
   apiUrl = 'http://localhost:8000/api';
   message: any;
   imageUrl = 'http://127.0.0.1:8000/image';
+  searchHouse: any;
 
 
   constructor(private http: HttpClient) {
@@ -61,6 +62,14 @@ export class HouseApiService {
 
   deletePost(houseId: any) {
     return this.http.delete(`${this.apiUrl}/houses/deletePost/${houseId}`);
+  }
+
+  search(data: any) {
+    return this.http.post(`${this.apiUrl}/houses/search`, data);
+  }
+
+  getHouseSearch(data: any) {
+    this.searchHouse = data;
   }
 }
 

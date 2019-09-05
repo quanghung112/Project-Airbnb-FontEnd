@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {LocationService} from '../location.service';
 import {UserApiService} from '../../user/user-api.service';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+  import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {ChangeEvent} from '@ckeditor/ckeditor5-angular';
 import {HouseApiService} from '../house-api.service';
 import {Router} from '@angular/router';

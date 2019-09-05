@@ -18,7 +18,6 @@ export class ListComponent implements OnInit {
 
   getPost(userId) {
     this.houseService.getHouseOfUser(userId).subscribe(data => {
-      console.log(data);
       this.posts = data;
     });
   }
@@ -35,6 +34,7 @@ export class ListComponent implements OnInit {
       this.houseService.deletePost(id).subscribe(result => {
         console.log(result);
         this.houseService.message = 'Xóa bài đăng thành công!';
+        this.getPost(this.user.id);
       });
     }
   }

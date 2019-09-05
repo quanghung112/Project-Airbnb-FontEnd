@@ -16,6 +16,7 @@ import {PostImageComponent} from './house/post-image/post-image.component';
 import {HouseDetailsComponent} from './house/house-details/house-details.component';
 import {ListComponent} from './house/list/list.component';
 import {UpdatePostComponent} from './house/update-post/update-post.component';
+import {SearchListComponent} from './house/search-list/search-list.component';
 
 
 const routes: Routes = [
@@ -23,8 +24,6 @@ const routes: Routes = [
   {path: '', component: SearchComponent, outlet: 'search'},
   {path: '', component: FooterComponent, outlet: 'footer'},
   {path: '', component: ShowhousesComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent},
   {path: '', canActivate: [LoginedGuard],
     children: [
       {path: 'me', component: DetailComponent},
@@ -37,6 +36,7 @@ const routes: Routes = [
     ]
   },
   {path: 'houses', component: ShowhousesComponent},
+  {path: 'houses/search', component: SearchListComponent},
   {path: 'houses/:id', component: HouseDetailsComponent},
   ];
 

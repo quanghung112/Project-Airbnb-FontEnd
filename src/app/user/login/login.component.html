@@ -13,7 +13,6 @@
 							<span class="lnr lnr-envelope"></span>
 						</span>
         </div>
-
         <div class="wrap-input100 validate-input m-b-16" data-validate="Password is required" required>
           <input class="input100" type="password" name="password" placeholder="Password">
           <span class="focus-input100"></span>
@@ -52,13 +51,10 @@
 							Not a member?
 						</span>
 
-        <a class="txt1 bo1 hov1" [routerLink]="['/register']">
+        <a class="txt1 bo1 hov1" (click)="changePage()">
           Sign up now
         </a>
       </div>
     </div>
   </div>
 </div>
-<a (click)="logout($event)">
-  <button>logout</button>
-</a>

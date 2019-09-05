@@ -11,7 +11,7 @@ export class HouseDetailsComponent implements OnInit {
   idHouse: any;
   houseDetail: any;
   Images: any;
-  host = 'http://localhost:8000/image';
+  // host = 'http://localhost:8000/image';
 
   constructor(private houseApi: HouseApiService, public activatedRoute: ActivatedRoute, public router: Router) {
   }
