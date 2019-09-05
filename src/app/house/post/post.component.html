@@ -2,7 +2,7 @@
 <div class="container" style="border: 1px solid #3f3f4b"><br>
   <form #postForm (ngSubmit)="post(postForm)">
     <div class="form-group">
-      <label>Tiêu đề tin</label>
+      <label><h5>Tiêu đề tin</h5></label>
       <input type="text" name="title" class="form-control">
     </div>
     <div class="form-row">
@@ -35,11 +35,22 @@
         <input type="number" name="bathroom" class="form-control">
       </div>
       <div class="form-group col-md-4">
-        <label>Giá thuê</label>
+        <label>Giá thuê/tháng</label>
         <input type="number" name="price" class="form-control" placeholder="Việt nam đồng">
       </div>
     </div>
-    <label>Address</label>
+    <label><h5>Thời gian thuê</h5></label><br>
+    <div class="form-row ">
+      <div class="form-group col-md-4">
+        <label>Từ:</label>
+        <input type="date" name="start" class="form-control">
+      </div>
+      <div class="form-group col-md-4">
+        <label>Đến:</label>
+        <input type="date" name="end" class="form-control">
+      </div>
+    </div>
+    <label><h5>Địa chỉ</h5></label>
     <div class="form-row" style="border: 1px solid #8F8FA8">
       <div class="form-group col-md-4">
         <label>Tỉnh/Thành phố</label>
@@ -63,12 +74,12 @@
         </select>
       </div>
       <div class="form-group col">
-        <label>Địa chỉ</label>
+        <label>Địa chỉ cụ thể</label>
         <input type="text" name="address" class="form-control">
       </div>
     </div>
     <br>
-    <label>Mô tả chi tiết</label>
+    <label><h5>Mô tả chi tiết</h5></label>
     <div class="form-row">
       <ckeditor tagName="editor" class="col-12" [editor]="Editor" (change)="onChange($event)"
                 data="<p>Hello, world!</p>"></ckeditor>

@@ -27,6 +27,10 @@ import { UpdatePostComponent } from './house/update-post/update-post.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatDialogModule} from '@angular/material';
 import { SearchListComponent } from './house/search-list/search-list.component';
+import { OlderHouseComponent } from './Order/older-house/older-house.component';
+import { ListOrderComponent } from './Order/list-order/list-order.component';
+import { ListUserOrderComponent } from './Order/list-user-order/list-user-order.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +51,9 @@ import { SearchListComponent } from './house/search-list/search-list.component';
     ListComponent,
     UpdatePostComponent,
     SearchListComponent,
-
+    OlderHouseComponent,
+    ListOrderComponent,
+    ListUserOrderComponent,
   ],
   imports: [
     BrowserModule,

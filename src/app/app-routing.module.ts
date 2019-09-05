@@ -17,6 +17,10 @@ import {HouseDetailsComponent} from './house/house-details/house-details.compone
 import {ListComponent} from './house/list/list.component';
 import {UpdatePostComponent} from './house/update-post/update-post.component';
 import {SearchListComponent} from './house/search-list/search-list.component';
+import {OlderHouseComponent} from './Order/older-house/older-house.component';
+import {ListOrderComponent} from './Order/list-order/list-order.component';
+import {ListUserOrderComponent} from './Order/list-user-order/list-user-order.component';
+
 
 
 const routes: Routes = [
@@ -24,7 +28,8 @@ const routes: Routes = [
   {path: '', component: SearchComponent, outlet: 'search'},
   {path: '', component: FooterComponent, outlet: 'footer'},
   {path: '', component: ShowhousesComponent},
-  {path: '', canActivate: [LoginedGuard],
+  {
+    path: '', canActivate: [LoginedGuard],
     children: [
       {path: 'me', component: DetailComponent},
       {path: 'me/update', component: UpdateComponent},
@@ -32,13 +37,16 @@ const routes: Routes = [
       {path: 'me/post/1', component: PostComponent},
       {path: 'me/post/2', component: PostImageComponent},
       {path: 'me/posts/list', component: ListComponent},
-      {path: 'me/posts/list/update/:id', component: UpdatePostComponent}
+      {path: 'me/posts/list/:id/user_order', component: ListUserOrderComponent},
+      {path: 'me/posts/list/:id/update', component: UpdatePostComponent},
+      {path: 'order/houses/:id', component: OlderHouseComponent},
+      {path: 'me/order/list', component: ListOrderComponent}
     ]
   },
   {path: 'houses', component: ShowhousesComponent},
   {path: 'houses/search', component: SearchListComponent},
   {path: 'houses/:id', component: HouseDetailsComponent},
-  ];
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

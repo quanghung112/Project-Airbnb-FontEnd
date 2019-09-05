@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {HouseApiService} from '../house-api.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {MatDialog} from '@angular/material';
+import {LoginComponent} from '../../user/login/login.component';
 
 @Component({
   selector: 'app-house-details',
@@ -11,9 +13,11 @@ export class HouseDetailsComponent implements OnInit {
   idHouse: any;
   houseDetail: any;
   Images: any;
-  // host = 'http://localhost:8000/image';
-
-  constructor(private houseApi: HouseApiService, public activatedRoute: ActivatedRoute, public router: Router) {
+  constructor(private houseApi: HouseApiService,
+              public activatedRoute: ActivatedRoute,
+              public router: Router,
+              private dialog: MatDialog
+  ) {
   }
 
   ngOnInit() {
@@ -24,8 +28,19 @@ export class HouseDetailsComponent implements OnInit {
       });
       this.houseApi.getImageOfHouse(this.idHouse).subscribe(result => {
         this.Images = result;
-        console.log(result);
+        // console.log(result);
       });
     });
+  }
+
+  changePage() {
+    if (localStorage.getItem('ACCESS_TOKEN')) {
+      this.router.navigate([`order/houses/${this.idHouse}`]);
+    } else {
+      this.dialog.open(LoginComponent, {
+        width: '1200px',
+        height: '1200px',
+      });
+    }
   }
 }

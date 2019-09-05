@@ -2,7 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {UserApiService} from '../user-api.service';
 import {Router} from '@angular/router';
 import {error} from 'util';
-import {MatDialogRef} from '@angular/material';
+import {MatDialog, MatDialogRef} from '@angular/material';
+import {LoginComponent} from '../login/login.component';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +19,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(protected api: UserApiService,
               private router: Router,
-              private dialogRef: MatDialogRef<RegisterComponent>) {
+              private dialogRef: MatDialogRef<RegisterComponent>,
+              private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -35,7 +37,10 @@ export class RegisterComponent implements OnInit {
     };
     this.api.register(data).subscribe((result) => {
         this.dialogRef.close();
-        this.router.navigate(['/login']);
+        this.dialog.open(LoginComponent, {
+          width: '1200px',
+          height: '1200px',
+        });
       },
       (error) => {
         this.errorMessage = error.error.error;

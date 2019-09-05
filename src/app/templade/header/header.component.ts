@@ -3,7 +3,7 @@ import {LoginLogoutServiceBackendApiService} from '../../user/login-logout-servi
 import {Router} from '@angular/router';
 import {UserApiService} from '../../user/user-api.service';
 import {LoginComponent} from '../../user/login/login.component';
-import {MatDialog, MatDialogConfig} from '@angular/material';
+import {MatDialog, MatDialogConfig, MatDialogRef} from '@angular/material';
 import {RegisterComponent} from '../../user/register/register.component';
 
 @Component({
@@ -19,7 +19,9 @@ export class HeaderComponent implements OnInit {
 
   constructor(private apiLogin: LoginLogoutServiceBackendApiService,
               private router: Router, public userService: UserApiService,
-              private dialog: MatDialog) {
+              private dialog: MatDialog,
+              // private dialogRef: MatDialogRef<LoginComponent>,
+              ) {
   }
 
   ngOnInit() {
@@ -58,6 +60,7 @@ export class HeaderComponent implements OnInit {
   }
 
   Login() {
+    // this.dialogRef.close();
     this.dialog.open(LoginComponent, {
       width: '1200px',
       height: '1200px',
@@ -65,6 +68,7 @@ export class HeaderComponent implements OnInit {
   }
 
   Register() {
+    // this.dialogRef.close();
     this.dialog.open(RegisterComponent, {
       width: '1200px',
       height: '1200px',

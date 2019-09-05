@@ -86,6 +86,7 @@ export class UpdatePostComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.houseApi.message = '';
     this.locationApi.getCities().subscribe(result => {
       this.cities = result;
     });

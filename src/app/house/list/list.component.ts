@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UserApiService} from '../../user/user-api.service';
 import {HouseApiService} from '../house-api.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -10,16 +11,12 @@ import {HouseApiService} from '../house-api.service';
 export class ListComponent implements OnInit {
   user: any;
   posts: any;
+  usersOrder: any;
 
   constructor(private userService: UserApiService,
-              private houseService: HouseApiService
+              private houseService: HouseApiService,
+              private router: Router,
   ) {
-  }
-
-  getPost(userId) {
-    this.houseService.getHouseOfUser(userId).subscribe(data => {
-      this.posts = data;
-    });
   }
 
   ngOnInit() {
@@ -37,5 +34,36 @@ export class ListComponent implements OnInit {
         this.getPost(this.user.id);
       });
     }
+  }
+
+  getPost(userId) {
+    this.houseService.getHouseOfUser(userId).subscribe(data => {
+      this.posts = data;
+      for (let i = 0; i < this.posts.length; i++) {
+        this.houseService.getUserOrder(this.posts[i].id).subscribe(result => {
+          console.log(result);
+          this.usersOrder = result;
+          this.posts[i].convenient = this.usersOrder.length;
+        });
+      }
+    });
+  }
+
+  getUserOrder(idPost) {
+    this.houseService.getUserOrder(idPost).subscribe(result => {
+      this.usersOrder = result;
+    });
+  }
+
+  changeProfile() {
+    this.router.navigate(['me']);
+  }
+
+  changeUpdate() {
+    this.router.navigate(['me/update']);
+  }
+
+  changePage() {
+
   }
 }
