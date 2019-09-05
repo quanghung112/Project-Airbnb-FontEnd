@@ -34,6 +34,8 @@ export class PostComponent implements OnInit {
   description: any;
   // tslint:disable-next-line:variable-name
   user_id = localStorage.getItem('idUser');
+  start: any;
+  end: any;
   public Editor = ClassicEditor;
 
   private getArticleContent() {
@@ -110,6 +112,8 @@ export class PostComponent implements OnInit {
     this.style = postForm.style1.value;
     this.loan_type = postForm.loan_type.value;
     this.address = postForm.address.value;
+    this.start = postForm.start.value;
+    this.end = postForm.end.value;
     this.bathroom = postForm.bathroom.value;
     this.bedroom = postForm.bedroom.value;
     this.price = postForm.price.value;
@@ -125,10 +129,11 @@ export class PostComponent implements OnInit {
       bathroom: this.bathroom,
       price: this.price,
       description: this.description,
+      start_loan: this.start,
+      end_loan: this.end,
       user_id: this.user_id
     };
     this.houseApi.createPost(data).subscribe(result => {
-      console.log(result);
       this.houseApi.message = 'Đăng bài thành công. Hãy thêm ảnh cho bài đăng của bạn';
       this.router.navigate(['me/post/2']);
     });

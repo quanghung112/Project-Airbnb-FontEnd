@@ -62,5 +62,13 @@ export class HouseApiService {
   deletePost(houseId: any) {
     return this.http.delete(`${this.apiUrl}/houses/deletePost/${houseId}`);
   }
+
+  orderHouse(data: any) {
+    return this.http.post(`${this.apiUrl}/order`, data);
+  }
+
+  getUserOrder(houseId: any) {
+    return this.http.get(`${this.apiUrl}/getUserOrder/${houseId}`);
+  }
 }
 

@@ -53,8 +53,7 @@
       <hr>
       <div>
         <h3>Mô tả chi tiết </h3>
-        <div>
-          {{houseDetail.description}}
+        <div [innerHTML]="houseDetail.description">
         </div>
       </div>
     </div>
@@ -66,21 +65,8 @@
       </div>
       <div class="booking border py-4 px-2">
         <h5>{{houseDetail.price}}vnđ/tháng</h5>
-        <form action="">
-          <label for="start">Start date:</label>
-          <input type="date" id="start" class="form-control" name="trip-start"
-                 value=""
-                 min="2018-01-01" max="2019-12-31">
-          <br>
-          <label for="start">Start date:</label>
-          <input type="date" id="end" class="form-control" name="trip-end"
-                 value=""
-                 min="2018-01-01" max="2019-12-31">
-          <br>
-          <input type="button"class="btn btn-danger" value="Đặt phòng ">
-        </form>
+          <input type="button"class="btn btn-danger" (click)="changePage()" value="Đặt phòng ">
       </div>
     </div>
   </div>
-
 </div>

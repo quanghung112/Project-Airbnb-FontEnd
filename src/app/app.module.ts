@@ -26,7 +26,9 @@ import { ListComponent } from './house/list/list.component';
 import { UpdatePostComponent } from './house/update-post/update-post.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatDialogModule} from '@angular/material';
-import { DeletePostComponent } from './house/delete-post/delete-post.component';
+import { OlderHouseComponent } from './Order/older-house/older-house.component';
+import { ListOrderComponent } from './Order/list-order/list-order.component';
+import { ListUserOrderComponent } from './Order/list-user-order/list-user-order.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +48,9 @@ import { DeletePostComponent } from './house/delete-post/delete-post.component';
     HouseDetailsComponent,
     ListComponent,
     UpdatePostComponent,
-    DeletePostComponent,
+    OlderHouseComponent,
+    ListOrderComponent,
+    ListUserOrderComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,50 @@
+<div class="container">
+  <p style="color: red">{{houseApi.message}}</p>
+  <form #postForm (ngSubmit)="post(postForm)">
+    <div class="form-row">
+      <div class="form-group col-md-9">
+        <li class="list-group-item " style="background-color: #8F8FA8"><h5>Đặt phòng</h5></li>
+        <div class="container" style="border: 1px solid #3f3f4b">
+          <br>
+          <div class="form-group">
+            <label><h6>Tên người thuê</h6></label>
+            <input type="text" name="nameRenter" class="form-control" value="{{user.name}}">
+          </div>
+          <div class="form-group">
+            <label><h6>Email: </h6></label>
+            <p class="form-control">{{user.email}}</p>
+          </div>
+          <div class="form-group">
+            <label><h6>Số điện thoại: </h6></label>
+            <input type="text" name="phone" class="form-control" value="{{user.phone}}">
+          </div>
+          <div class="form-group">
+            <label><h6>Địa chỉ: </h6></label>
+            <input type="text" name="address" class="form-control" value="{{user.phone}}">
+          </div>
+        </div>
+        <br>
+        <div class="container" style="border: 1px solid #3f3f4b">
+          <p></p>
+          <label><h5>Chính sách hủy phòng</h5></label>
+          <p>
+            Bạn không thể hủy đặt phòng trước ngày bắt đầu thuê 1 ngày
+          </p>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary ">Đặt phòng</button>
+        <br>
+      </div>
+      <div class="form-group col-md-3">
+        <li class="list-group-item " style="background-color: #8F8FA8"><h5>Thông tin phòng đặt</h5></li>
+        <div class="container" style="border: 1px solid #3f3f4b">
+
+        </div>
+      </div>
+
+    </div>
+  </form>
+</div>
+
+
+
