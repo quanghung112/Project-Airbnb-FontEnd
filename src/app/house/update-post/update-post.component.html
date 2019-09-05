@@ -80,8 +80,11 @@
     <p *ngIf="houseApi.message" style="background-color: #8AD144">{{houseApi.message}}</p>
     <div class="form-row" *ngIf="photoOfPost">
       <div *ngFor='let photo of photoOfPost' class="form-group col-4">
-        <a (click)="deleteImage(photo.id)"><img src="{{houseApi.imageUrl}}/{{photo.image}}"
-                                                style="max-height: 200px"></a><br/>
+        <a class="col col-4 float-left disabled">
+          <img src="{{houseApi.imageUrl}}/{{photo.image}}" style="max-height: 200px">
+          <span (click)="deleteImage(photo.id)" class=" btn-delete-image btn btn-danger position-absolute">X</span>
+        </a>
+        <br/>
       </div>
     </div>
     <div class="form-row" *ngIf="photoOfPost === []">
@@ -94,8 +97,10 @@
       </div>
     </div>
     <input name="image" type="file" (change)="onSelectFile($event)">
-    <br>
+    <p></p>
     <button type="submit" class="btn btn-primary ">Sửa bài đăng</button>
+    <a routerLink="" class="btn btn-warning">Hủy</a>
+    <p></p>
   </form>
 </div>
 

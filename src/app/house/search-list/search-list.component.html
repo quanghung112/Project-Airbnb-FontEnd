@@ -1,0 +1,15 @@
+<ul *ngFor="let house of houseApi.searchHouse" class="list-unstyled">
+  <li class="house col-12">
+    <div class="image col-0 col-sm-3 float-left p-1">
+      <a (click)="detailHouse(house.id)">
+        <img src="{{houseApi.imageUrl}}/{{house.convenient}}" alt="" class="">
+      </a>
+    </div>
+    <div class="float-left col-9">
+      <h5><a (click)="detailHouse(house.id)">{{house.title}}</a></h5>
+      <p><span>price: </span>{{house.price}} vnđ/tháng</p>
+      <p [innerHTML]="house.description | slice:0:210"></p>
+    </div>
+  </li>
+  <div class="clearfix"></div>
+</ul>

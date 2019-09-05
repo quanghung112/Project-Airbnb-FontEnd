@@ -3,60 +3,60 @@
   <div class="container ">
     <div class="row">
       <div class="col-lg-12">
-        <form class="filter-form">
+        <form class="filter-form" #searchForm (ngSubmit)="searchHouse(searchForm)">
           <div class="location">
-            <p>Location</p>
-            <select class="form-control">
-              <option value="">London</option>
-              <option value="">US</option>
-              <option value="">UAE</option>
+            <p>Địa điểm</p>
+            <select class="form-control" name="city">
+              <option value="">Chọn thành phố</option>
+              <option *ngFor="let cty of cities" value="{{cty.name}}">{{cty.name}}</option>
             </select>
           </div>
           <div class="search-type">
-            <p>Property Type</p>
-            <select class="form-control">
-              <option value="">House</option>
-              <option value="">Resort</option>
-              <option value="">Hotel</option>
+            <p>Loại nhà</p>
+            <select name="style1" class="form-control">
+              <option value="">Chọn loại nhà trọ</option>
+              <option value="Phòng trọ">Phòng trọ</option>
+              <option value="Ký túc xá">Ký túc xá</option>
+              <option value="Chung cư mini">Chung cư mini</option>
+              <option value="Cư xá">Cư xá</option>
+              <option value="Homestay">Homestay</option>
+              <option value="Nhà trọ nguyên căn">Nhà trọ nguyên căn</option>
+              <option value="Trọ trong nhà chung chủ">Trọ trong nhà chung chủ</option>
             </select>
           </div>
           <div class="price-range">
-            <p>Price</p>
+            <p>Price/ tháng</p>
             <div>
-              <span class="col-4 float-left" style="padding: 0px;">Form</span>
-              <select name="" id="" class="form-control col-8 float-left">
-                <option value=""></option>
-                <option value="">2</option>
-                <option value="">3</option>
-                <option value="">4</option>
-              </select>
-            </div>
-            <div>
-              <span class="col-4 float-left" style="padding: 0px;">To</span>
-              <select name="" id="" class="form-control col-8 float-left">
-                <option value=""></option>
-                <option value="">2</option>
-                <option value="">3</option>
-                <option value="">4</option>
+              <select name="price" class="form-control float-left">
+                <option value="">Chọn mức giá/tháng</option>
+                <option value="1000000">< 1 triệu</option>
+                <option value="2000000">1 triệu - 2 triệu</option>
+                <option value="3000000">2 triệu - 3 triệu</option>
+                <option value="4000000">3 triệu - 4 triệu</option>
+                <option value="5000000">> 5 triệu</option>
               </select>
             </div>
           </div>
           <div class="bedrooms">
-            <p>Bedrooms</p>
-            <select name="" id="" class="form-control">
-              <option value="">1</option>
-              <option value="">2</option>
-              <option value="">3</option>
-              <option value="">4</option>
+            <p>Số phòng ngủ</p>
+            <select name="bedroom" class="form-control">
+              <option value="">Số phòng ngủ</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">> 4</option>
             </select>
           </div>
           <div class="bathrooms">
-            <p>Bathrooms</p>
-            <select name="" id="" class="form-control">
-              <option value="">1</option>
-              <option value="">2</option>
-              <option value="">3</option>
-              <option value="">4</option>
+            <p>Số phòng tắm</p>
+            <select name="bathroom" id="" class="form-control">
+              <option value="">Số phòng tắm</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">> 4</option>
             </select>
           </div>
           <div class="search-btn">

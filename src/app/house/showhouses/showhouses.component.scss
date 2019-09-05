@@ -6,11 +6,15 @@
   overflow: hidden;
   display: inline-table;
 }
-product-grid {
-  height: 500px;
+.product-grid {
+  height: 365px;
   overflow: hidden;
 }
 .product-grid .product-image{
   height: 185px;
   overflow: hidden;
+  padding: 10px;
+  text-align: center;
+  background: #F4F4F4;
+  margin-bottom: 10px;
 }
