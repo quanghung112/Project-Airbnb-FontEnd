@@ -53,7 +53,7 @@
         <label>Quận/Huyện</label>
         <select name="district" (change)="changeDistrict($event.target.value)" class="form-control">
           <option selected>{{houseDetail.district}}</option>
-          <option *ngFor="let district of districts " value="{{district.maqh}}">{{district.name}}</option>
+          <option *ngFor = "let district of districts" value="{{district.maqh}}">{{district.name}}</option>
         </select>
       </div>
       <div class="form-group col-md-4">

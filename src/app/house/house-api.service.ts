@@ -40,9 +40,9 @@ export class HouseApiService {
   }
 
 
-  updateHouse(data: any, idHouse: any) {
-    return this.http.post(`${this.apiUrl}/houses/update/${idHouse}`, data);
-  }
+  // updateHouse(data: any, idHouse: any) {
+  //   return this.http.post(`${this.apiUrl}/houses/update/${idHouse}`, data);
+  // }
 
   getImageByHouse(houseId: any) {
     return this.http.get(`${this.apiUrl}/houses/getImageByHouse/${houseId}`);

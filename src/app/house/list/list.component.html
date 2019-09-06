@@ -31,7 +31,8 @@
               <button>Xóa tin</button>
             </a>
               <br>
-              <span>Trạng thái: Đang hiển thị</span>
+              Trạng thái:<span class="changeStatus pointer" *ngIf="!post.status"><a (click)="changeStatus(post.id)"> Đang hiển thị</a></span>
+              <span class="changeStatus pointer" *ngIf="post.status"><a (click)="changeStatus(post.id)"> Đã được thuê</a></span>
               <br>
               <span>Số người đặt thuê: {{post.convenient}}  </span><span class="profile pointer"><a [routerLink]="[post.id,'user_order']">Chi tiết</a></span>
               <br>
