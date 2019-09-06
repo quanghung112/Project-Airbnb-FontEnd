@@ -28,7 +28,5 @@ export class UserApiService {
     return this.http.post(`${this.apiUrl}/changePassword`, password);
   }
 
-  getHouseOrder(userId) {
-    return this.http.get(`${this.apiUrl}/getHouseOrder/${userId}`);
-  }
+
 }
