@@ -18,7 +18,7 @@
   display: inline-block;
 }
 .container-fluid {
-  background: tomato;
+  background: #30304e;
   line-height: 50px;
   position: fixed;
   top: 0px;
@@ -34,8 +34,9 @@
   display: inline-block;
 }
 
+
 .main-menu a {
-  color: black;
+  color: #ffffff;
   display: inline-block;
   font-size: 16px;
   font-weight: 500;
@@ -45,6 +46,10 @@
 }
 .main-menu .user-menu a{
   border: none;
+  color: #30304e;
+  border-bottom: 1px solid #30304e;
+  margin-left: 0px;
+  width: 100%;
 }
 .user-area {
   height: 35px;

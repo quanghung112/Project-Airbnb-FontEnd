@@ -15,6 +15,8 @@ export class SearchComponent implements OnInit {
   style: any;
   bedroom: any;
   bathroom: any;
+  start_loan: any;
+  end_loan: any;
   price: any;
   houses: any;
 
@@ -41,13 +43,16 @@ export class SearchComponent implements OnInit {
     this.price = searchForm.price.value;
     this.bedroom = searchForm.bedroom.value;
     this.bathroom = searchForm.bathroom.value;
-
+    this.start_loan = searchForm.start_loan.value;
+    this.end_loan = searchForm.end_loan.value;
     const data = {
       style: this.style,
       city: this.city,
       bedroom: this.bedroom,
       bathroom: this.bathroom,
       price: this.price,
+      start_loan: this.start_loan,
+      end_loan: this.end_loan,
     };
     console.log(data);
     this.houseApi.search(data).subscribe(result => {

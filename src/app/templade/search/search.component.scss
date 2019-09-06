@@ -23,11 +23,29 @@
   box-shadow: 2px 15px 30px rgba(0, 0, 0, 0.1);
 }
 
+.s-component {
+  padding: 20px 10px 14px;
+  width: 15%;
+  float: left;
+}
+.bedrooms, .bathrooms{
+  width: 12%;
+}
+.dateloan {
+  width: 21%;
+  padding: 2px;
+}
+.dateloan p {
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+}
+
+.dateloan .form-control {
+  height: 35px;
+}
 .location {
   border-right: 1px solid #F3F3F3;
   float: left;
-  padding: 20px 27px 14px;
-  width: 18%;
 }
 
 .location p {
@@ -65,8 +83,6 @@
 .search-type {
   border-right: 1px solid #F3F3F3;
   float: left;
-  padding: 20px 27px 16px;
-  width: 18%;
 }
 
 .search-type p {
@@ -106,8 +122,6 @@
 .price-range {
   border-right: 1px solid #F3F3F3;
   float: left;
-  padding: 20px 25px 9px 21px;
-  width: 18%;
 }
 
 .price-range p {
@@ -153,8 +167,6 @@ html .ui-button.ui-state-disabled:active {
 .bedrooms {
   border-right: 1px solid #F3F3F3;
   float: left;
-  padding: 20px 25px 16px 25px;
-  width: 16%;
 }
 
 .bedrooms p {
@@ -166,8 +178,6 @@ html .ui-button.ui-state-disabled:active {
 
 .bathrooms {
   float: left;
-  padding: 20px 25px 25px 25px;
-  width: 16%;
 }
 
 .bathrooms p {
@@ -224,7 +234,7 @@ html .ui-button.ui-state-disabled:active {
 }
 
 .search-btn {
-  width: 14%;
+  width: 10%;
   float: left;
 }
 
@@ -234,7 +244,7 @@ html .ui-button.ui-state-disabled:active {
   border: none;
   border-radius: 0 4px 4px 0;
   cursor: pointer;
-  padding: 42px 40px 43px 31px;
+  padding: 44px 25px;
   display: inline-block;
   font-size: 18px;
   color: #fff;
