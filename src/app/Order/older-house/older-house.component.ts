@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserApiService} from '../../user/user-api.service';
 import {ActivatedRoute} from '@angular/router';
 import {HouseApiService} from '../../house/house-api.service';
+import {OrderApiService} from '../order-api.service';
 
 @Component({
   selector: 'app-older-house',
@@ -19,7 +20,8 @@ export class OlderHouseComponent implements OnInit {
 
   constructor(private userApi: UserApiService,
               private activatedRoute: ActivatedRoute,
-              private houseApi: HouseApiService) {
+              private houseApi: HouseApiService,
+              private orderService: OrderApiService) {
   }
 
   ngOnInit() {
@@ -56,7 +58,7 @@ export class OlderHouseComponent implements OnInit {
         house_id: this.idHouse
       };
       console.log(dataOrder);
-      this.houseApi.orderHouse(dataOrder).subscribe(result2 => {
+      this.orderService.orderHouse(dataOrder).subscribe(result2 => {
         console.log(result2);
       });
     }
