@@ -10,13 +10,13 @@
       <span class="profile pointer"><a (click)="changeUpdate()">Update Profile</a></span><br>
     </div>
     <div class="form-group col-9">
-      <li class="list-group-item " style="background-color: #8F8FA8">Danh sách nhà đang thuê</li>
+      <li class="list-group-item " style="background-color: #8F8FA8">Lịch sử thuê nhà</li>
       <div style="border: 1px solid #3f3f4b">
         <table class="table table-bordered">
           <thead>
           <tr>
             <th scope="col" style="width: 50px">STT</th>
-            <th scope="col" style="text-align: center">Nhà đang thuê</th>
+            <th scope="col" style="text-align: center">Danh sách</th>
           </tr>
           </thead>
           <tbody>
@@ -33,7 +33,7 @@
               <br>
               <span>Thời gian đặt thuê: </span>
               <br>
-              <a *ngIf="order.house_id === house.id" (click)="cancelOrder(order.id)">
+              <a *ngIf="order.house_id === house.id && order.status != '0'" (click)="cancelOrder(order.id)">
                 <button>Hủy thuê</button>
               </a>
               </span>

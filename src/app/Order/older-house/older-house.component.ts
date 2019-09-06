@@ -52,6 +52,7 @@ export class OlderHouseComponent implements OnInit {
         address: this.address
       };
       this.userApi.updateUser(data).subscribe(result => {
+        console.log(result);
       });
       const dataOrder = {
         user_id: this.idUser,

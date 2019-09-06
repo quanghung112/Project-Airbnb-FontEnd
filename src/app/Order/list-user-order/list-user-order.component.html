@@ -32,12 +32,13 @@
               <span>Số điện thoại: {{user.phone}} </span>
               <br>
               <span *ngFor="let order of orders">
-                <span *ngIf="order.user_id === user.id">Ngày đặt thuê: {{order.created_at}}</span>
+                <span *ngIf="order.user_id === user.id ">Ngày đặt thuê: {{order.created_at}}</span>
                 <br>
-                <a *ngIf="order.user_id === user.id" (click)="cancelOrder(order.id)">
+                <span *ngIf="order.status === '0'" class="text-danger">Khách đặt thuê đã bị xóa</span>
+                <a *ngIf="order.user_id === user.id && order.status != '0'" (click)="cancelOrder(order.id)">
                   <button>Xóa lịch đặt</button>
                 </a>
-                <a *ngIf="order.user_id === user.id" (click)="acceptOrder(order.id)">
+                <a *ngIf="order.user_id === user.id && order.status != '0'" (click)="acceptOrder(order.id)">
                   <button>Xác nhận</button>
                 </a>
               </span>
