@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserApiService} from '../../user/user-api.service';
 import {HouseApiService} from '../../house/house-api.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {OrderApiService} from '../order-api.service';
 
 @Component({
   selector: 'app-list-user-order',
@@ -14,11 +15,13 @@ export class ListUserOrderComponent implements OnInit {
   houses: any;
   users: any;
   house: any;
+  orders: any;
 
   constructor(private userService: UserApiService,
               private houseService: HouseApiService,
               private router: Router,
-              private activeRoute: ActivatedRoute
+              private activeRoute: ActivatedRoute,
+              private orderService: OrderApiService
   ) {
   }
 
@@ -30,9 +33,9 @@ export class ListUserOrderComponent implements OnInit {
       this.houseService.findById(params.id).subscribe(result => {
         this.house = result;
       });
-      this.houseService.getUserOrder(params.id).subscribe(result => {
-        console.log(result);
-        this.users = result;
+      this.orderService.getUserOrder(params.id).subscribe(result => {
+        this.users = result[0];
+        this.orders = result[1];
       });
     });
   }
@@ -47,5 +50,26 @@ export class ListUserOrderComponent implements OnInit {
 
   return() {
     this.router.navigate(['me/posts/list']);
+  }
+
+  cancelOrder(idOrder: any) {
+    const dataOrder = {
+      status: '0'
+    };
+    this.orderService.acceptOrder(dataOrder, idOrder).subscribe(result => {
+      console.log(result);
+    });
+  }
+
+  acceptOrder(idOrder: any) {
+    const dataOrder = {
+      status: '2'
+    };
+    const dataHouse = {
+      status: ''
+    };
+    this.orderService.acceptOrder(dataOrder, idOrder).subscribe(result => {
+      console.log(result);
+    });
   }
 }

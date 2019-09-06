@@ -70,12 +70,6 @@ export class HouseApiService {
   getHouseSearch(data: any) {
     this.searchHouse = data;
   }
-  orderHouse(data: any) {
-    return this.http.post(`${this.apiUrl}/order`, data);
-  }
 
-  getUserOrder(houseId: any) {
-    return this.http.get(`${this.apiUrl}/getUserOrder/${houseId}`);
-  }
 }
 

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserApiService} from '../../user/user-api.service';
 import {HouseApiService} from '../house-api.service';
 import {Router} from '@angular/router';
+import {OrderApiService} from '../../Order/order-api.service';
 
 @Component({
   selector: 'app-list',
@@ -18,6 +19,7 @@ export class ListComponent implements OnInit {
   constructor(private userService: UserApiService,
               private houseService: HouseApiService,
               private router: Router,
+              private orderService: OrderApiService
   ) {
   }
 
@@ -41,8 +43,8 @@ export class ListComponent implements OnInit {
     this.houseService.getHouseOfUser(userId).subscribe(data => {
       this.posts = data;
       for (let i = 0; i < this.posts.length; i++) {
-        this.houseService.getUserOrder(this.posts[i].id).subscribe(result => {
-          this.usersOrder = result;
+        this.orderService.getUserOrder(this.posts[i].id).subscribe(result => {
+          this.usersOrder = result[0];
           this.posts[i].convenient = this.usersOrder.length;
         });
       }
@@ -50,7 +52,7 @@ export class ListComponent implements OnInit {
   }
 
   getUserOrder(idPost) {
-    this.houseService.getUserOrder(idPost).subscribe(result => {
+    this.orderService.getUserOrder(idPost).subscribe(result => {
       this.usersOrder = result;
     });
   }
