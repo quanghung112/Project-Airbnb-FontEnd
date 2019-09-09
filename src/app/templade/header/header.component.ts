@@ -12,8 +12,6 @@ import {RegisterComponent} from '../../user/register/register.component';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  // isLogined = localStorage.getItem('isLogined');
-  isLogined = false;
   accessToken: any;
   UserDetail: any;
 
@@ -21,39 +19,40 @@ export class HeaderComponent implements OnInit {
               private router: Router, public userService: UserApiService,
               private dialog: MatDialog,
               // private dialogRef: MatDialogRef<LoginComponent>,
-              ) {
+  ) {
   }
 
   ngOnInit() {
     if (localStorage.getItem('ACCESS_TOKEN')) {
-      this.isLogined = true;
+      this.apiLogin.isLogined = true;
     } else {
-      this.isLogined = false;
+      this.apiLogin.isLogined = false;
     }
     this.userService.getMe().subscribe(result => {
       this.UserDetail = result;
       console.log(this.UserDetail);
     });
   }
-
   logout($event: MouseEvent) {
     event.preventDefault();
     this.accessToken = localStorage.getItem('ACCESS_TOKEN');
     localStorage.removeItem('isLogined');
-    localStorage.removeItem('ACCESS_TOKEN');
     localStorage.removeItem('idUser');
     this.accessToken = null;
     this.apiLogin.logout(this.accessToken).subscribe(result => {
+        localStorage.removeItem('ACCESS_TOKEN');
         console.log(result);
         this.router.navigate(['/']);
+      }, error => {
+        localStorage.removeItem('ACCESS_TOKEN');
       }
     );
   }
 
   changePage() {
     if (localStorage.getItem('ACCESS_TOKEN')) {
-      console.log(localStorage.getItem('ACCESS_TOKEN'));
-      this.router.navigate(['me/post/1']);
+      // console.log(localStorage.getItem('ACCESS_TOKEN'));
+      this.router.navigate(['me/post']);
     } else {
       this.Login();
     }

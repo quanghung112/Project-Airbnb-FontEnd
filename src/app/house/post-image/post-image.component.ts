@@ -56,7 +56,6 @@ export class PostImageComponent implements OnInit {
         headers.append('Accept', 'application/json');
         myFormData.append('image', this.images[i]);
         myFormData.append('house_id', this.houseId);
-        console.log(this.formData);
         this.houseApi.saveImage(myFormData).subscribe(result => {
           console.log(result[0].message);
           this.houseApi.message = result[0].message;

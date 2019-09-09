@@ -24,15 +24,14 @@
             <th class="text-center align-middle" scope="row">{{i + 1}}</th>
             <td>
               <h5 style="color: #0250c5">{{post.title}}</h5>
-
               <a [routerLink]="[post.id,'update']">
                 <button>Sửa tin</button>
               </a><a (click)="deletePost(post.id)">
               <button>Xóa tin</button>
             </a>
               <br>
-              Trạng thái:<span class="changeStatus pointer" *ngIf="!post.status"><a (click)="changeStatus(post.id)"> Đang hiển thị</a></span>
-              <span class="changeStatus pointer" *ngIf="post.status"><a (click)="changeStatus(post.id)"> Đã được thuê</a></span>
+              Trạng thái:<span class="changeStatus pointer text-success" *ngIf="!post.status"> <a (click)="changeStatus(post.id)"> Đang hiển thị</a></span>
+              <span class="changeStatus pointer text-danger" *ngIf="post.status"><a (click)="changeStatus(post.id)"> Đang không hiển thị</a></span>
               <br>
               <span>Số người đặt thuê: {{post.convenient}}  </span><span class="profile pointer"><a [routerLink]="[post.id,'user_order']">Chi tiết</a></span>
               <br>

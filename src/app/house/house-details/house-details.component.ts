@@ -13,6 +13,7 @@ export class HouseDetailsComponent implements OnInit {
   idHouse: any;
   houseDetail: any;
   Images: any;
+  images1: any;
   constructor(private houseApi: HouseApiService,
               public activatedRoute: ActivatedRoute,
               public router: Router,
@@ -28,6 +29,8 @@ export class HouseDetailsComponent implements OnInit {
       });
       this.houseApi.getImageOfHouse(this.idHouse).subscribe(result => {
         this.Images = result;
+        this.images1 = this.Images[0];
+        this.Images.shift();
         // console.log(result);
       });
     });

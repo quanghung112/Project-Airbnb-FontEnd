@@ -4,14 +4,14 @@
     <div class="row">
       <div class="col-lg-12">
         <form class="filter-form" #searchForm (ngSubmit)="searchHouse(searchForm)">
-          <div class="location">
+          <div class="location s-component">
             <p>Địa điểm</p>
             <select class="form-control" name="city">
               <option value="">Chọn thành phố</option>
               <option *ngFor="let cty of cities" value="{{cty.name}}">{{cty.name}}</option>
             </select>
           </div>
-          <div class="search-type">
+          <div class="search-type s-component">
             <p>Loại nhà</p>
             <select name="style1" class="form-control">
               <option value="">Chọn loại nhà trọ</option>
@@ -24,7 +24,7 @@
               <option value="Trọ trong nhà chung chủ">Trọ trong nhà chung chủ</option>
             </select>
           </div>
-          <div class="price-range">
+          <div class="price-range s-component">
             <p>Price/ tháng</p>
             <div>
               <select name="price" class="form-control float-left">
@@ -37,7 +37,7 @@
               </select>
             </div>
           </div>
-          <div class="bedrooms">
+          <div class="bedrooms s-component">
             <p>Số phòng ngủ</p>
             <select name="bedroom" class="form-control">
               <option value="">Số phòng ngủ</option>
@@ -48,7 +48,7 @@
               <option value="5">> 4</option>
             </select>
           </div>
-          <div class="bathrooms">
+          <div class="bathrooms s-component">
             <p>Số phòng tắm</p>
             <select name="bathroom" id="" class="form-control">
               <option value="">Số phòng tắm</option>
@@ -58,6 +58,12 @@
               <option value="4">4</option>
               <option value="5">> 4</option>
             </select>
+          </div>
+          <div class="s-component dateloan">
+            <p>Từ ngày</p>
+            <input type="date" name="start_loan" class="form-control">
+            <p>Đến ngày</p>
+            <input type="date" name="end_loan" class="form-control">
           </div>
           <div class="search-btn">
             <button type="submit"><i class="flaticon-search"></i>Search</button>

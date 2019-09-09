@@ -9,7 +9,7 @@ import {map} from 'rxjs/operators';
 export class LoginLogoutServiceBackendApiService {
   apiUrl = 'http://localhost:8000/api';
   // public isLogined = localStorage.getItem('ACCESS_TOKEN');
-  public isLogined: boolean;
+  public isLogined = false;
 
   constructor(
     private http: HttpClient
@@ -20,7 +20,7 @@ export class LoginLogoutServiceBackendApiService {
     const data = {email, password};
     return this.http.post(`${this.apiUrl}/login`, data).pipe(
       map(result => {
-        localStorage.setItem('isLogined', '1');
+        // localStorage.setItem('isLogined', '1');
         this.isLogined = true;
         return result;
       })
@@ -30,7 +30,7 @@ export class LoginLogoutServiceBackendApiService {
   logout(token: string) {
     return this.http.post(`${this.apiUrl}/logout`, token).pipe(
       map(result => {
-        localStorage.removeItem('isLogined');
+        // localStorage.removeItem('isLogined');
         this.isLogined = false;
         return result;
       })
@@ -40,7 +40,7 @@ export class LoginLogoutServiceBackendApiService {
   loginFacebook(socialUser: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/loginFacebook`, socialUser).pipe(
       map(result => {
-        localStorage.setItem('isLogined', '1');
+        // localStorage.setItem('isLogined', '1');
         this.isLogined = true;
         return result;
       })
