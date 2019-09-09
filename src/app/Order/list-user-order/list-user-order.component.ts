@@ -43,6 +43,7 @@ export class ListUserOrderComponent implements OnInit {
     this.orderService.getUserOrder(idHouse).subscribe(result => {
       this.users = result[0];
       this.orders = result[1];
+      // console.log(result[1]);
     });
   }
 
@@ -60,11 +61,12 @@ export class ListUserOrderComponent implements OnInit {
 
   cancelOrder(idOrder: any) {
     const dataOrder = {
-      status: '0'
+      status: '0',
+      userId: ''
     };
     if (confirm('Bạn không thể khôi phục khách đặt thuê này nữa! bạn có chắc chắn muốn hủy?')) {
-      this.orderService.acceptOrder(dataOrder, idOrder).subscribe(result => {
-        console.log(result);
+      this.orderService.updateOrder(dataOrder, idOrder).subscribe(result => {
+        // console.log(result);
         this.getUserOrder(this.idHouse);
       });
     }
@@ -72,13 +74,11 @@ export class ListUserOrderComponent implements OnInit {
 
   acceptOrder(idOrder: any) {
     const dataOrder = {
-      status: '2'
+      status: '2',
+      userId: ''
     };
-    const dataHouse = {
-      status: ''
-    };
-    this.orderService.acceptOrder(dataOrder, idOrder).subscribe(result => {
-      console.log(result);
+    this.orderService.updateOrder(dataOrder, idOrder).subscribe(result => {
+      // console.log(result);
       this.getUserOrder(this.idHouse);
     });
   }

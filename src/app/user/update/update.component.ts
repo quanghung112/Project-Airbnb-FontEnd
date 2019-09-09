@@ -66,7 +66,6 @@ export class UpdateComponent implements OnInit {
         this.router.navigate(['/me']);
       },
       error => {
-
         this.errorName = error.error.error.name;
         this.errorAvatar = error.error.error.avatar;
         this.errorAddress = error.error.error.address;

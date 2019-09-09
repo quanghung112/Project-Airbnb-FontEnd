@@ -23,7 +23,7 @@ export class OrderApiService {
     return this.http.get(`${this.apiUrl}/getHouseOrder/${userId}`);
   }
 
-  acceptOrder(data, idOrder) {
+  updateOrder(data, idOrder) {
     return this.http.post(`${this.apiUrl}/updateOrder/${idOrder}`, data);
   }
 }

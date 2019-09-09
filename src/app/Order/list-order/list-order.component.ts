@@ -14,6 +14,7 @@ export class ListOrderComponent implements OnInit {
   user: any;
   houses: any;
   orders: any;
+  message: any;
 
   constructor(private userService: UserApiService,
               private houseService: HouseApiService,
@@ -25,11 +26,15 @@ export class ListOrderComponent implements OnInit {
   ngOnInit() {
     this.userService.getMe().subscribe(result => {
       this.user = result;
-      this.orderService.getHouseOrder(this.user.id).subscribe(data => {
-        console.log(data);
-        this.houses = data[0];
-        this.orders = data[1];
-      });
+      this.getHousesOrder(this.user.id);
+    });
+  }
+
+  getHousesOrder(userId) {
+    this.orderService.getHouseOrder(userId).subscribe(data => {
+      // console.log(data);
+      this.houses = data[0];
+      this.orders = data[1];
     });
   }
 
@@ -39,5 +44,17 @@ export class ListOrderComponent implements OnInit {
 
   changeUpdate() {
     this.router.navigate(['me/update']);
+  }
+
+  cancelOrder(idOrder: any) {
+    const data = {
+      status: '0',
+      userId: this.user.id
+    };
+    this.orderService.updateOrder(data, idOrder).subscribe(result => {
+      // console.log(result);
+      this.message = result;
+      this.getHousesOrder(this.user.id);
+    });
   }
 }

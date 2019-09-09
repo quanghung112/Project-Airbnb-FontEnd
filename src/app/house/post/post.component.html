@@ -1,4 +1,4 @@
-<li class="list-group-item " style="background-color: #8F8FA8">Thêm tin mới >> Bước 1</li>
+<li class="list-group-item " style="background-color: #8F8FA8">Thêm tin mới</li>
 <div class="container" style="border: 1px solid #3f3f4b"><br>
   <form #postForm (ngSubmit)="post(postForm)">
     <div class="form-group">
@@ -9,21 +9,21 @@
       <div class="form-group col-4">
         <label> Loại nhà</label>
         <select name="style1" class="form-control">
-          <option value="Phòng trọ">Phòng trọ</option>
-          <option value="Ký túc xá">Ký túc xá</option>
-          <option value="Chung cư mini">Chung cư mini</option>
-          <option value="Cư xá">Cư xá</option>
+          <option value="Phòng trọ">Căn hộ chung cư</option>
+          <option value="Ký túc xá">Biệt thự</option>
+          <option value="Chung cư mini">Căn hộ Studio</option>
+          <option value="Cư xá">Nhà riêng</option>
           <option value="Homestay">Homestay</option>
-          <option value="Nhà trọ nguyên căn">Nhà trọ nguyên căn</option>
-          <option value="Trọ trong nhà chung chủ">Trọ trong nhà chung chủ</option>
+          <option value="Nhà trọ nguyên căn">Căn hộ dịch vụ</option>
+          <option value="Trọ trong nhà chung chủ">Khách sạn</option>
         </select>
       </div>
       <div class="form-group col-md-4">
-        <label>Hình thức thuê</label>
+        <label>Loại phòng</label>
         <select name="loan_type" class="form-control">
-          <option value="Cho thuê trọ">Cho thuê trọ</option>
-          <option value="Cho thuê Nhà/Căn hộ">Cho thuê Nhà/Căn hộ</option>
-          <option value="Tìm người ở ghép">Tìm người ở ghép</option>
+          <option value="Cho thuê trọ">Nguyên căn</option>
+          <option value="Cho thuê Nhà/Căn hộ">Ở riêng</option>
+          <option value="Tìm người ở ghép">Ở ghép</option>
         </select>
       </div>
       <div class="form-group col-md-4">
@@ -35,7 +35,7 @@
         <input type="number" name="bathroom" class="form-control">
       </div>
       <div class="form-group col-md-4">
-        <label>Giá thuê/tháng</label>
+        <label>Giá thuê/đêm</label>
         <input type="number" name="price" class="form-control" placeholder="Việt nam đồng">
       </div>
     </div>
@@ -85,10 +85,17 @@
                 data="<p>Nhập mô tả</p>"></ckeditor>
     </div>
     <br>
-
+    <label><h5>Hình ảnh</h5></label>
+    <p>Chọn ảnh bạn muốn thêm:</p>
+    <div class="form-row">
+      <div *ngFor='let url of urls' class="form-group col-4">
+        <img [src]="url" style="max-height: 200px"><br/>
+      </div>
+    </div>
+    <input name="image" type="file" (change)="onSelectFile($event)">
+    <p></p>
     <button type="submit" class="btn btn-primary ">Tạo bài viết</button>
     <br>
-
   </form>
 </div>
 

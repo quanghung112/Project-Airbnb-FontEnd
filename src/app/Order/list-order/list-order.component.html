@@ -23,15 +23,16 @@
           <tr *ngFor="let house of houses ; index as i">
             <th class="text-center align-middle" scope="row">{{i + 1}}</th>
             <td>
-              <h5 style="color: #0250c5">{{house.title}}</h5><br>
+              <h5 style="color: #0250c5">{{house.title}}</h5>
+              <span class="text-danger">{{message}}</span><br>
+              <span>Ngày nhận phòng: {{house.start_loan}}</span><br>
+              <span>Ngày trả phòng: {{house.end_loan}}</span><br>
               <span *ngFor="let order of orders">
                 <span *ngIf="order.house_id === house.id">Trạng thái:
                   <span *ngIf="order.status === '0'" class="text-danger">Lịch đặt đã bị hủy</span>
                   <span *ngIf="order.status === '1'" class="text-warning">Đang chờ</span>
                   <span *ngIf="order.status === '2'" class="text-success">Đặt lịch thành công</span>
                 </span>
-              <br>
-              <span>Thời gian đặt thuê: </span>
               <br>
               <a *ngIf="order.house_id === house.id && order.status != '0'" (click)="cancelOrder(order.id)">
                 <button>Hủy thuê</button>

@@ -14,9 +14,9 @@
           <li><a href="about.html">Categories</a></li>
           <li><a href="single-property.html">Single Property</a></li>
 
-          <li *ngIf="!isLogined"><a (click)="Register()">Register</a></li>
-          <li *ngIf="!isLogined"><a class="btn" (click)="Login()">Login</a></li>
-          <li *ngIf="isLogined">
+          <li *ngIf="!apiLogin.isLogined"><a (click)="Register()">Register</a></li>
+          <li *ngIf="!apiLogin.isLogined"><a class="btn" (click)="Login()">Login</a></li>
+          <li *ngIf="apiLogin.isLogined">
 
             <div class="user-area dropdown float-right">
               <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true"
@@ -32,7 +32,7 @@
             </div>
           </li>
           <li>
-            <a class="btn btn-warning" (click)="changePage()">Dang tin</a>
+            <a class="btn btn-warning text-center" (click)="changePage()">Đăng tin</a>
           </li>
         </ul>
         <div id="mobile-menu-wrap"></div>
