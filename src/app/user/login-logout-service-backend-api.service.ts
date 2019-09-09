@@ -10,6 +10,7 @@ export class LoginLogoutServiceBackendApiService {
   apiUrl = 'http://localhost:8000/api';
   // public isLogined = localStorage.getItem('ACCESS_TOKEN');
   public isLogined = false;
+  public user: any;
 
   constructor(
     private http: HttpClient

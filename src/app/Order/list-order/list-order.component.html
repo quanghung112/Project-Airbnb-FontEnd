@@ -1,7 +1,7 @@
 <div class="form-group">
   <!--  <p *ngIf="houseService.message" style="background-color: #8AD144">{{houseService.message}}</p>-->
-  <div class="form-row">
-    <div class="form-group col-3 text-center" style="background-color: #E7E7EB; height: 300px">
+  <div class="form-row" *ngIf="user">
+    <div class="form-group col-3 text-center" style="background-color: #E7E7EB;height: auto;display: inline-table;">
       <img src="{{userService.avatarUrl}}/{{user.avatar}}" style="max-height: 200px;max-width: 200px">
       <h4>{{user.username}}</h4>
       <span>Id tài khoản: {{user.id}}</span><br>
@@ -10,8 +10,9 @@
       <span class="profile pointer"><a (click)="changeUpdate()">Update Profile</a></span><br>
     </div>
     <div class="form-group col-9">
+      <span class="text-danger">{{message}}</span>
       <li class="list-group-item " style="background-color: #8F8FA8">Lịch sử thuê nhà</li>
-      <div style="border: 1px solid #3f3f4b">
+      <div style="border: 1px solid #3f3f4b" *ngIf="houses">
         <table class="table table-bordered">
           <thead>
           <tr>
@@ -19,22 +20,27 @@
             <th scope="col" style="text-align: center">Danh sách</th>
           </tr>
           </thead>
+          <tr *ngIf="!houses.length">
+            <th scope="col" style="width: 50px"></th>
+            <td scope="col" style="text-align: center">Chưa đặt thuê nhà nào</td>
+          </tr>
           <tbody>
-          <tr *ngFor="let house of houses ; index as i">
+          <tr *ngFor="let order of orders ; index as i">
             <th class="text-center align-middle" scope="row">{{i + 1}}</th>
             <td>
-              <h5 style="color: #0250c5">{{house.title}}</h5>
-              <span class="text-danger">{{message}}</span><br>
-              <span>Ngày nhận phòng: {{house.start_loan}}</span><br>
-              <span>Ngày trả phòng: {{house.end_loan}}</span><br>
-              <span *ngFor="let order of orders">
-                <span *ngIf="order.house_id === house.id">Trạng thái:
+              <div *ngFor="let house of houses">
+                <div *ngIf="house.id === order.house_id ">
+                  <h5 style="color: #0250c5">{{house.title}}</h5>
+                  <span>Ngày nhận phòng: {{house.start_loan}}</span><br>
+                  <span>Ngày trả phòng: {{house.end_loan}}</span><br>
+                </div>
+              </div>
+              <span>Trạng thái:
                   <span *ngIf="order.status === '0'" class="text-danger">Lịch đặt đã bị hủy</span>
                   <span *ngIf="order.status === '1'" class="text-warning">Đang chờ</span>
-                  <span *ngIf="order.status === '2'" class="text-success">Đặt lịch thành công</span>
-                </span>
+                  <span *ngIf="order.status === '2'" class="text-succ ess">Đặt lịch thành công</span>
               <br>
-              <a *ngIf="order.house_id === house.id && order.status != '0'" (click)="cancelOrder(order.id)">
+              <a *ngIf=" order.status != '0'" (click)="cancelOrder(order.id)">
                 <button>Hủy thuê</button>
               </a>
               </span>

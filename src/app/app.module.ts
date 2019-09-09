@@ -31,7 +31,7 @@ import { OlderHouseComponent } from './Order/older-house/older-house.component';
 import { ListOrderComponent } from './Order/list-order/list-order.component';
 import { ListUserOrderComponent } from './Order/list-user-order/list-user-order.component';
 import {RevenueComponent} from './Order/revenue/revenue.component';
-
+import {DatePipe} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -78,7 +78,8 @@ import {RevenueComponent} from './Order/revenue/revenue.component';
     {
       provide: AuthServiceConfig,
       useFactory: getAuthServiceConfigs
-    }
+    },
+    DatePipe
   ],
   bootstrap: [AppComponent],
   entryComponents: [LoginComponent, RegisterComponent]

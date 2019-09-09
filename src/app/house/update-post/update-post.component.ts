@@ -41,6 +41,8 @@ export class UpdatePostComponent implements OnInit {
   images = [];
   urls = [];
   photoOfPost: any;
+  start: any;
+  end: any;
 
   private getArticleContent() {
     if (this.des && this.des.editorInstance) {
@@ -165,6 +167,8 @@ export class UpdatePostComponent implements OnInit {
     this.bathroom = postForm.bathroom.value;
     this.bedroom = postForm.bedroom.value;
     this.price = postForm.price.value;
+    this.start = postForm.start.value;
+    this.end = postForm.end.value;
     const data = {
       title: this.title,
       style: this.style,
@@ -177,6 +181,8 @@ export class UpdatePostComponent implements OnInit {
       bathroom: this.bathroom,
       price: this.price,
       description: this.description,
+      start_loan: this.start,
+      end_loan: this.end,
     };
 
     this.houseApi.updatePost(this.houseDetail.id, data).subscribe(result => {
@@ -199,5 +205,10 @@ export class UpdatePostComponent implements OnInit {
       this.houseApi.message = 'Sửa bài viết thành công';
       this.router.navigate(['/me/posts/list']);
     });
+  }
+
+  deleteImageAdd(i: any) {
+    this.urls.splice(i, 1);
+    this.images.splice(i, 1);
   }
 }
