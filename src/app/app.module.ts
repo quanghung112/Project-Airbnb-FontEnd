@@ -30,6 +30,8 @@ import { SearchListComponent } from './house/search-list/search-list.component';
 import { OlderHouseComponent } from './Order/older-house/older-house.component';
 import { ListOrderComponent } from './Order/list-order/list-order.component';
 import { ListUserOrderComponent } from './Order/list-user-order/list-user-order.component';
+import {RevenueComponent} from './Order/revenue/revenue.component';
+
 
 @NgModule({
   declarations: [
@@ -54,6 +56,7 @@ import { ListUserOrderComponent } from './Order/list-user-order/list-user-order.
     OlderHouseComponent,
     ListOrderComponent,
     ListUserOrderComponent,
+    RevenueComponent,
   ],
   imports: [
     BrowserModule,

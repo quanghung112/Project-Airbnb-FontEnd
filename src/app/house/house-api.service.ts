@@ -70,6 +70,11 @@ export class HouseApiService {
   getHouseSearch(data: any) {
     this.searchHouse = data;
   }
-
+  getUpdateRevenue(houseId: any) {
+    return this.http.get(`${this.apiUrl}/houses/revenue/${houseId}`);
+  }
+  getUpdateCancelRevenue(houseId: any) {
+    return this.http.get(`${this.apiUrl}/houses/revenue-cancel/${houseId}`);
+  }
 }
 

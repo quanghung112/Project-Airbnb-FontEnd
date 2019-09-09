@@ -7,7 +7,7 @@
     </div>
     <div class="float-left col-9">
       <h5><a (click)="detailHouse(house.id)">{{house.title}}</a></h5>
-      <p><span>price: </span>{{house.price}} vnđ/tháng</p>
+      <p><span>price: </span>{{house.price}} vnđ/ngày</p>
       <p [innerHTML]="house.description | slice:0:210"></p>
     </div>
   </li>

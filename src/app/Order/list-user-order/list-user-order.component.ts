@@ -59,7 +59,7 @@ export class ListUserOrderComponent implements OnInit {
     this.router.navigate(['me/posts/list']);
   }
 
-  cancelOrder(idOrder: any) {
+  cancelOrder(idOrder: any, idHouse: any) {
     const dataOrder = {
       status: '0',
       userId: ''
@@ -68,11 +68,14 @@ export class ListUserOrderComponent implements OnInit {
       this.orderService.updateOrder(dataOrder, idOrder).subscribe(result => {
         // console.log(result);
         this.getUserOrder(this.idHouse);
+        this.houseService.getUpdateCancelRevenue(idHouse).subscribe(result1 => {
+          console.log('success');
+        });
       });
     }
   }
 
-  acceptOrder(idOrder: any) {
+  acceptOrder(idOrder: any, idHouse: any) {
     const dataOrder = {
       status: '2',
       userId: ''
@@ -80,6 +83,9 @@ export class ListUserOrderComponent implements OnInit {
     this.orderService.updateOrder(dataOrder, idOrder).subscribe(result => {
       // console.log(result);
       this.getUserOrder(this.idHouse);
+      this.houseService.getUpdateRevenue(idHouse).subscribe(result1 => {
+        console.log('success');
+      });
     });
   }
 }

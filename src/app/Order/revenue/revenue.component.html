@@ -1,0 +1,28 @@
+<div class="form-group col-9">
+  <li class="list-group-item " style="background-color: #8F8FA8"><h5>Tin của bạn</h5></li>
+  <div style="border: 1px solid #3f3f4b">
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th scope="col" style="width: 50px">STT</th>
+        <th scope="col" style="text-align: center">Tin của bạn</th>
+        <th scope="col" style="text-align: center">Doanh thu trong tháng</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let house of houses ; index as i">
+        <th>{{i+1}}</th>
+        <td>
+          <h5 style="color: #0250c5">{{house.title}}</h5>
+        </td>
+        <td>{{house.revenue}}</td>
+      </tr>
+      <tr>
+        <td>#</td>
+        <td>Tổng doanh thu tháng</td>
+        <td>{{totalRevenue}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

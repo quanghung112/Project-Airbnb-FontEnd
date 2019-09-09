@@ -38,10 +38,10 @@
                 <span *ngIf="order.status === '1'" class="text-warning">Khách đang chờ</span>
                 <span *ngIf="order.status === '2'" class="text-success">Khách đặt thuê đã được chấp nhận</span>
                 <br>
-                <a *ngIf="order.user_id === user.id && order.status != '0'" (click)="cancelOrder(order.id)">
+                <a *ngIf="order.user_id === user.id && order.status != '0'" (click)="cancelOrder(order.id, order.house_id)">
                   <button>Xóa lịch đặt</button>
                 </a>
-                <a *ngIf="order.user_id === user.id && order.status != '0'" (click)="acceptOrder(order.id)">
+                <a *ngIf="order.user_id === user.id && order.status != '0'" (click)="acceptOrder(order.id, order.house_id)">
                   <button>Xác nhận</button>
                 </a>
               </span>

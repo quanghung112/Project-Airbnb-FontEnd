@@ -20,6 +20,7 @@ import {SearchListComponent} from './house/search-list/search-list.component';
 import {OlderHouseComponent} from './Order/older-house/older-house.component';
 import {ListOrderComponent} from './Order/list-order/list-order.component';
 import {ListUserOrderComponent} from './Order/list-user-order/list-user-order.component';
+import {RevenueComponent} from "./Order/revenue/revenue.component";
 
 
 
@@ -40,7 +41,8 @@ const routes: Routes = [
       {path: 'me/posts/list/:id/user_order', component: ListUserOrderComponent},
       {path: 'me/posts/list/:id/update', component: UpdatePostComponent},
       {path: 'order/houses/:id', component: OlderHouseComponent},
-      {path: 'me/order/list', component: ListOrderComponent}
+      {path: 'me/order/list', component: ListOrderComponent},
+      {path: 'me/houses/revenue', component: RevenueComponent}
     ]
   },
   {path: 'houses', component: ShowhousesComponent},
