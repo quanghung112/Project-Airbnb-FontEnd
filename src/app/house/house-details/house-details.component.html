@@ -3,11 +3,11 @@
     <div class="carousel-inner">
       <div class="carousel-item active">
 
-          <img class="d-block w-100" src="{{houseApi.imageUrl}}/{{images1.image}}" alt="First slide">
+          <img *ngIf="images1" class="d-block w-100" src="{{houseApi.imageUrl}}/{{images1.image}}" alt="First slide">
 
       </div>
       <div *ngFor="let image of Images; index as i" class="carousel-item">
-        <img class="d-block w-100" src="{{houseApi.imageUrl}}/{{image.image}}" alt="First slide">
+        <img *ngIf="image" class="d-block w-100" src="{{houseApi.imageUrl}}/{{image.image}}" alt="First slide">
       </div>
 
 
@@ -36,7 +36,7 @@
   <!--  </div>-->
   <hr>
   <div>
-    <div class="col-8 float-left form-group">
+    <div class="col-8 float-left form-group" *ngIf="houseDetail">
       <h2>{{houseDetail.title}}</h2>
       <p>{{houseDetail.city}}</p>
       <hr>
@@ -92,7 +92,7 @@
         <h5><span>Liên hệ</span>: </h5>
         <p>Điện thoại: <a href="tel:0999999999">0999999999</a></p>
       </div>
-      <div class="booking border py-4 px-2">
+      <div class="booking border py-4 px-2" *ngIf="houseDetail">
         <h5>{{houseDetail.price}}vnđ/tháng</h5>
         <input type="button" class="btn btn-danger" (click)="changePage()" value="Đặt phòng ">
       </div>

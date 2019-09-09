@@ -30,6 +30,7 @@ import { SearchListComponent } from './house/search-list/search-list.component';
 import { OlderHouseComponent } from './Order/older-house/older-house.component';
 import { ListOrderComponent } from './Order/list-order/list-order.component';
 import { ListUserOrderComponent } from './Order/list-user-order/list-user-order.component';
+import {DatePipe} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { ListUserOrderComponent } from './Order/list-user-order/list-user-order.
     {
       provide: AuthServiceConfig,
       useFactory: getAuthServiceConfigs
-    }
+    },
+    DatePipe
   ],
   bootstrap: [AppComponent],
   entryComponents: [LoginComponent, RegisterComponent]

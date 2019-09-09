@@ -176,4 +176,8 @@ export class PostComponent implements OnInit {
       });
     });
   }
+  deleteImageAdd(i: any) {
+    this.urls.splice(i, 1);
+    this.images.splice(i, 1);
+  }
 }

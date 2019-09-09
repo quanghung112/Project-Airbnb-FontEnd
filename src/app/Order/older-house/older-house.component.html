@@ -1,7 +1,7 @@
 <div class="container">
   <p style="color: red">{{houseApi.message}}</p>
   <form #postForm (ngSubmit)="post(postForm)">
-    <div class="form-row">
+    <div class="form-row" *ngIf="user">
       <div class="form-group col-md-9">
         <li class="list-group-item " style="background-color: #8F8FA8"><h5>Đặt phòng</h5></li>
         <div class="container" style="border: 1px solid #3f3f4b">
@@ -38,7 +38,14 @@
       <div class="form-group col-md-3">
         <li class="list-group-item " style="background-color: #8F8FA8"><h5>Thông tin phòng đặt</h5></li>
         <div class="container" style="border: 1px solid #3f3f4b">
-
+          <div>
+            <p class="font-weight-bold" style="font-size: 16px">{{house.title}}</p>
+            <p>{{house.address}}</p>
+            <hr>
+            <p>Nhận phòng: {{start}}</p>
+            <p>Trả phòng: {{end}}</p>
+            <p>Giá phòng: {{house.price}}đ/đêm</p>
+          </div>
         </div>
       </div>
 

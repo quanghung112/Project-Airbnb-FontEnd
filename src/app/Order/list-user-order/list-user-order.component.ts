@@ -43,7 +43,7 @@ export class ListUserOrderComponent implements OnInit {
     this.orderService.getUserOrder(idHouse).subscribe(result => {
       this.users = result[0];
       this.orders = result[1];
-      // console.log(result[1]);
+      console.log(result[0]);
     });
   }
 

@@ -1,6 +1,6 @@
 <div class="form-group">
   <!--  <p *ngIf="houseService.message" style="background-color: #8AD144">{{houseService.message}}</p>-->
-  <div class="form-row">
+  <div class="form-row" *ngIf="user">
     <div class="form-group col-3 text-center" style="background-color: #E7E7EB; height: 300px">
       <img src="{{userService.avatarUrl}}/{{user.avatar}}" style="max-height: 200px;max-width: 200px">
       <h4>{{user.username}}</h4>
@@ -13,7 +13,7 @@
       <li class="list-group-item " style="background-color: #8F8FA8"><h6>{{house.title}}</h6>Danh sách người đặt thuê
         nhà
       </li>
-      <div style="border: 1px solid #3f3f4b">
+      <div style="border: 1px solid #3f3f4b" *ngIf="users">
         <table class="table table-bordered">
           <thead>
           <tr>
@@ -22,29 +22,33 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let user of users ; index as i">
+          <tr *ngIf="!users.length">
+            <th scope="col" style="width: 50px"></th>
+            <td scope="col" style="text-align: center">Chưa có khách đặt thuê</td>
+          </tr>
+          <tr *ngFor="let order of orders ; index as i">
             <th class="text-center align-middle" scope="row">{{i + 1}}</th>
             <td>
-              <h5 style="color: #0250c5">{{user.name}}</h5>
-              <br>
-              <span>Email: {{user.email}}</span>
-              <br>
-              <span>Số điện thoại: {{user.phone}} </span>
-              <br>
-              <span *ngFor="let order of orders">
-                <span *ngIf="order.user_id === user.id ">Ngày đặt thuê: {{order.created_at}}</span>
-                <br>
+              <div *ngFor="let user of users">
+                <div *ngIf="order.user_id === user.id ">
+                  <h5 style="color: #0250c5">{{user.name}}</h5>
+                  <span>Email: {{user.email}}</span>
+                  <br>
+                  <span>Số điện thoại: {{user.phone}} </span>
+                  <br>
+                  <span>Ngày đặt thuê: {{order.created_at}}</span>
+                </div>
+              </div>
                 <span *ngIf="order.status === '0'" class="text-danger">Khách đặt thuê đã bị xóa</span>
                 <span *ngIf="order.status === '1'" class="text-warning">Khách đang chờ</span>
                 <span *ngIf="order.status === '2'" class="text-success">Khách đặt thuê đã được chấp nhận</span>
                 <br>
-                <a *ngIf="order.user_id === user.id && order.status != '0'" (click)="cancelOrder(order.id)">
+                <a *ngIf=" order.status != '0'" (click)="cancelOrder(order.id)">
                   <button>Xóa lịch đặt</button>
                 </a>
-                <a *ngIf="order.user_id === user.id && order.status != '0'" (click)="acceptOrder(order.id)">
+                <a *ngIf="order.status != '0'" (click)="acceptOrder(order.id)">
                   <button>Xác nhận</button>
                 </a>
-              </span>
             </td>
           </tr>
           </tbody>

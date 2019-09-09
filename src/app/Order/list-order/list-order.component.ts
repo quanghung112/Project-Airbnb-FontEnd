@@ -34,7 +34,9 @@ export class ListOrderComponent implements OnInit {
     this.orderService.getHouseOrder(userId).subscribe(data => {
       // console.log(data);
       this.houses = data[0];
+      console.log(this.houses);
       this.orders = data[1];
+      console.log(this.orders);
     });
   }
 

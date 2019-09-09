@@ -21,7 +21,7 @@
             <div class="user-area dropdown float-right">
               <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true"
                  aria-expanded="false">
-                {{UserDetail.username}}
+                <span *ngIf="apiLogin.user">{{apiLogin.user.username}}</span>
               </a>
               <div class="user-menu dropdown-menu">
                 <a class="nav-link" [routerLink]="['/me']"><i class="fa fa- user"></i>Profile</a>
