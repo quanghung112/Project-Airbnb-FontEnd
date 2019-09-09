@@ -34,7 +34,7 @@ const routes: Routes = [
       {path: 'me', component: DetailComponent},
       {path: 'me/update', component: UpdateComponent},
       {path: 'me/changePassword', component: ChangepasswordComponent},
-      {path: 'me/post/1', component: PostComponent},
+      {path: 'me/post', component: PostComponent},
       {path: 'me/post/2', component: PostImageComponent},
       {path: 'me/posts/list', component: ListComponent},
       {path: 'me/posts/list/:id/user_order', component: ListUserOrderComponent},

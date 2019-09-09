@@ -1,10 +1,11 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {LocationService} from '../location.service';
 import {UserApiService} from '../../user/user-api.service';
-  import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {ChangeEvent} from '@ckeditor/ckeditor5-angular';
 import {HouseApiService} from '../house-api.service';
 import {Router} from '@angular/router';
+import {HttpHeaders} from '@angular/common/http';
 
 
 @Component({
@@ -37,6 +38,10 @@ export class PostComponent implements OnInit {
   start: any;
   end: any;
   public Editor = ClassicEditor;
+  houseDetail: any;
+  images = [];
+  urls = [];
+  houseId: any;
 
   private getArticleContent() {
     if (this.des && this.des.editorInstance) {
@@ -66,7 +71,7 @@ export class PostComponent implements OnInit {
     });
     if (selectedValue) {
       this.locationApi.getCity(selectedValue).subscribe(result => {
-        console.log(result[0].name);
+        // console.log(result[0].name);
         this.city = result[0].name;
       });
     } else {
@@ -82,7 +87,7 @@ export class PostComponent implements OnInit {
     if (selectedValue) {
       this.locationApi.getDistrict(selectedValue).subscribe(result => {
         this.district = result[0].name;
-        console.log(this.district);
+        // console.log(this.district);
       });
     } else {
       this.district = 'chưa cập nhật';
@@ -94,7 +99,7 @@ export class PostComponent implements OnInit {
     if (selectedValue) {
       this.locationApi.getSubDistrict(selectedValue).subscribe(result => {
         this.sub_district = result[0].name;
-        console.log(this.sub_district);
+        // console.log(this.sub_district);
       });
     } else {
       this.sub_district = 'chưa cập nhật';
@@ -104,6 +109,22 @@ export class PostComponent implements OnInit {
   onChange({editor}: ChangeEvent) {
     const data = editor.getData();
     this.description = data;
+    console.log(this.description);
+  }
+
+  onSelectFile(event) {
+    if (event.target.files && event.target.files[0]) {
+      this.images.push(event.target.files[0]);
+      const filesAmount = event.target.files.length;
+      for (let i = 0; i < filesAmount; i++) {
+        const reader = new FileReader();
+        // tslint:disable-next-line:no-shadowed-variable
+        reader.onload = (event: any) => {
+          this.urls.push(event.target.result);
+        };
+        reader.readAsDataURL(event.target.files[i]);
+      }
+    }
   }
 
   post(postForm: HTMLFormElement) {
@@ -134,8 +155,25 @@ export class PostComponent implements OnInit {
       user_id: this.user_id
     };
     this.houseApi.createPost(data).subscribe(result => {
-      this.houseApi.message = 'Đăng bài thành công. Hãy thêm ảnh cho bài đăng của bạn';
-      this.router.navigate(['me/post/2']);
+      this.houseApi.getNewHouse(this.user_id).subscribe(house => {
+        console.log(house);
+        this.houseId = house[0].id;
+        if (this.images) {
+          for (let i = 0; i < this.images.length; i++) {
+            const myFormData = new FormData();
+            const headers = new HttpHeaders();
+            headers.append('Content-Type', 'multipart/form-data');
+            headers.append('Accept', 'application/json');
+            myFormData.append('image', this.images[i]);
+            myFormData.append('house_id', this.houseId);
+            this.houseApi.saveImage(myFormData).subscribe(result2 => {
+              console.log(result2[0]);
+              this.houseApi.message = 'Đăng bài thành công';
+              this.router.navigate(['me/posts/list']);
+            });
+          }
+        }
+      });
     });
   }
 }
