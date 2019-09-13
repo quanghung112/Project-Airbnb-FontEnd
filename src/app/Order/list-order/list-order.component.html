@@ -1,5 +1,5 @@
 <div class="form-group">
-  <!--  <p *ngIf="houseService.message" style="background-color: #8AD144">{{houseService.message}}</p>-->
+    <p class="text-success" *ngIf="houseService.message" style="font-size: 20px;">{{houseService.message}}</p>
   <div class="form-row" *ngIf="user">
     <div class="form-group col-3 text-center" style="background-color: #E7E7EB;height: auto;display: inline-table;">
       <img src="{{userService.avatarUrl}}/{{user.avatar}}" style="max-height: 200px;max-width: 200px">
@@ -31,8 +31,8 @@
               <div *ngFor="let house of houses">
                 <div *ngIf="house.id === order.house_id ">
                   <h5 style="color: #0250c5">{{house.title}}</h5>
-                  <span>Ngày nhận phòng: {{house.start_loan}}</span><br>
-                  <span>Ngày trả phòng: {{house.end_loan}}</span><br>
+                  <span>Ngày nhận phòng: {{datePipe.transform(order.check_in, 'dd-MM-yyyy')}}</span><br>
+                  <span>Ngày trả phòng: {{datePipe.transform(order.check_out, 'dd-MM-yyyy')}}</span><br>
                 </div>
               </div>
               <span>Trạng thái:

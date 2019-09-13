@@ -59,11 +59,11 @@ export class UpdateComponent implements OnInit {
     myFormData.append('address', this.address);
     myFormData.append('gender', this.gender);
     myFormData.append('phone', this.phone);
-    myFormData.append('avatar', this.avatar);
-    // console.log(myFormData);
+    if (this.avatar) {
+      myFormData.append('avatar', this.avatar);
+    }
     this.userService.updateUser(myFormData).subscribe(
       result => {
-        // console.log(result);
         this.router.navigate(['/me']);
       },
       error => {

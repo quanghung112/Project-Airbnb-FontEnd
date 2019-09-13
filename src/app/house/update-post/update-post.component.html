@@ -1,43 +1,47 @@
 <li class="list-group-item " style="background-color: #8F8FA8">Sửa tin của bạn</li>
-<div class="container" style="border: 1px solid #3f3f4b"><br>
+<div class="container" style="border: 1px solid #3f3f4b" *ngIf="houseDetail"><br>
   <form #postForm (ngSubmit)="update(postForm)">
     <div class="form-group">
       <label><h5>Tiêu đề tin</h5></label>
       <input type="text" name="title" class="form-control" value="{{houseDetail.title}}">
+      <p class="text-danger" *ngIf="errors && errors.title">{{errors.title[0]}}</p>
     </div>
     <div class="form-row">
       <div class="form-group col-4">
         <label> Loại nhà</label>
         <select name="style1" class="form-control">
-          <option value="Phòng trọ">Phòng trọ</option>
-          <option value="Ký túc xá">Ký túc xá</option>
-          <option value="Chung cư mini">Chung cư mini</option>
-          <option value="Cư xá">Cư xá</option>
+          <option value="Căn hộ chung cư">Căn hộ chung cư</option>
+          <option value="Biệt thự">Biệt thự</option>
+          <option value="Căn hộ Studio">Căn hộ Studio</option>
+          <option value="Nhà riêng">Nhà riêng</option>
           <option value="Homestay">Homestay</option>
-          <option value="Nhà trọ nguyên căn">Nhà trọ nguyên căn</option>
-          <option value="Trọ trong nhà chung chủ">Trọ trong nhà chung chủ</option>
+          <option value="Căn hộ dịch vụ">Căn hộ dịch vụ</option>
+          <option value="Khách sạn">Khách sạn</option>
         </select>
       </div>
       <div class="form-group col-md-4">
         <label>Hình thức thuê</label>
         <select name="loan_type" class="form-control">
-          <option value="Cho thuê trọ">Cho thuê trọ</option>
-          <option value="Cho thuê Nhà/Căn hộ">Cho thuê Nhà/Căn hộ</option>
-          <option value="Tìm người ở ghép">Tìm người ở ghép</option>
+          <option value="Nguyên căn">Nguyên căn</option>
+          <option value="Ở riêng">Ở riêng</option>
+          <option value="Ở ghép">Ở ghép</option>
         </select>
       </div>
       <div class="form-group col-md-4">
         <label>Số phòng ngủ</label>
         <input type="number" name="bedroom" class="form-control" value="{{houseDetail.bedroom}}">
+        <p class="text-danger" *ngIf="errors && errors.bedroom">{{errors.bedroom[0]}}</p>
       </div>
       <div class="form-group col-md-4">
         <label>Số phòng tắm</label>
         <input type="number" name="bathroom" class="form-control" value="{{houseDetail.bathroom}}">
+        <p class="text-danger" *ngIf="errors && errors.bathroom">{{errors.bathroom[0]}}</p>
       </div>
       <div class="form-group col-md-4">
-        <label>Giá thuê</label>
+        <label>Giá thuê/đêm</label>
         <input type="number" name="price" class="form-control" placeholder="Việt nam đồng"
                value="{{houseDetail.price}}">
+        <p class="text-danger" *ngIf="errors && errors.price">{{errors.price[0]}}</p>
       </div>
     </div>
     <label><h5>Thời gian thuê</h5></label><br>
@@ -45,10 +49,12 @@
       <div class="form-group col-md-4">
         <label>Từ:</label>
         <input type="date" name="start" class="form-control" value="{{houseDetail.start_loan}}">
+        <p class="text-danger" *ngIf="errors && errors.start_loan">{{errors.start_loan[0]}}</p>
       </div>
       <div class="form-group col-md-4">
         <label>Đến:</label>
         <input type="date" name="end" class="form-control" value="{{houseDetail.end_loan}}">
+        <p class="text-danger" *ngIf="errors && errors.end_loan">{{errors.end_loan[0]}}</p>
       </div>
     </div>
     <label><h5>Địa chỉ nhà</h5></label>

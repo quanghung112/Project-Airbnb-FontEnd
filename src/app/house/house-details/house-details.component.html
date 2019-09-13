@@ -72,6 +72,10 @@
         <div [innerHTML]="houseDetail.description">
         </div>
       </div>
+      <div>
+        <app-comment [idHouse]="idHouse" [idUserOfHouse]="this.houseDetail.user_id">
+        </app-comment>
+      </div>
     </div>
 
     <div class="col-4 float-left">

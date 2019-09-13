@@ -3,6 +3,7 @@ import {UserApiService} from '../../user/user-api.service';
 import {HouseApiService} from '../../house/house-api.service';
 import {Router} from '@angular/router';
 import {OrderApiService} from '../order-api.service';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-list-order',
@@ -19,6 +20,7 @@ export class ListOrderComponent implements OnInit {
   constructor(private userService: UserApiService,
               private houseService: HouseApiService,
               private router: Router,
+              public datePipe: DatePipe,
               private orderService: OrderApiService
   ) {
   }
@@ -32,11 +34,8 @@ export class ListOrderComponent implements OnInit {
 
   getHousesOrder(userId) {
     this.orderService.getHouseOrder(userId).subscribe(data => {
-      // console.log(data);
       this.houses = data[0];
-      console.log(this.houses);
       this.orders = data[1];
-      console.log(this.orders);
     });
   }
 
@@ -54,7 +53,6 @@ export class ListOrderComponent implements OnInit {
       userId: this.user.id
     };
     this.orderService.updateOrder(data, idOrder).subscribe(result => {
-      // console.log(result);
       this.message = result;
       this.getHousesOrder(this.user.id);
     });

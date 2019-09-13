@@ -1,0 +1,65 @@
+<div class="row bootstrap snippets">
+  <div class="col-md-12 col-md-offset-2 col-sm-12">
+    <div class="comment-wrapper">
+      <div class="panel panel-info">
+        <div class="panel-heading font-weight-bold h6">
+         Đánh giá
+        </div>
+        <div class="panel-body">
+          <p style="font-size: 17px" class="text-danger" *ngIf="message">{{message}}</p>
+          <form #formComment (ngSubmit)="Post(formComment)">
+            <textarea id="comment" class="form-control" name="comment" placeholder="Viết đánh giá..."
+                      rows="5"></textarea>
+            <br>
+            <button type="submit" class="btn btn-info pull-right">Đăng</button>
+          </form>
+          <div class="clearfix"></div>
+          <hr>
+          <ul class="media-list">
+            <div *ngIf=" comments && comments.length == 0">
+              <li class="media">
+               <p style="font-size: 15px">Chưa có đánh giá</p>
+              </li>
+            </div>
+            <div *ngIf="comments">
+              <li class="media" *ngFor="let comment of comments">
+                <div class="col-md-12">
+                  <div *ngFor="let user of users">
+                    <div class="pull-left" *ngIf="user.id === comment.user_id">
+                      <img src="{{userService.avatarUrl}}/{{user.avatar}}"
+                           class="img-circle">
+                    </div>
+                    <div class="media-body" *ngIf="user.id === comment.user_id">
+                      <span class="text-muted pull-right">
+                        <small class="text-muted">{{comment.time_comment}}</small>
+                      </span>
+                      <strong class="text-success">{{user.username}}</strong>
+                      <span *ngIf="comment.user_id == idUserOfHouse" class="text-muted ">
+                        <small class="text-muted"> &nbsp;Chủ nhà</small>
+                      </span>
+                      <p *ngIf="!check">{{comment.comment}}</p>
+                      <div *ngIf="check && user.id == idUser">
+                        <form #updateComment (ngSubmit)="update(updateComment)">
+                          <textarea class="form-control" name="comment" >{{comment.comment}}</textarea>
+                          <a><button type="submit" class="btn pull-right">Sửa</button></a>
+                        </form>
+                      </div>
+                      <span class="pull-right" *ngIf="user.id == idUser && check == false ">
+                        <span class="profile pointer">
+                         <a (click)="delete(comment.id)">Xóa</a>
+                        </span>/
+                        <span class="profile pointer ">
+                         <a (click)="change(comment.id)">Sửa</a>
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </div>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
