@@ -20,8 +20,8 @@ export class ShowhousesComponent implements OnInit {
       console.log(this.houses);
       for (let i = 0; i < this.houses.length; i++) {
         this.houseService.getImageOfHouse(this.houses[i].id).subscribe(photos => {
+          console.log(photos);
           this.houses[i].convenient = photos[0].image;
-          // console.log(this.houses[i].convenient);
         });
         if (this.houses[i].status === 'true') {
           this.houses.splice(i, 1);

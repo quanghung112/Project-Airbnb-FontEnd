@@ -104,5 +104,9 @@ export class HouseApiService {
     // @ts-ignore
     return this.http.post(`${this.apiUrl}/comments/${idComment}/update_time_comment`);
   }
+
+  getUserPostHouse(houseId: any) {
+    return this.http.get(`${this.apiUrl}/houses/${houseId}/user`);
+  }
 }
 

@@ -10,7 +10,7 @@
       <span class="profile pointer"><a (click)="changeUpdate()">Update Profile</a></span><br>
     </div>
     <div class="form-group col-9">
-      <span class="text-danger">{{message}}</span>
+      <span class="text-danger" *ngIf="message">{{message[0]}}</span>
       <li class="list-group-item " style="background-color: #8F8FA8">Lịch sử thuê nhà</li>
       <div style="border: 1px solid #3f3f4b" *ngIf="houses">
         <table class="table table-bordered">
@@ -34,16 +34,16 @@
                   <span>Ngày nhận phòng: {{datePipe.transform(order.check_in, 'dd-MM-yyyy')}}</span><br>
                   <span>Ngày trả phòng: {{datePipe.transform(order.check_out, 'dd-MM-yyyy')}}</span><br>
                 </div>
-              </div>
-              <span>Trạng thái:
+                <span>Trạng thái:
                   <span *ngIf="order.status === '0'" class="text-danger">Lịch đặt đã bị hủy</span>
                   <span *ngIf="order.status === '1'" class="text-warning">Đang chờ</span>
                   <span *ngIf="order.status === '2'" class="text-succ ess">Đặt lịch thành công</span>
               <br>
-              <a *ngIf=" order.status != '0'" (click)="cancelOrder(order.id)">
+              <a *ngIf=" order.status != '0'" (click)="cancelOrder(order.id, house.id)">
                 <button>Hủy thuê</button>
               </a>
               </span>
+              </div>
             </td>
           </tr>
           </tbody>

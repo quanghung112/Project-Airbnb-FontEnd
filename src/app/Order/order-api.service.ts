@@ -15,7 +15,7 @@ export class OrderApiService {
     return this.http.post(`${this.apiUrl}/order`, data);
   }
 
-  getUserOrder(houseId: any) {
+  getUsersOrder(houseId: any) {
     return this.http.get(`${this.apiUrl}/getUserOrder/${houseId}`);
   }
 
@@ -25,5 +25,13 @@ export class OrderApiService {
 
   updateOrder(data, idOrder) {
     return this.http.post(`${this.apiUrl}/updateOrder/${idOrder}`, data);
+  }
+
+  sendEmail(data: any) {
+    return this.http.post(`${this.apiUrl}/send-mail`, data);
+  }
+
+  getUserOrder(idOrder: any) {
+    return  this.http.get(`${this.apiUrl}/orders/${idOrder}/user`);
   }
 }
