@@ -3,6 +3,7 @@ import {UserApiService} from '../../user/user-api.service';
 import {HouseApiService} from '../../house/house-api.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {OrderApiService} from '../order-api.service';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-list-user-order',
@@ -22,6 +23,7 @@ export class ListUserOrderComponent implements OnInit {
               private houseService: HouseApiService,
               private router: Router,
               private activeRoute: ActivatedRoute,
+              public datePipe: DatePipe,
               private orderService: OrderApiService
   ) {
   }
@@ -43,7 +45,6 @@ export class ListUserOrderComponent implements OnInit {
     this.orderService.getUserOrder(idHouse).subscribe(result => {
       this.users = result[0];
       this.orders = result[1];
-      console.log(result[0]);
     });
   }
 
@@ -66,11 +67,9 @@ export class ListUserOrderComponent implements OnInit {
     };
     if (confirm('Bạn không thể khôi phục khách đặt thuê này nữa! bạn có chắc chắn muốn hủy?')) {
       this.orderService.updateOrder(dataOrder, idOrder).subscribe(result => {
-        // console.log(result);
         this.getUserOrder(this.idHouse);
-        this.houseService.getUpdateCancelRevenue(idHouse).subscribe(result1 => {
-          console.log('success');
-        });
+        // this.houseService.getUpdateCancelRevenue(idHouse).subscribe(result1 => {
+        // });
       });
     }
   }
@@ -81,11 +80,11 @@ export class ListUserOrderComponent implements OnInit {
       userId: ''
     };
     this.orderService.updateOrder(dataOrder, idOrder).subscribe(result => {
-      // console.log(result);
+       console.log(result);
       this.getUserOrder(this.idHouse);
-      this.houseService.getUpdateRevenue(idHouse).subscribe(result1 => {
-        console.log('success');
-      });
+      // this.houseService.getUpdateRevenue(idHouse).subscribe(result1 => {
+      //   console.log('success');
+      // });
     });
   }
 }

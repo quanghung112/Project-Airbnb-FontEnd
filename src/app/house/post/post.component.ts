@@ -27,14 +27,12 @@ export class PostComponent implements OnInit {
   address: string;
   city: string;
   district: string;
-  // tslint:disable-next-line:variable-name
-  sub_district: string;
+  subDistrict: string;
   bedroom: number;
   bathroom: number;
   price: number;
   description: any;
-  // tslint:disable-next-line:variable-name
-  user_id = localStorage.getItem('idUser');
+  idUser = localStorage.getItem('idUser');
   start: any;
   end: any;
   public Editor = ClassicEditor;
@@ -42,7 +40,7 @@ export class PostComponent implements OnInit {
   images = [];
   urls = [];
   houseId: any;
-
+  errors: any;
   private getArticleContent() {
     if (this.des && this.des.editorInstance) {
       console.log(this.Editor.editorInstance.getData());
@@ -98,11 +96,11 @@ export class PostComponent implements OnInit {
   getSubDistrict(selectedValue: string) {
     if (selectedValue) {
       this.locationApi.getSubDistrict(selectedValue).subscribe(result => {
-        this.sub_district = result[0].name;
+        this.subDistrict = result[0].name;
         // console.log(this.sub_district);
       });
     } else {
-      this.sub_district = 'chưa cập nhật';
+      this.subDistrict = 'chưa cập nhật';
     }
   }
 
@@ -145,17 +143,17 @@ export class PostComponent implements OnInit {
       address: this.address,
       city: this.city,
       district: this.district,
-      sub_district: this.sub_district,
+      sub_district: this.subDistrict,
       bedroom: this.bedroom,
       bathroom: this.bathroom,
       price: this.price,
       description: this.description,
       start_loan: this.start,
       end_loan: this.end,
-      user_id: this.user_id
+      user_id: this.idUser
     };
     this.houseApi.createPost(data).subscribe(result => {
-      this.houseApi.getNewHouse(this.user_id).subscribe(house => {
+      this.houseApi.getNewHouse(this.idUser).subscribe(house => {
         console.log(house);
         this.houseId = house[0].id;
         if (this.images) {
@@ -174,8 +172,11 @@ export class PostComponent implements OnInit {
           }
         }
       });
+    }, error => {
+      this.errors = error.error.error;
     });
   }
+
   deleteImageAdd(i: any) {
     this.urls.splice(i, 1);
     this.images.splice(i, 1);

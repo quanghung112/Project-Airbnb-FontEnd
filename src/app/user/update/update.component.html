@@ -1,4 +1,4 @@
-<form #updateUserForm (ngSubmit)="updateUser(updateUserForm)" >
+<form #updateUserForm (ngSubmit)="updateUser(updateUserForm)"  *ngIf="user">
   <div class="form-group col-6 float-left">
     <label>Name</label>
     <input type="text" class="form-control" name="name" placeholder="Enter Name" value="{{user.name}}">

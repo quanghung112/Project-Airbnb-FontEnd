@@ -32,6 +32,7 @@ import { ListOrderComponent } from './Order/list-order/list-order.component';
 import { ListUserOrderComponent } from './Order/list-user-order/list-user-order.component';
 import {RevenueComponent} from './Order/revenue/revenue.component';
 import {DatePipe} from '@angular/common';
+import { CommentComponent } from './house/comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import {DatePipe} from '@angular/common';
     ListOrderComponent,
     ListUserOrderComponent,
     RevenueComponent,
+    CommentComponent,
   ],
   imports: [
     BrowserModule,

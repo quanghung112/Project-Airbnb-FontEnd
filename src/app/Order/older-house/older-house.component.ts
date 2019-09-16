@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {HouseApiService} from '../../house/house-api.service';
 import {OrderApiService} from '../order-api.service';
 import {DatePipe} from '@angular/common';
+import instadate from 'instadate';
 
 @Component({
   selector: 'app-older-house',
@@ -36,17 +37,14 @@ export class OlderHouseComponent implements OnInit {
       this.idHouse = params.id;
       this.houseApi.findById(this.idHouse).subscribe(result => {
         this.house = result;
-        this.start = this.datePipe.transform(this.house.start_loan, 'dd-MM-yyyy');
-        this.end = this.datePipe.transform(this.house.end_loan, 'dd-MM-yyyy');
       });
     });
     this.userApi.getMe().subscribe(result => {
-      // console.log(result);
       this.user = result;
     });
   }
 
-  post(postForm: HTMLFormElement) {
+  order(postForm: HTMLFormElement) {
     if (this.house.user_id === this.user.id) {
       this.houseApi.message = 'Bạn không thể đặt phòng của chính mình';
     } else {
@@ -57,18 +55,20 @@ export class OlderHouseComponent implements OnInit {
         name: this.nameRenter,
         phone: this.phone,
         address: this.address,
-        avatar: ''
       };
       const dataOrder = {
         user_id: this.idUser,
-        house_id: this.idHouse
+        house_id: this.idHouse,
+        status: '1',
+        check_in: this.house.start_loan,
+        check_out: this.house.end_loan,
+        userofhome: this.house.user_id,
       };
-      // console.log(dataOrder);
-      this.orderService.orderHouse(dataOrder).subscribe(result2 => {
-        this.message = result2;
-        console.log(this.message);
+      console.log(dataOrder);
+      this.orderService.orderHouse(dataOrder).subscribe(result => {
+        this.message = result;
         if (this.message.message[1]) {
-          this.userApi.updateUser(data).subscribe(result => {
+          this.userApi.updateUser(data).subscribe(result2 => {
           });
           this.houseApi.message = this.message.message[0];
           this.router.navigate(['me/order/list']);

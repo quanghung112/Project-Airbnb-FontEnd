@@ -8,31 +8,63 @@
     <span class="profile pointer"><a (click)="changeUpdate()">Update Profile</a></span><br>
   </div>
   <div class="form-group col-9">
-    <li class="list-group-item " style="background-color: #8F8FA8"><h5>Tin của bạn</h5></li>
-    <div style="border: 1px solid #3f3f4b">
-      <table class="table table-bordered">
-        <thead>
-        <tr>
-          <th scope="col" style="width: 50px">STT</th>
-          <th scope="col" style="text-align: center">Tin của bạn</th>
-          <th scope="col" style="text-align: center">Doanh thu trong tháng</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let house of houses ; index as i">
-          <th>{{i + 1}}</th>
-          <td>
-            <h5 style="color: #0250c5">{{house.title}}</h5>
-          </td>
-          <td>{{house.revenue}}</td>
-        </tr>
-        <tr>
-          <td>#</td>
-          <td>Tổng doanh thu tháng</td>
-          <td>{{totalRevenue}}</td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
+    <form  #searchForm (ngSubmit)="searchtime(searchForm)">
+      <div class="form-group col-4 float-left">
+        <input type="date" class="form-control" name="startdate">
+      </div>
+      <div class="form-group col-4 float-left">
+        <input type="date" class="form-control" name="enddate">
+      </div>
+      <div class="form-group col-2 float-left">
+        <input type="submit" value="Search" class="form-control btn btn-primary">
+      </div>
+    </form>
+    <table class="table table-bordered">
+      <tr>
+        <th>Tên phòng</th>
+        <th>Ngày nhận phòng</th>
+        <th>Ngày trả phòng</th>
+        <th>Doanh thu</th>
+      </tr>
+      <tr *ngFor="let order of orders; index as i">
+        <td>{{order.houseName}}</td>
+        <td>{{order.check_in}}</td>
+        <td>{{order.check_out}}</td>
+        <td>{{order.revenue}}</td>
+      </tr>
+      <tr>
+        <td>#</td>
+        <td></td>
+        <td>Tổng doanh thu </td>
+        <td>{{totalOrder}}</td>
+      </tr>
+    </table>
+
+<!--    <li class="list-group-item " style="background-color: #8F8FA8"><h5>Tin của bạn</h5></li>-->
+<!--    <div style="border: 1px solid #3f3f4b">-->
+<!--      <table class="table table-bordered">-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--          <th scope="col" style="width: 50px">STT</th>-->
+<!--          <th scope="col" style="text-align: center">Tin của bạn</th>-->
+<!--          <th scope="col" style="text-align: center">Doanh thu trong tháng</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        <tr *ngFor="let house of houses ; index as i">-->
+<!--          <th>{{i + 1}}</th>-->
+<!--          <td>-->
+<!--            <h5 style="color: #0250c5">{{house.title}}</h5>-->
+<!--          </td>-->
+<!--          <td>{{house.revenue}}</td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--          <td>#</td>-->
+<!--          <td>Tổng doanh thu tháng</td>-->
+<!--          <td>{{totalRevenue}}</td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--      </table>-->
+<!--    </div>-->
   </div>
 </div>

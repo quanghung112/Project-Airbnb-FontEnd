@@ -43,6 +43,7 @@ export class UpdatePostComponent implements OnInit {
   photoOfPost: any;
   start: any;
   end: any;
+  errors: any;
 
   private getArticleContent() {
     if (this.des && this.des.editorInstance) {
@@ -186,7 +187,6 @@ export class UpdatePostComponent implements OnInit {
     };
 
     this.houseApi.updatePost(this.houseDetail.id, data).subscribe(result => {
-      console.log(result);
       if (this.images) {
         for (let i = 0; i < this.images.length; i++) {
           const myFormData = new FormData();
@@ -204,6 +204,8 @@ export class UpdatePostComponent implements OnInit {
       }
       this.houseApi.message = 'Sửa bài viết thành công';
       this.router.navigate(['/me/posts/list']);
+    }, error => {
+      this.errors = error.error.error;
     });
   }
 
