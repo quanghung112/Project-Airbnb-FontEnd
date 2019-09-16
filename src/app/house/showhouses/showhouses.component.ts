@@ -17,10 +17,8 @@ export class ShowhousesComponent implements OnInit {
   ngOnInit() {
     this.houseService.getAll().subscribe(result => {
       this.houses = result;
-      console.log(this.houses);
       for (let i = 0; i < this.houses.length; i++) {
         this.houseService.getImageOfHouse(this.houses[i].id).subscribe(photos => {
-          console.log(photos);
           this.houses[i].convenient = photos[0].image;
         });
         if (this.houses[i].status === 'true') {

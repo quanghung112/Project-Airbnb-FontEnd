@@ -1,0 +1,8 @@
+<div *ngIf="user">
+  <img src="{{userService.avatarUrl}}/{{user.avatar}}" style="max-height: 200px;max-width: 200px">
+  <h4>{{user.username}}</h4>
+  <span>Id tài khoản: {{user.id}}</span><br>
+  <span>Email: {{user.email}}</span><br>
+  <span class="profile pointer"><a (click)="changeProfile()">Profile</a></span><br>
+  <span class="profile pointer"><a (click)="changeUpdate()">Update Profile</a></span><br>
+</div>

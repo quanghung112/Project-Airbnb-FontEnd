@@ -32,6 +32,10 @@ export class OrderApiService {
   }
 
   getUserOrder(idOrder: any) {
-    return  this.http.get(`${this.apiUrl}/orders/${idOrder}/user`);
+    return this.http.get(`${this.apiUrl}/orders/${idOrder}/user`);
+  }
+
+  searchtime(data: any) {
+    return this.http.post(`${this.apiUrl}/searchtime`, data);
   }
 }

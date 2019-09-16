@@ -50,14 +50,6 @@ export class ListUserOrderComponent implements OnInit {
     });
   }
 
-  changeProfile() {
-    this.router.navigate(['me']);
-  }
-
-  changeUpdate() {
-    this.router.navigate(['me/update']);
-  }
-
   return() {
     this.router.navigate(['me/posts/list']);
   }
@@ -84,7 +76,6 @@ export class ListUserOrderComponent implements OnInit {
       userId: ''
     };
     this.orderService.updateOrder(dataOrder, idOrder).subscribe(result => {
-      // console.log(result);
       this.getUsersOrder(this.idHouse);
       const message = 'Chủ nhà đã chấp nhận yêu cầu thuê nhà cho bài đăng: "';
       this.sendMail(idOrder, message);

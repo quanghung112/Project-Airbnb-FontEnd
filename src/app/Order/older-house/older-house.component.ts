@@ -63,6 +63,7 @@ export class OlderHouseComponent implements OnInit {
         status: '1',
         check_in: this.house.start_loan,
         check_out: this.house.end_loan,
+        userofhome: this.house.user_id,
       };
       // console.log(dataOrder);
       this.orderService.orderHouse(dataOrder).subscribe(result => {

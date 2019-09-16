@@ -49,7 +49,6 @@ export class RegisterComponent implements OnInit {
       },
       (error) => {
         this.errorMessage = error.error.error;
-        console.log(this.errorMessage);
       });
   }
 
@@ -65,13 +64,11 @@ export class RegisterComponent implements OnInit {
     const socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
     this.socialAuthService.signIn(socialPlatformProvider).then(
       (userData) => {
-        console.log(userData);
         this.loginApi.loginFacebook(userData).subscribe(result => {
           localStorage.setItem('idUser', result.idUser);
           localStorage.setItem('ACCESS_TOKEN', result.token);
           this.userApi.getMe().subscribe(userLogin => {
             this.loginApi.user = userLogin;
-            console.log(this.loginApi.user);
           });
           this.dialogRef.close();
           this.router.navigate(['/']);

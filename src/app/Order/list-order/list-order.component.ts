@@ -42,14 +42,6 @@ export class ListOrderComponent implements OnInit {
     });
   }
 
-  changeProfile() {
-    this.router.navigate(['me']);
-  }
-
-  changeUpdate() {
-    this.router.navigate(['me/update']);
-  }
-
   cancelOrder(idOrder: any, idHouse: any) {
     const data = {
       status: '0',
