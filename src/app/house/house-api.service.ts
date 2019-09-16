@@ -63,6 +63,7 @@ export class HouseApiService {
   deletePost(houseId: any) {
     return this.http.delete(`${this.apiUrl}/houses/deletePost/${houseId}`);
   }
+
   search(data: any) {
     return this.http.post(`${this.apiUrl}/houses/search`, data);
   }
@@ -71,5 +72,37 @@ export class HouseApiService {
     this.searchHouse = data;
   }
 
+  getUpdateRevenue(houseId: any) {
+    return this.http.get(`${this.apiUrl}/houses/revenue/${houseId}`);
+  }
+
+  getUpdateCancelRevenue(houseId: any) {
+    return this.http.get(`${this.apiUrl}/houses/revenue-cancel/${houseId}`);
+  }
+
+  getComment(houseId: any) {
+    return this.http.get(`${this.apiUrl}/houses/${houseId}/comments`);
+  }
+
+  getUsersComment(idHouse: any) {
+    return this.http.get(`${this.apiUrl}/houses/${idHouse}/get_user_comment`);
+  }
+
+  postComment(data: any, idHouse: any) {
+    return this.http.post(`${this.apiUrl}/houses/${idHouse}/create_comment`, data);
+  }
+
+  deleteComment(idComment: any) {
+    return this.http.delete(`${this.apiUrl}/comments/${idComment}/delete_comment`);
+  }
+
+  updateComment(data: any, idComment: any) {
+    return this.http.post(`${this.apiUrl}/comments/${idComment}/update_comment`, data);
+  }
+
+  updateTimeComment(idComment) {
+    // @ts-ignore
+    return this.http.post(`${this.apiUrl}/comments/${idComment}/update_time_comment`);
+  }
 }
 

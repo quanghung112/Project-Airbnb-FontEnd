@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {AuthService, FacebookLoginProvider} from 'angularx-social-login';
 import {MatDialog, MatDialogRef} from '@angular/material';
 import {RegisterComponent} from '../register/register.component';
+import {UserApiService} from '../user-api.service';
 
 
 @Component({
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
   message: string;
   idUser: any;
 
-  constructor(private api: LoginLogoutServiceBackendApiService,
+  constructor(private loginApi: LoginLogoutServiceBackendApiService,
+              private userApi: UserApiService,
               private router: Router,
               private socialAuthService: AuthService,
               private dialogRef: MatDialogRef<LoginComponent>,
@@ -32,11 +34,15 @@ export class LoginComponent implements OnInit {
   login(loginForm: HTMLFormElement) {
     this.email = loginForm.email.value;
     this.password = loginForm.password.value;
-    this.api.login(this.email, this.password).subscribe(result => {
+    this.loginApi.login(this.email, this.password).subscribe(result => {
       localStorage.setItem('ACCESS_TOKEN', result.token);
       this.accessToken = localStorage.getItem('ACCESS_TOKEN');
       localStorage.setItem('idUser', result.idUser);
-      console.log(this.api.isLogined);
+      this.userApi.getMe().subscribe(userLogin => {
+        this.loginApi.user = userLogin;
+        // console.log(this.loginApi.user);
+      });
+      // console.log(this.loginApi.isLogined);
       this.idUser = result.idUser;
       if (result.status) {
         this.dialogRef.close();
@@ -56,15 +62,18 @@ export class LoginComponent implements OnInit {
     this.socialAuthService.signIn(socialPlatformProvider).then(
       (userData) => {
         console.log(userData);
-        this.api.loginFacebook(userData).subscribe(result => {
+        this.loginApi.loginFacebook(userData).subscribe(result => {
           localStorage.setItem('idUser', result.idUser);
           localStorage.setItem('ACCESS_TOKEN', result.token);
+          this.userApi.getMe().subscribe(userLogin => {
+            this.loginApi.user = userLogin;
+            console.log(this.loginApi.user);
+          });
           this.dialogRef.close();
           this.router.navigate(['/']);
         });
       }
     );
-
   }
 
   changePage() {

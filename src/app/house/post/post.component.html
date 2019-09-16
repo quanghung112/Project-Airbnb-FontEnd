@@ -4,39 +4,43 @@
     <div class="form-group">
       <label><h5>Tiêu đề tin</h5></label>
       <input type="text" name="title" class="form-control">
+      <p class="text-danger" *ngIf="errors && errors.title">{{errors.title[0]}}</p>
     </div>
     <div class="form-row">
       <div class="form-group col-4">
         <label> Loại nhà</label>
         <select name="style1" class="form-control">
-          <option value="Phòng trọ">Căn hộ chung cư</option>
-          <option value="Ký túc xá">Biệt thự</option>
-          <option value="Chung cư mini">Căn hộ Studio</option>
-          <option value="Cư xá">Nhà riêng</option>
+          <option value="Căn hộ chung cư">Căn hộ chung cư</option>
+          <option value="Biệt thự">Biệt thự</option>
+          <option value="Căn hộ Studio">Căn hộ Studio</option>
+          <option value="Nhà riêng">Nhà riêng</option>
           <option value="Homestay">Homestay</option>
-          <option value="Nhà trọ nguyên căn">Căn hộ dịch vụ</option>
-          <option value="Trọ trong nhà chung chủ">Khách sạn</option>
+          <option value="Căn hộ dịch vụ">Căn hộ dịch vụ</option>
+          <option value="Khách sạn">Khách sạn</option>
         </select>
       </div>
       <div class="form-group col-md-4">
         <label>Loại phòng</label>
         <select name="loan_type" class="form-control">
-          <option value="Cho thuê trọ">Nguyên căn</option>
-          <option value="Cho thuê Nhà/Căn hộ">Ở riêng</option>
-          <option value="Tìm người ở ghép">Ở ghép</option>
+          <option value="Nguyên căn">Nguyên căn</option>
+          <option value="Ở riêng">Ở riêng</option>
+          <option value="Ở ghép">Ở ghép</option>
         </select>
       </div>
       <div class="form-group col-md-4">
         <label>Số phòng ngủ</label>
         <input type="number" name="bedroom" class="form-control">
+        <p class="text-danger" *ngIf="errors && errors.bedroom">{{errors.bedroom[0]}}</p>
       </div>
       <div class="form-group col-md-4">
         <label>Số phòng tắm</label>
         <input type="number" name="bathroom" class="form-control">
+        <p class="text-danger" *ngIf="errors && errors.bathroom">{{errors.bathroom[0]}}</p>
       </div>
       <div class="form-group col-md-4">
         <label>Giá thuê/đêm</label>
         <input type="number" name="price" class="form-control" placeholder="Việt nam đồng">
+        <p class="text-danger" *ngIf="errors && errors.price">{{errors.price[0]}}</p>
       </div>
     </div>
     <label><h5>Thời gian thuê</h5></label><br>
@@ -44,10 +48,12 @@
       <div class="form-group col-md-4">
         <label>Từ:</label>
         <input type="date" name="start" class="form-control">
+        <p class="text-danger" *ngIf="errors && errors.start_loan">{{errors.start_loan[0]}}</p>
       </div>
       <div class="form-group col-md-4">
         <label>Đến:</label>
         <input type="date" name="end" class="form-control">
+        <p class="text-danger" *ngIf="errors && errors.end_loan">{{errors.end_loan[0]}}</p>
       </div>
     </div>
     <label><h5>Địa chỉ</h5></label>
@@ -88,8 +94,11 @@
     <label><h5>Hình ảnh</h5></label>
     <p>Chọn ảnh bạn muốn thêm:</p>
     <div class="form-row">
-      <div *ngFor='let url of urls' class="form-group col-4">
-        <img [src]="url" style="max-height: 200px"><br/>
+      <div *ngFor='let url of urls, index as i' class="form-group col-4">
+        <a class="col col-4 float-left disabled">
+          <span (click)="deleteImageAdd(i)" class=" btn-delete-image btn btn-danger position-absolute">X</span>
+          <img [src]="url" style="max-height: 200px">
+        </a>
       </div>
     </div>
     <input name="image" type="file" (change)="onSelectFile($event)">

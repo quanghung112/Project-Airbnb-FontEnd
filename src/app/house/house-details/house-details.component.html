@@ -3,20 +3,13 @@
     <div class="carousel-inner">
       <div class="carousel-item active">
 
-          <img class="d-block w-100" src="{{houseApi.imageUrl}}/{{images1.image}}" alt="First slide">
+          <img *ngIf="images1" class="d-block w-100" src="{{houseApi.imageUrl}}/{{images1.image}}" alt="First slide">
 
       </div>
       <div *ngFor="let image of Images; index as i" class="carousel-item">
-        <img class="d-block w-100" src="{{houseApi.imageUrl}}/{{image.image}}" alt="First slide">
+        <img *ngIf="image" class="d-block w-100" src="{{houseApi.imageUrl}}/{{image.image}}" alt="First slide">
       </div>
 
-
-      <!--      <div class="carousel-item">-->
-      <!--        <img class="d-block w-100" src="{{houseApi.imageUrl}}/{{image.image}}" alt="Second slide">-->
-      <!--      </div>-->
-      <!--      <div class="carousel-item">-->
-      <!--        <img class="d-block w-100" src="..." alt="Third slide">-->
-      <!--      </div>-->
     </div>
     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -28,15 +21,9 @@
     </a>
   </div>
 
-
-  <!--  <div class="col-12" *ngFor="let image of Images; first as isFirst">-->
-  <!--    <div *ngIf="isFirst" class="image">-->
-  <!--      <img class="col-12" src="{{houseApi.imageUrl}}/{{image.image}}">-->
-  <!--    </div>-->
-  <!--  </div>-->
   <hr>
   <div>
-    <div class="col-8 float-left form-group">
+    <div class="col-8 float-left form-group" *ngIf="houseDetail">
       <h2>{{houseDetail.title}}</h2>
       <p>{{houseDetail.city}}</p>
       <hr>
@@ -85,6 +72,10 @@
         <div [innerHTML]="houseDetail.description">
         </div>
       </div>
+      <div>
+        <app-comment [idHouse]="idHouse" [idUserOfHouse]="this.houseDetail.user_id">
+        </app-comment>
+      </div>
     </div>
 
     <div class="col-4 float-left">
@@ -92,8 +83,10 @@
         <h5><span>Liên hệ</span>: </h5>
         <p>Điện thoại: <a href="tel:0999999999">0999999999</a></p>
       </div>
-      <div class="booking border py-4 px-2">
-        <h5>{{houseDetail.price}}vnđ/tháng</h5>
+      <div class="booking border py-4 px-2" *ngIf="houseDetail">
+        <p><span>Ngày nhận phòng : </span>{{houseDetail.start_loan}}</p>
+        <p><span>Ngày trả phòng : </span>{{houseDetail.end_loan}}</p>
+        <h5>{{houseDetail.price}} vnđ/ngày</h5>
         <input type="button" class="btn btn-danger" (click)="changePage()" value="Đặt phòng ">
       </div>
     </div>

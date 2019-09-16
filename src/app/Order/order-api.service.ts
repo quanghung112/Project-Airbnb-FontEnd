@@ -26,4 +26,7 @@ export class OrderApiService {
   updateOrder(data, idOrder) {
     return this.http.post(`${this.apiUrl}/updateOrder/${idOrder}`, data);
   }
+  searchtime(data: any) {
+    return this.http.post(`${this.apiUrl}/searchtime`, data);
+  }
 }

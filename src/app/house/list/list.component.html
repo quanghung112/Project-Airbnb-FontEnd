@@ -1,7 +1,7 @@
 <div class="form-group">
-  <p *ngIf="houseService.message" style="background-color: #8AD144">{{houseService.message}}</p>
-  <div class="form-row">
-    <div class="form-group col-3 text-center" style="background-color: #E7E7EB; height: 300px">
+  <p *ngIf="houseService.message" style="color: #8AD144; font-size: 20px">{{houseService.message}}</p>
+  <div class="form-row" *ngIf="user">
+    <div class="form-group col-3 text-center" style="background-color: #E7E7EB; height: auto;display: inline-table;">
       <img src="{{userService.avatarUrl}}/{{user.avatar}}" style="max-height: 200px;max-width: 200px">
       <h4>{{user.username}}</h4>
       <span>Id tài khoản: {{user.id}}</span><br>

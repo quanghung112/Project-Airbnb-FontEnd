@@ -5,7 +5,7 @@
       <div class="col-lg-12">
         <div class="logo">
           <a href="./index.html">
-            <img src="img/logo.png" alt="">
+            <img src="https://laravel.com/img/logotype.min.svg" alt="">
           </a>
         </div>
         <ul class="main-menu">
@@ -21,12 +21,13 @@
             <div class="user-area dropdown float-right">
               <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true"
                  aria-expanded="false">
-                {{UserDetail.username}}
+                <span *ngIf="apiLogin.user">{{apiLogin.user.username}}</span>
               </a>
               <div class="user-menu dropdown-menu">
                 <a class="nav-link" [routerLink]="['/me']"><i class="fa fa- user"></i>Profile</a>
                 <a class="nav-link" [routerLink]="['/me/posts/list']"><i class="fa fa -cog"></i>Tin của bạn </a>
                 <a class="nav-link" [routerLink]="['me/order/list']"><i class="fa fa -cog"></i>Nhà đang thuê</a>
+                <a class="nav-link" [routerLink]="['me/houses/revenue']"><i class="fa fa -cog"></i>Doanh thu tháng</a>
                 <a class="nav-link" (click)="logout($event)" href=""><i class="fa fa-power -off"></i>Logout</a>
               </div>
             </div>

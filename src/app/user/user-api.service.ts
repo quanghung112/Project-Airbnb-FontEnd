@@ -28,5 +28,4 @@ export class UserApiService {
     return this.http.post(`${this.apiUrl}/changePassword`, password);
   }
 
-
 }

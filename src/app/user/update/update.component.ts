@@ -28,7 +28,7 @@ export class UpdateComponent implements OnInit {
   ngOnInit() {
     this.userService.getMe().subscribe(result => {
       this.user = result;
-      console.log(this.user);
+      // console.log(this.user);
       if (this.user.avatar) {
         this.url = `${this.userService.avatarUrl}/${this.user.avatar}`;
       }
@@ -59,10 +59,11 @@ export class UpdateComponent implements OnInit {
     myFormData.append('address', this.address);
     myFormData.append('gender', this.gender);
     myFormData.append('phone', this.phone);
-    myFormData.append('avatar', this.avatar);
+    if (this.avatar) {
+      myFormData.append('avatar', this.avatar);
+    }
     this.userService.updateUser(myFormData).subscribe(
       result => {
-        console.log(result);
         this.router.navigate(['/me']);
       },
       error => {

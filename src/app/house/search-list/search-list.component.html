@@ -1,3 +1,5 @@
+<p class="text-success" style="font-size: 20px" *ngIf="houseApi.searchHouse">Tìm thấy {{houseApi.searchHouse.length}} kết quả</p>
+<p class="text-success" style="font-size: 20px" *ngIf="!houseApi.searchHouse">Không tìm thấy kết quả nào</p>
 <ul *ngFor="let house of houseApi.searchHouse" class="list-unstyled">
   <li class="house col-12">
     <div class="image col-0 col-sm-3 float-left p-1">
@@ -7,7 +9,7 @@
     </div>
     <div class="float-left col-9">
       <h5><a (click)="detailHouse(house.id)">{{house.title}}</a></h5>
-      <p><span>price: </span>{{house.price}} vnđ/tháng</p>
+      <p><span>price: </span>{{house.price}} vnđ/ngày</p>
       <p [innerHTML]="house.description | slice:0:210"></p>
     </div>
   </li>
