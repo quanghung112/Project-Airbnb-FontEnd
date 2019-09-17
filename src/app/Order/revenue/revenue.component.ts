@@ -11,7 +11,6 @@ import {OrderApiService} from '../order-api.service';
 export class RevenueComponent implements OnInit {
   user: any;
   houses: any;
-  revanue: any;
   startLoan: any;
   endLoan: any;
   totalRevenue = 0;

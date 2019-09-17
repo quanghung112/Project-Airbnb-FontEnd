@@ -72,7 +72,6 @@ export class OlderHouseComponent implements OnInit {
           this.userApi.updateUser(data).subscribe(result2 => {
           });
           this.houseApi.message = this.message.message[0];
-          this.router.navigate(['me/order/list']);
           this.houseApi.getUserPostHouse(this.house.id).subscribe(result3 => {
             this.userPost = result3;
             this.body = 'Khách hàng ' + this.user.username + ' đã đưa ra yêu cầu thuê nhà cho bài đăng: "'
@@ -86,6 +85,7 @@ export class OlderHouseComponent implements OnInit {
               console.log(message);
             });
           });
+          this.router.navigate(['me/order/list']);
         } else {
           this.houseApi.message = this.message.message[0];
         }

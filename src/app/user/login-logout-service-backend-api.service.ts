@@ -19,32 +19,14 @@ export class LoginLogoutServiceBackendApiService {
 
   login(email: string, password: string): Observable<any> {
     const data = {email, password};
-    return this.http.post(`${this.apiUrl}/login`, data).pipe(
-      map(result => {
-        // localStorage.setItem('isLogined', '1');
-        this.isLogined = true;
-        return result;
-      })
-    );
+    return this.http.post(`${this.apiUrl}/login`, data);
   }
 
   logout(token: string) {
-    return this.http.post(`${this.apiUrl}/logout`, token).pipe(
-      map(result => {
-        // localStorage.removeItem('isLogined');
-        this.isLogined = false;
-        return result;
-      })
-    );
+    return this.http.post(`${this.apiUrl}/logout`, token);
   }
 
   loginFacebook(socialUser: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/loginFacebook`, socialUser).pipe(
-      map(result => {
-        // localStorage.setItem('isLogined', '1');
-        this.isLogined = true;
-        return result;
-      })
-    );
+    return this.http.post(`${this.apiUrl}/loginFacebook`, socialUser);
   }
 }
