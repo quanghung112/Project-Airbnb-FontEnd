@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {UserApiService} from "../../user/user-api.service";
-import {HouseApiService} from "../../house/house-api.service";
-import {OrderApiService} from "../order-api.service";
+import {UserApiService} from '../../user/user-api.service';
+import {HouseApiService} from '../../house/house-api.service';
+import {OrderApiService} from '../order-api.service';
 
 @Component({
   selector: 'app-revenue',
@@ -30,14 +30,14 @@ export class RevenueComponent implements OnInit {
     this.userService.getMe().subscribe(result => {
       this.user = result;
       this.getHouse(this.user.id);
+      // @ts-ignore
+      this.searchtime();
     });
   }
 
   getHouse(UserId) {
-    // console.log(UserId)
     this.houseService.getHouseOfUser(UserId).subscribe(result => {
       this.houses = result;
-      // console.log(this.houses);
       for (let i = 0; i < this.houses.length; i++) {
         this.add = Number(this.houses[i].revenue);
         this.totalRevenue = this.totalRevenue + this.add;
@@ -46,6 +46,7 @@ export class RevenueComponent implements OnInit {
   }
 
   searchtime(searchForm: HTMLFormElement) {
+    this.totalOrder = 0;
     this.startLoan = searchForm.startdate.value;
     this.endLoan = searchForm.enddate.value;
     const datatime = {
@@ -54,7 +55,6 @@ export class RevenueComponent implements OnInit {
     };
     this.orderService.searchtime(datatime).subscribe(result => {
       this.orders = result;
-      console.log(this.orders);
       for (let i = 0; i < this.orders.length; i++) {
         this.addRevenue = Number(this.orders[i].revenue);
         this.totalOrder = this.totalOrder + this.addRevenue;

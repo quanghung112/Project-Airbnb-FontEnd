@@ -21,7 +21,7 @@
                <p style="font-size: 15px">Chưa có đánh giá</p>
               </li>
             </div>
-            <div *ngIf="comments.length > 0">
+            <div *ngIf="comments && comments.length > 0">
               <li class="media" *ngFor="let comment of comments">
                 <div class="col-md-12">
                   <div *ngFor="let user of users">

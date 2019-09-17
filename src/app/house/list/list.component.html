@@ -1,13 +1,8 @@
 <div class="form-group">
   <p *ngIf="houseService.message" style="color: #8AD144; font-size: 20px">{{houseService.message}}</p>
-  <div class="form-row" *ngIf="user">
+  <div class="form-row">
     <div class="form-group col-3 text-center" style="background-color: #E7E7EB; height: auto;display: inline-table;">
-      <img src="{{userService.avatarUrl}}/{{user.avatar}}" style="max-height: 200px;max-width: 200px">
-      <h4>{{user.username}}</h4>
-      <span>Id tài khoản: {{user.id}}</span><br>
-      <span>Email: {{user.email}}</span><br>
-      <span class="profile pointer"><a (click)="changeProfile()">Profile</a></span><br>
-      <span class="profile pointer"><a (click)="changeUpdate()">Update Profile</a></span><br>
+      <app-user-detail-in-post></app-user-detail-in-post>
     </div>
     <div class="form-group col-9">
       <li class="list-group-item " style="background-color: #8F8FA8"><h5>Tin của bạn</h5></li>
@@ -20,22 +15,22 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let post of posts ; index as i">
+          <tr *ngFor="let house of houses ; index as i">
             <th class="text-center align-middle" scope="row">{{i + 1}}</th>
             <td>
-              <h5 style="color: #0250c5">{{post.title}}</h5>
-              <a [routerLink]="[post.id,'update']">
+              <h5 style="color: #0250c5">{{house.title}}</h5>
+              <a [routerLink]="[house.id,'update']">
                 <button>Sửa tin</button>
-              </a><a (click)="deletePost(post.id)">
+              </a><a (click)="deletePost(house.id)">
               <button>Xóa tin</button>
             </a>
               <br>
-              Trạng thái:<span class="changeStatus pointer text-success" *ngIf="!post.status"> <a (click)="changeStatus(post.id)"> Đang hiển thị</a></span>
-              <span class="changeStatus pointer text-danger" *ngIf="post.status"><a (click)="changeStatus(post.id)"> Đang không hiển thị</a></span>
+              Trạng thái:<span class="changeStatus pointer text-success" *ngIf="!house.status"> <a (click)="changeStatus(house.id)"> Đang hiển thị</a></span>
+              <span class="changeStatus pointer text-danger" *ngIf="house.status"><a (click)="changeStatus(house.id)"> Đang không hiển thị</a></span>
               <br>
-              <span>Số người đặt thuê: {{post.convenient}}  </span><span class="profile pointer"><a [routerLink]="[post.id,'user_order']">Chi tiết</a></span>
+              <span>Số người đặt thuê: {{house.convenient}}  </span><span class="profile pointer"><a [routerLink]="[house.id,'user_order']">Chi tiết</a></span>
               <br>
-              <span>Thời gian đăng: {{post.created_at}}</span>
+              <span>Thời gian đăng: {{house.created_at}}</span>
             </td>
           </tr>
           </tbody>

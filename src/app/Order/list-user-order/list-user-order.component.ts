@@ -18,6 +18,8 @@ export class ListUserOrderComponent implements OnInit {
   house: any;
   orders: any;
   idHouse: any;
+  render: any;
+  body: any;
 
   constructor(private userService: UserApiService,
               private houseService: HouseApiService,
@@ -37,23 +39,15 @@ export class ListUserOrderComponent implements OnInit {
       this.houseService.findById(this.idHouse).subscribe(result => {
         this.house = result;
       });
-      this.getUserOrder(params.id);
+      this.getUsersOrder(params.id);
     });
   }
 
-  getUserOrder(idHouse) {
-    this.orderService.getUserOrder(idHouse).subscribe(result => {
+  getUsersOrder(idHouse) {
+    this.orderService.getUsersOrder(idHouse).subscribe(result => {
       this.users = result[0];
       this.orders = result[1];
     });
-  }
-
-  changeProfile() {
-    this.router.navigate(['me']);
-  }
-
-  changeUpdate() {
-    this.router.navigate(['me/update']);
   }
 
   return() {
@@ -67,9 +61,11 @@ export class ListUserOrderComponent implements OnInit {
     };
     if (confirm('Bạn không thể khôi phục khách đặt thuê này nữa! bạn có chắc chắn muốn hủy?')) {
       this.orderService.updateOrder(dataOrder, idOrder).subscribe(result => {
-        this.getUserOrder(this.idHouse);
-        // this.houseService.getUpdateCancelRevenue(idHouse).subscribe(result1 => {
-        // });
+        this.getUsersOrder(this.idHouse);
+        const message = 'Chủ nhà đã huỷ yêu cầu thuê nhà cho bài đăng: "';
+        this.sendMail(idOrder, message);
+        this.houseService.getUpdateCancelRevenue(idHouse).subscribe(result1 => {
+        });
       });
     }
   }
@@ -80,11 +76,27 @@ export class ListUserOrderComponent implements OnInit {
       userId: ''
     };
     this.orderService.updateOrder(dataOrder, idOrder).subscribe(result => {
-       console.log(result);
-      this.getUserOrder(this.idHouse);
-      // this.houseService.getUpdateRevenue(idHouse).subscribe(result1 => {
-      //   console.log('success');
-      // });
+      this.getUsersOrder(this.idHouse);
+      const message = 'Chủ nhà đã chấp nhận yêu cầu thuê nhà cho bài đăng: "';
+      this.sendMail(idOrder, message);
+      this.houseService.getUpdateRevenue(idHouse).subscribe(result1 => {
+        console.log('success');
+      });
+    });
+  }
+
+  sendMail(idOrder: any, message: any) {
+    this.orderService.getUserOrder(idOrder).subscribe(result => {
+      this.render = result;
+      this.body = message + this.house.title + ' "';
+      const dataEmail = {
+        name: this.render.username,
+        email: this.render.email,
+        body: this.body
+      };
+      this.orderService.sendEmail(dataEmail).subscribe(result2 => {
+        console.log(result2);
+      });
     });
   }
 }
