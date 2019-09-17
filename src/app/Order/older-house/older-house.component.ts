@@ -4,7 +4,6 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {HouseApiService} from '../../house/house-api.service';
 import {OrderApiService} from '../order-api.service';
 import {DatePipe} from '@angular/common';
-import instadate from 'instadate';
 
 @Component({
   selector: 'app-older-house',
@@ -22,6 +21,8 @@ export class OlderHouseComponent implements OnInit {
   start: any;
   end: any;
   message: any;
+  body: any;
+  userPost: any;
 
   constructor(private userApi: UserApiService,
               private activatedRoute: ActivatedRoute,
@@ -64,7 +65,7 @@ export class OlderHouseComponent implements OnInit {
         check_out: this.house.end_loan,
         userofhome: this.house.user_id,
       };
-      console.log(dataOrder);
+      // console.log(dataOrder);
       this.orderService.orderHouse(dataOrder).subscribe(result => {
         this.message = result;
         if (this.message.message[1]) {
@@ -72,6 +73,19 @@ export class OlderHouseComponent implements OnInit {
           });
           this.houseApi.message = this.message.message[0];
           this.router.navigate(['me/order/list']);
+          this.houseApi.getUserPostHouse(this.house.id).subscribe(result3 => {
+            this.userPost = result3;
+            this.body = 'Khách hàng ' + this.user.username + ' đã đưa ra yêu cầu thuê nhà cho bài đăng: "'
+              + this.house.title + '" và đăng chờ xác nhận. Hãy xác nhận trong thời gian sớm nhất';
+            const dataEmail = {
+              name: this.userPost.username  ,
+              email: this.userPost.email,
+              body: this.body
+            };
+            this.orderService.sendEmail(dataEmail).subscribe(message => {
+              console.log(message);
+            });
+          });
         } else {
           this.houseApi.message = this.message.message[0];
         }

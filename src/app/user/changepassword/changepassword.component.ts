@@ -33,11 +33,8 @@ export class ChangepasswordComponent implements OnInit {
       new_password : this.new_password,
       new_password_confirmation : this.new_password_confirmation
     };
-    console.log(this.password);
-    console.log(this.messenger);
     this.userService.updatePassword(this.password).subscribe(result => {
       this.messenger = result;
-      console.log(this.password);
       // this.router.navigate([`me`]);
     });
   }

@@ -39,11 +39,6 @@ export class HouseApiService {
     return this.http.get(`${this.apiUrl}/houses/getHousesOfUser/${userId}`);
   }
 
-
-  // updateHouse(data: any, idHouse: any) {
-  //   return this.http.post(`${this.apiUrl}/houses/update/${idHouse}`, data);
-  // }
-
   getImageByHouse(houseId: any) {
     return this.http.get(`${this.apiUrl}/houses/getImageByHouse/${houseId}`);
   }
@@ -103,6 +98,14 @@ export class HouseApiService {
   updateTimeComment(idComment) {
     // @ts-ignore
     return this.http.post(`${this.apiUrl}/comments/${idComment}/update_time_comment`);
+  }
+
+  getUserPostHouse(houseId: any) {
+    return this.http.get(`${this.apiUrl}/houses/${houseId}/user`);
+  }
+
+  updateStatus(data: any, houseId: any) {
+    return this.http.post(`${this.apiUrl}/houses/updateStatus/${houseId}`, data);
   }
 }
 

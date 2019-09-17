@@ -28,7 +28,6 @@ export class UpdateComponent implements OnInit {
   ngOnInit() {
     this.userService.getMe().subscribe(result => {
       this.user = result;
-      // console.log(this.user);
       if (this.user.avatar) {
         this.url = `${this.userService.avatarUrl}/${this.user.avatar}`;
       }

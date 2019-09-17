@@ -11,10 +11,11 @@ import {OrderApiService} from '../../Order/order-api.service';
 })
 export class ListComponent implements OnInit {
   user: any;
-  posts: any;
+  houses: any;
   usersOrder: any;
   house: any;
   status: any;
+  idUser = localStorage.getItem('idUser');
 
   constructor(private userService: UserApiService,
               private houseService: HouseApiService,
@@ -24,45 +25,36 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userService.getMe().subscribe(result => {
-      this.user = result;
-      this.getPost(this.user.id);
-    });
+    this.getPost();
   }
 
   deletePost(id: any) {
     if (confirm('Toàn bộ dữ liệu của bài đăng sẽ bị xóa bao gồm cả ảnh. Bạn có chắc chắn muốn xóa?')) {
       this.houseService.deletePost(id).subscribe(result => {
         this.houseService.message = 'Xóa bài đăng thành công!';
-        this.getPost(this.user.id);
+        this.getPost();
       });
     }
   }
 
-  getPost(userId) {
-    this.houseService.getHouseOfUser(userId).subscribe(data => {
-      this.posts = data;
-      for (let i = 0; i < this.posts.length; i++) {
-        this.orderService.getUserOrder(this.posts[i].id).subscribe(result => {
-          this.usersOrder = result[0];
-          this.posts[i].convenient = this.usersOrder.length;
-        });
+  getPost() {
+    this.houseService.getHouseOfUser(this.idUser).subscribe(data => {
+      this.houses = data;
+      if (this.houses) {
+        for (let i = 0; i < this.houses.length; i++) {
+          this.orderService.getUsersOrder(this.houses[i].id).subscribe(result => {
+            this.usersOrder = result[0];
+            this.houses[i].convenient = this.usersOrder.length;
+          });
+        }
       }
     });
   }
 
   getUserOrder(idPost) {
-    this.orderService.getUserOrder(idPost).subscribe(result => {
+    this.orderService.getUsersOrder(idPost).subscribe(result => {
       this.usersOrder = result;
     });
-  }
-
-  changeProfile() {
-    this.router.navigate(['me']);
-  }
-
-  changeUpdate() {
-    this.router.navigate(['me/update']);
   }
 
   changePage() {
@@ -79,10 +71,10 @@ export class ListComponent implements OnInit {
         this.status = 'true';
       }
       const data = {
-          status: this.status
-        };
-      this.houseService.updatePost(id, data).subscribe(result2 => {
-        this.getPost(this.user.id);
+        status: this.status
+      };
+      this.houseService.updateStatus(data, id).subscribe(result2 => {
+        this.getPost();
       });
     });
   }

@@ -16,6 +16,9 @@ export class ListOrderComponent implements OnInit {
   houses: any;
   orders: any;
   message: any;
+  userPost: any;
+  body: any;
+  house: any;
 
   constructor(private userService: UserApiService,
               private houseService: HouseApiService,
@@ -39,22 +42,31 @@ export class ListOrderComponent implements OnInit {
     });
   }
 
-  changeProfile() {
-    this.router.navigate(['me']);
-  }
-
-  changeUpdate() {
-    this.router.navigate(['me/update']);
-  }
-
-  cancelOrder(idOrder: any) {
+  cancelOrder(idOrder: any, idHouse: any) {
     const data = {
       status: '0',
       userId: this.user.id
     };
     this.orderService.updateOrder(data, idOrder).subscribe(result => {
       this.message = result;
-      this.getHousesOrder(this.user.id);
+      if (this.message[1]) {
+        this.getHousesOrder(this.user.id);
+        this.houseService.getUserPostHouse(idHouse).subscribe(result2 => {
+          this.userPost = result2;
+          this.houseService.findById(idHouse).subscribe(house => {
+            this.house = house;
+            this.body = 'Khách hàng ' + this.user.username + ' đã hủy yêu cầu thuê nhà cho bài đăng: ' + this.house.title;
+            const dataEmail = {
+              name: this.userPost.username,
+              email: this.userPost.email,
+              body: this.body
+            };
+            this.orderService.sendEmail(dataEmail).subscribe(message => {
+              console.log(message);
+            });
+          });
+        });
+      }
     });
   }
 }

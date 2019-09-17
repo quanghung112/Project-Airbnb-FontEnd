@@ -92,7 +92,7 @@ export class CommentComponent implements OnInit {
   }
 
   updateTimeComment() {
-    if (this.comments.length > 0) {
+    if (this.comments && this.comments.length > 0) {
       for (let i = 0; i < this.comments.length; i++) {
         this.houseService.updateTimeComment(this.comments[i].id).subscribe(result => {
         });

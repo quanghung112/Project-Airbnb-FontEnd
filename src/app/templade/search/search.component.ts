@@ -57,12 +57,10 @@ export class SearchComponent implements OnInit {
     console.log(data);
     this.houseApi.search(data).subscribe(result => {
       this.houseApi.getHouseSearch(result);
-      console.log(this.houseApi.searchHouse);
       this.router.navigate(['houses/search']);
       for (let i = 0; i < this.houseApi.searchHouse.length; i++) {
         this.houseApi.getImageOfHouse(this.houseApi.searchHouse[i].id).subscribe(photos => {
           this.houseApi.searchHouse[i].convenient = photos[0].image;
-          console.log(this.houseApi.searchHouse[i].convenient);
         });
       }
     });
