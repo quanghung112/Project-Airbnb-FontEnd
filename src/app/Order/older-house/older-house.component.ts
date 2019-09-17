@@ -4,7 +4,6 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {HouseApiService} from '../../house/house-api.service';
 import {OrderApiService} from '../order-api.service';
 import {DatePipe} from '@angular/common';
-import instadate from 'instadate';
 
 @Component({
   selector: 'app-older-house',
