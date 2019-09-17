@@ -35,16 +35,15 @@ export class LoginComponent implements OnInit {
     this.email = loginForm.email.value;
     this.password = loginForm.password.value;
     this.loginApi.login(this.email, this.password).subscribe(result => {
-      localStorage.setItem('ACCESS_TOKEN', result.token);
-      this.accessToken = localStorage.getItem('ACCESS_TOKEN');
-      localStorage.setItem('idUser', result.idUser);
-      this.userApi.getMe().subscribe(userLogin => {
-        this.loginApi.user = userLogin;
-        // console.log(this.loginApi.user);
-      });
-      // console.log(this.loginApi.isLogined);
       this.idUser = result.idUser;
       if (result.status) {
+        this.loginApi.isLogined = true;
+        localStorage.setItem('ACCESS_TOKEN', result.token);
+        this.accessToken = localStorage.getItem('ACCESS_TOKEN');
+        localStorage.setItem('idUser', result.idUser);
+        this.userApi.getMe().subscribe(userLogin => {
+          this.loginApi.user = userLogin;
+        });
         this.dialogRef.close();
         this.router.navigate(['/']);
       } else {
@@ -61,10 +60,10 @@ export class LoginComponent implements OnInit {
     const socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
     this.socialAuthService.signIn(socialPlatformProvider).then(
       (userData) => {
-        console.log(userData);
         this.loginApi.loginFacebook(userData).subscribe(result => {
           localStorage.setItem('idUser', result.idUser);
           localStorage.setItem('ACCESS_TOKEN', result.token);
+          this.loginApi.isLogined = true;
           this.userApi.getMe().subscribe(userLogin => {
             this.loginApi.user = userLogin;
             console.log(this.loginApi.user);

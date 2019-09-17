@@ -13,6 +13,7 @@ import {RegisterComponent} from '../../user/register/register.component';
 })
 export class HeaderComponent implements OnInit {
   accessToken: any;
+
   // UserDetail: any;
 
   constructor(private apiLogin: LoginLogoutServiceBackendApiService,
@@ -26,13 +27,13 @@ export class HeaderComponent implements OnInit {
     if (localStorage.getItem('ACCESS_TOKEN')) {
       this.userService.getMe().subscribe(result => {
         this.apiLogin.user = result;
-        // console.log(result);
       });
       this.apiLogin.isLogined = true;
     } else {
       this.apiLogin.isLogined = false;
     }
   }
+
   logout($event: MouseEvent) {
     event.preventDefault();
     this.accessToken = localStorage.getItem('ACCESS_TOKEN');
@@ -41,7 +42,7 @@ export class HeaderComponent implements OnInit {
     this.accessToken = null;
     this.apiLogin.logout(this.accessToken).subscribe(result => {
         localStorage.removeItem('ACCESS_TOKEN');
-        // console.log(result);
+        this.apiLogin.isLogined = false;
         this.router.navigate(['/']);
       }, error => {
         localStorage.removeItem('ACCESS_TOKEN');
