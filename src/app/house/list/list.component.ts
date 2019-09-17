@@ -74,7 +74,7 @@ export class ListComponent implements OnInit {
         status: this.status
       };
       this.houseService.updateStatus(data, id).subscribe(result2 => {
-        this.getPost(this.user.id);
+        this.getPost();
       });
     });
   }
